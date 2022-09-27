@@ -1,0 +1,14 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+    {% if title.length %} {{ title }} &bull; {% endif %}
+    {{ baseData.pageTitle }}
+</title>
+<meta name="description" content="{{ baseData.attributes.description }}">
+<meta name="author" content="{{ baseData.attributes.author }}">
+<link rel="preload" href="{{ '/css/style.css' | url }}" as="style">
+<link rel="preload" href="{{ '/js/main.js' | url }}" as="script">
+<link rel="stylesheet" href="{{ '/css/style.css' | url }}" />
+<script src="{{ '/js/main.js' | url }}" defer module></script>
+<link rel="icon" href="/img/public/favicon.svg">

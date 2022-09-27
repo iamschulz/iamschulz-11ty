@@ -1,0 +1,28 @@
+{% extends "base.njk" %}
+
+{% block content %}
+    <h1 class="nomargin-v">Blog</h1>
+    <ul class="grid-list nolist">
+    {%- for post in blog %}
+        <li>
+            <section class="card-s elevation-1">
+            <header>
+                <h2 class="inherit">
+                    <a href="/{{ post.title | slug | url }}">{{ post.title }}</a>
+                </h2>
+            </header>
+            {{ post.publishedAt }}
+            </section>
+        </li>
+    {%- endfor -%}
+    </ul>
+
+    <nav class="pagination">
+    {% if pagination.previousPageLink %}
+        <a class="pagination__item" href="{{ pagination.previousPageHref }}">Previous</a>
+    {% endif %}
+    {% if pagination.nextPageLink %}
+        <a class="pagination__item" href="{{ pagination.nextPageHref}}">Next</a>
+    {% endif %}
+</nav>
+{% endblock %}

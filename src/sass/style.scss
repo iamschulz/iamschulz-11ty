@@ -1,0 +1,17 @@
+@font-face {
+	font-family: Share;
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: local("Share Bold"), local("Share-Bold"),
+		url(/assets/share-v10-latin-700.woff2) format("woff2");
+}
+
+body {
+	font-family: sans-serif;
+	background-color: #f9f9f9;
+}
+
+h1 {
+	font-family: Share;
+}

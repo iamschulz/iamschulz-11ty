@@ -1,0 +1,9 @@
+<nav class="main-navigation">
+    <ul class="main-navigation__list">
+        {%- for entry in baseData.mainNavigation -%}
+            <li class="main-navigation__entry">
+                <a class="main-navigation__link" href="{{ entry.url }}">{{ entry.label }}</a>
+            </li>
+        {%- endfor -%}
+    </ul>
+</nav>

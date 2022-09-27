@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'head.njk' %}
+</head>
+<body data-component="body">
+    {% include 'header.njk' %}
+    <main class="container">
+        {% block content %}
+            {{ content | safe }}
+        {% endblock %}
+    </main>
+    {% include 'footer.njk' %}
+</body>
+</html>

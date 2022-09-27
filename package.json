@@ -1,0 +1,28 @@
+{
+	"name": "iamschulz-eleventy",
+	"version": "0.0.1",
+	"license": "MIT",
+	"devDependencies": {
+		"@11ty/eleventy": "^2.0.0-canary.16",
+		"@11ty/eleventy-img": "^2.0.1",
+		"@notionhq/client": "^2.2.0",
+		"cross-env": "^7.0.3",
+		"dotenv": "^16.0.2",
+		"esbuild": "^0.15.9",
+		"lightningcss-cli": "^1.15.1",
+		"notion-to-md": "^2.5.5",
+		"npm-run-all": "^4.1.5",
+		"sass": "^1.54.9"
+	},
+	"scripts": {
+		"watch:sass": "sass  --no-source-map --watch src/sass:dist/css",
+		"watch:ts": "./esbuild.js --watch",
+		"watch:eleventy": "eleventy --serve",
+		"build:sass": "sass  --no-source-map src/sass:dist/css",
+		"build:ts": "./esbuild.js --minify",
+		"build:eleventy": "eleventy",
+		"postbuild": "lightningcss --minify --targets '> 0.25%, not IE 11' dist/css/*.css -o dist/css/*.css",
+		"start": "npm-run-all build:sass --parallel watch:*",
+		"build": "npm-run-all build:sass build:ts build:eleventy"
+	}
+}
