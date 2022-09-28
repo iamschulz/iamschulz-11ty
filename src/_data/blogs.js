@@ -1,8 +1,8 @@
-require("dotenv").config();
-const { Client } = require("@notionhq/client");
-const { NotionToMarkdown } = require("notion-to-md");
-const imageToShortCode = require("../_helpers/imageToShortCode");
-const codepenToShortCode = require("../_helpers/codepenToShortCode");
+require('dotenv').config();
+const { Client } = require('@notionhq/client');
+const { NotionToMarkdown } = require('notion-to-md');
+const imageToShortCode = require('../_helpers/imageToShortCode');
+const codepenToShortCode = require('../_helpers/codepenToShortCode');
 
 module.exports = async () => {
 	const notion = new Client({
@@ -15,10 +15,8 @@ module.exports = async () => {
 		block_id: blockId,
 	});
 
-	console.log("resp1", response);
-
 	const blogPosts = response.results
-		.filter((x) => x.type === "child_page")
+		.filter((x) => x.type === 'child_page')
 		.map((x) => ({
 			id: x.id,
 			title: x.child_page.title,
@@ -28,7 +26,6 @@ module.exports = async () => {
 
 	for (i = 0; i < blogPosts.length; i++) {
 		const mdblocks = await n2m.pageToMarkdown(blogPosts[i].id);
-		console.log("blocks", mdblocks);
 
 		let mdString = n2m.toMarkdownString(mdblocks);
 		mdString = imageToShortCode(mdString);

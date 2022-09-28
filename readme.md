@@ -29,11 +29,15 @@
     -   twitter embeds, statically served
     -   custom video embeds
     -   tables
--   todo: deploy site from within notion
 
 ### add a new site
 
 -   same as blog post, just add to the sites page
+
+### deploy page
+
+-   Deployment link in Notion triggers a zapier webhook, which sends a deployment request to netlify
+    [![Netlify Status](https://api.netlify.com/api/v1/badges/d5df8844-fba4-41f2-9549-cf1e61035bf0/deploy-status)](https://app.netlify.com/sites/iamschulz-11ty/deploys)
 
 ## develop
 
@@ -55,3 +59,4 @@
 -   `lightningcss`: CSS postprocessor
 -   `esbuild`: compile and bundle typescript
 -   `netlify`: hosting and caching
+-   `zapier`: deployment link from notion to netlify
