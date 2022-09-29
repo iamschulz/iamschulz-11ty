@@ -3,7 +3,7 @@
 	font-style: normal;
 	font-weight: 700;
 	font-display: swap;
-	src: local("Gloomy Things"), url(/assets/GloomyThings.woff2) format("woff2");
+	src: local('Gloomy Things'), url(/assets/GloomyThings.woff2) format('woff2');
 }
 
 * {
@@ -52,8 +52,6 @@ body {
 	nav ul {
 		display: flex;
 		gap: 1rem;
-		padding: 0;
-		list-style: none;
 	}
 }
 
@@ -76,4 +74,9 @@ footer {
 
 a {
 	color: var(--link-color);
+}
+
+:is(.nolist) {
+	list-style: none;
+	padding: 0;
 }

@@ -7,6 +7,9 @@
         <li>
             <section class="card-s elevation-1">
             <header>
+                {% if post.cover %}
+                    {% image post.cover, "" %}
+                {% endif %}
                 <h2 class="inherit">
                     <a href="/{{ post.title | slug | url }}">{{ post.title }}</a>
                 </h2>

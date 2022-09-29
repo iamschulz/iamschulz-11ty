@@ -20,11 +20,17 @@ module.exports = async () => {
 		.map((x) => ({
 			id: x.id,
 			title: x.child_page.title,
+			cover: undefined,
 			content: undefined,
 			publishedAt: x.last_edited_time,
 		}));
 
 	for (i = 0; i < blogPosts.length; i++) {
+		const page = await notion.pages.retrieve({
+			page_id: blogPosts[i].id,
+		});
+		blogPosts[i].cover = page.cover?.file?.url || page.cover?.external?.url;
+
 		const mdblocks = await n2m.pageToMarkdown(blogPosts[i].id);
 
 		let mdString = n2m.toMarkdownString(mdblocks);
