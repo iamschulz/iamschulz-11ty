@@ -8,7 +8,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addWatchTarget("./src/ts/");
 	eleventyConfig.setTemplateFormats(["md"]);
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
-	eleventyConfig.addPassthroughCopy({ "src/assets/public": "assets" });
+	eleventyConfig.addPassthroughCopy({ "src/static/public": "assets" });
 	eleventyConfig.addShortcode("svg", getSvgContent);
 	eleventyConfig.addNunjucksAsyncShortcode("codepen", codepenShortcode);
 	eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);

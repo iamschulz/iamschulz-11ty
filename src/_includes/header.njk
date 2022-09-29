@@ -1,8 +1,5 @@
 <header class="main-header elevation-2">
-    <div class="main-header__inner container">
-        <span class="main-header__title">
-            <a class="main-header__link" href="/">{% svg "static/logo.svg" %}{{ baseData.attributes.pageTitle }}</a>
-        </span>
-        {% include 'mainNavigation.njk' %}
-    </div>
+    <a href="/">{% svg "static/logo.svg" %}{{ baseData.attributes.pageTitle }}</a>
+    <span class="h2">I am Schulz</span>
+    {% include 'mainNavigation.njk' %}
 </header>
