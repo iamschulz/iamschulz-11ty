@@ -1,9 +1,9 @@
 ---
-layout: "blogListing.njk"
-title: "Blog"
+layout: 'blogListing.njk'
+title: 'Blog'
 pagination:
     data: blogs
-    size: 2
+    size: 5
     reverse: true
     alias: blog
 ---

@@ -1,20 +1,21 @@
 {% extends "base.njk" %}
 
 {% block content %}
-    <h1 class="nomargin-v">Blog</h1>
+    <h1 class="nomargin-v fancyfont">Blog</h1>
     <ul class="grid-list nolist">
     {%- for post in blog %}
         <li>
+            <!-- todo: refactor to macto -->
             <section class="card-s elevation-1">
-            <header>
-                {% if post.cover %}
-                    {% image post.cover, "" %}
-                {% endif %}
-                <h2 class="inherit">
-                    <a href="/{{ post.title | slug | url }}">{{ post.title }}</a>
-                </h2>
-            </header>
-            {{ post.publishedAt }}
+                <header>
+                    {% if post.cover %}
+                        {% image post.cover, "" %}
+                    {% endif %}
+                    <h2 class="inherit">
+                        <a href="/{{ post.title | slug | url }}">{{ post.title }}</a>
+                    </h2>
+                </header>
+                <time datetime="2022-06-14">{{ post.publishedAt }}</time>
             </section>
         </li>
     {%- endfor -%}

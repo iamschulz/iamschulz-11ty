@@ -3,10 +3,10 @@
 {% block content %}
     <article>
         <header>
-            <h1>{{ post.title }}</h1>
             {% if post.cover %}
                 {% image post.cover, "" %}
             {% endif %}
+            <h1 class="fancyfont">{{ post.title }}</h1>
         </header>
         {{ content | safe }}
     </article>

@@ -63,7 +63,6 @@ h1,
 
 h2,
 :is(.h2) {
-	font-family: GloomyThings;
 	font-size: 2rem;
 }
 
@@ -74,6 +73,10 @@ footer {
 
 a {
 	color: var(--link-color);
+}
+
+:is(.fancyfont) {
+	font-family: GloomyThings;
 }
 
 :is(.nolist) {
