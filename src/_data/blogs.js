@@ -10,9 +10,15 @@ module.exports = async () => {
 	});
 	const n2m = new NotionToMarkdown({ notionClient: notion });
 
-	const blockId = process.env.NOTION_BLOG_ID;
-	const response = await notion.blocks.children.list({
-		block_id: blockId,
+	const databaseId = 'ff540d032dd4427988cab57db47b4544';
+	const db = await notion.databases.query({
+		database_id: databaseId,
+		filter: {
+			property: 'Draft',
+			checkbox: {
+				equals: false,
+			},
+		},
 	});
 
 	const getContent = async (id) => {
@@ -25,31 +31,21 @@ module.exports = async () => {
 		return mdString;
 	};
 
-	const getCover = (page) => page.cover?.file?.url || page.cover?.external?.url || undefined;
+	const posts = db.results.map((result) => ({
+		id: result.id,
+		title: result.properties['Title'].title.pop().plain_text,
+		content: undefined,
+		cover: result.cover?.file?.url || result.cover?.external?.url,
+		coverAlt: result.properties['Cover Alt']?.rich_text.pop()?.plain_text || '',
+		date: result.properties['Date']?.date.start,
+		language: result.properties['Language']?.select?.name || 'EN',
+		devID: result.properties['Dev ID']?.rich_text.pop()?.plain_text,
+		canonical: result.properties['Canonical']?.url,
+	}));
 
-	const getDraft = (page) => page.icon?.emoji !== '✅';
-
-	const blogPosts = response.results
-		.filter((x) => x.type === 'child_page')
-		.map((x) => {
-			return {
-				id: x.id,
-				draft: undefined,
-				title: x.child_page.title,
-				cover: undefined,
-				content: undefined,
-				publishedAt: new Date(x.last_edited_time).toLocaleDateString(),
-			};
-		});
-
-	for (i = 0; i < blogPosts.length; i++) {
-		const page = await notion.pages.retrieve({
-			page_id: blogPosts[i].id,
-		});
-		blogPosts[i].draft = getDraft(page);
-		blogPosts[i].cover = getCover(page);
-		blogPosts[i].content = await getContent(blogPosts[i].id);
+	for (i = 0; i < posts.length; i++) {
+		posts[i].content = await getContent(posts[i].id);
 	}
 
-	return blogPosts.filter((x) => x.content && !x.draft);
+	return posts;
 };

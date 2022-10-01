@@ -3,8 +3,8 @@
 {% block content %}
     <article>
         <header>
-            {% if post.cover %}
-                {% image post.cover, "" %}
+            {% if post.cover and post.coverAlt %}
+                {% image post.cover, post.coverAlt %}
             {% endif %}
             <h1 class="fancyfont">{{ post.title }}</h1>
         </header>

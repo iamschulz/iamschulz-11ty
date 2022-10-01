@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     {% include 'head.njk' %}
+    {% block additionalHead %}
+        <meta name="foo" content="default" >
+    {% endblock %}
 </head>
 <body data-component="body">
     {% include 'header.njk' %}
