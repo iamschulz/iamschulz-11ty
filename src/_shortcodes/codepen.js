@@ -1,4 +1,4 @@
-module.exports = async function codepenShortcode(content) {
+module.exports = function codepenShortcode(content) {
 	const uuid = Math.round(Math.random() * 1000000);
 	let result = `
 <div class="codepen-embed">

@@ -19,6 +19,12 @@ module.exports = async () => {
 				equals: false,
 			},
 		},
+		sorts: [
+			{
+				property: 'Date',
+				direction: 'descending',
+			},
+		],
 	});
 
 	const getContent = async (id) => {

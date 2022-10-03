@@ -4,6 +4,5 @@ title: 'Blog'
 pagination:
     data: blogs
     size: 5
-    reverse: true
     alias: blog
 ---

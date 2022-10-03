@@ -1,4 +1,5 @@
 {% extends "base.njk" %}
+{% from '../macros/articleCard.njk' import articleCard %}
 
 {% block content %}
     <h1 class="nomargin-v fancyfont">Blog</h1>
@@ -6,17 +7,7 @@
     {%- for post in blog %}
         <li>
             <!-- todo: refactor to macro -->
-            <section class="card-s elevation-1">
-                <header>
-                    {% if post.cover and post.coverAlt %}
-                        {% image post.cover, post.coverAlt %}
-                    {% endif %}
-                    <h2 class="inherit">
-                        <a href="/{{ post.title | slug | url }}">{{ post.title }}</a>
-                    </h2>
-                </header>
-                <time datetime="2022-06-14">{{ post.publishedAt }}</time>
-            </section>
+            {{ articleCard(post) }}
         </li>
     {%- endfor -%}
     </ul>
