@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@11ty/eleventy": "^2.0.0-canary.16",
-		"@11ty/eleventy-img": "^2.0.1",
+		"@11ty/eleventy-img": "zeroby0/eleventy-img#issue-146",
 		"@notionhq/client": "^2.2.0",
 		"cross-env": "^7.0.3",
 		"dotenv": "^16.0.2",
