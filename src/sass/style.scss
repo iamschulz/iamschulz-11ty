@@ -1,37 +1,15 @@
-@font-face {
-	font-family: GloomyThings;
-	font-style: normal;
-	font-weight: 700;
-	font-display: swap;
-	src: local('Gloomy Things'), url(/assets/GloomyThings.woff2) format('woff2');
-}
+@import "./global/colors.scss";
+@import "./global/typography.scss";
+@import "./global/high-contrast.scss";
 
 * {
 	box-sizing: border-box;
 }
 
-:root {
-	color-scheme: light dark;
-	--background-color: rgb(241 240 236);
-	--text-color: black;
-	--link-color: darkblue;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background-color: rgb(31, 34, 39);
-		--text-color: white;
-		--link-color: yellow;
-	}
-}
-
 body {
-	background-color: var(--background-color);
-	font-family: sans-serif;
 	width: MIN(52rem, 100%);
 	margin: auto;
 	padding: 1rem;
-	color: var(--text-color);
 
 	* {
 		max-width: 100%;
@@ -47,18 +25,12 @@ body {
 	position: sticky;
 	top: -4rem;
 	padding-bottom: 1rem;
-	background-color: var(--background-color);
+	background-color: var(--base-color);
 
 	nav ul {
 		display: flex;
 		gap: 1rem;
 	}
-}
-
-h1,
-:is(.h1) {
-	font-family: GloomyThings;
-	font-size: 3rem;
 }
 
 h2,
@@ -72,11 +44,7 @@ footer {
 }
 
 a {
-	color: var(--link-color);
-}
-
-:is(.fancyfont) {
-	font-family: GloomyThings;
+	color: var(--accent-color);
 }
 
 :is(.nolist) {

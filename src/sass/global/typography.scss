@@ -1,0 +1,22 @@
+@font-face {
+	font-family: GloomyThings;
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: local("Gloomy Things"), url(/assets/GloomyThings.woff2) format("woff2");
+}
+
+:root {
+	--base-font-size: 1rem;
+	--base-line-height: 1.6em;
+	--base-letter-spacing: 0.01875em;
+	--headline-font: GloomyThings, Arial, Helvetica Neue, Helvetica, sans-serif; //todo: find better stack
+}
+
+:is(.fancyfont) {
+	font-family: var(--headline-font);
+}
+
+body {
+	font-family: sans-serif;
+}

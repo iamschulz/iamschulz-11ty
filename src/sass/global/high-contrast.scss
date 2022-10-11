@@ -1,0 +1,38 @@
+@media (prefers-contrast: more) {
+	* {
+		background: black !important;
+		color: white !important;
+	}
+
+	*::selection {
+		background: cyan !important;
+		color: black !important;
+	}
+
+	a,
+	a *,
+	a:hover,
+	a:hover *,
+	a:active,
+	a:active * {
+		color: yellow !important;
+		border-color: yellow !important;
+	}
+
+	a:visited,
+	a:visited * {
+		color: greenyellow;
+		border-color: yellow !important;
+	}
+
+	button {
+		background: black !important;
+		color: white !important;
+		border: 0.2ch solid cyan !important;
+	}
+}
+
+body {
+	background-color: var(--base-color);
+	color: var(--fg-color);
+}
