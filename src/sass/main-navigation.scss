@@ -1,0 +1,14 @@
+.main-navigation {
+	&__list {
+		margin: 0;
+		display: flex;
+		gap: 1rem;
+		padding: 0.5rem 0 0 0.5rem;
+		background: var(--base-color);
+		box-shadow: 0 0 1rem 1rem var(--base-color);
+	}
+
+	&__link {
+		color: var(--fg-color);
+	}
+}

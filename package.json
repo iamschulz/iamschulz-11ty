@@ -15,13 +15,13 @@
 		"sass": "^1.54.9"
 	},
 	"scripts": {
-		"watch:sass": "sass  --no-source-map --watch src/sass:dist/css",
+		"watch:sass": "sass --no-source-map --watch src/sass/style.scss:dist/style.css",
 		"watch:ts": "./esbuild.js --watch",
 		"watch:eleventy": "eleventy --serve",
-		"build:sass": "sass  --no-source-map src/sass:dist/css",
+		"build:sass": "sass --no-source-map src/sass/style.scss:dist/style.css",
 		"build:ts": "./esbuild.js --minify",
 		"build:eleventy": "eleventy",
-		"postbuild": "lightningcss --minify --targets '> 0.25%, not IE 11' dist/css/*.css -o dist/css/*.css",
+		"postbuild": "lightningcss --minify --targets '> 0.25%, not IE 11' dist/*.css -o dist/*.css",
 		"start": "npm-run-all build:sass --parallel watch:*",
 		"build": "npm-run-all build:sass build:ts build:eleventy"
 	}

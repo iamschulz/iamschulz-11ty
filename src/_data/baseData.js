@@ -1,5 +1,5 @@
 module.exports = () => ({
-	pageTitle: "i am schulz",
+	pageTitle: "Daniel Schulz",
 	meta: [
 		{
 			name: "description",
@@ -17,25 +17,25 @@ module.exports = () => ({
 	mainNavigation: [
 		{
 			label: "about",
-			url: "/about",
+			url: "/about/",
 		},
 		{
 			label: "blog",
-			url: "/blog",
+			url: "/blog/",
 		},
 		{
 			label: "projects",
-			url: "/projects",
+			url: "/projects/",
 		},
 	],
 	footerNavigation: [
 		{
 			label: "Legal",
-			url: "/legal",
+			url: "/legal/",
 		},
 		{
 			label: "RSS",
-			url: "/rss",
+			url: "/rss/",
 		},
 		{
 			label: "Source Code",

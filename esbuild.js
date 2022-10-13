@@ -7,7 +7,7 @@ require("esbuild")
 	.build({
 		entryPoints: ["src/ts/main.ts"],
 		bundle: true,
-		outdir: "dist/js",
+		outdir: "dist",
 		watch: watchFlag,
 		minify: minifyFlag,
 		sourcemap: !minifyFlag ? "both" : false,

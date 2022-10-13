@@ -2,6 +2,9 @@
 @import "./global/typography.scss";
 @import "./global/high-contrast.scss";
 
+@import "./main-header.scss";
+@import "./main-navigation.scss";
+
 * {
 	box-sizing: border-box;
 }
@@ -13,23 +16,6 @@ body {
 
 	* {
 		max-width: 100%;
-	}
-}
-
-.main-header {
-	display: grid;
-	grid-template-rows: 4rem 1rem;
-	grid-template-columns: 4rem auto;
-	gap: 1rem;
-	place-items: center left;
-	position: sticky;
-	top: -4rem;
-	padding-bottom: 1rem;
-	background-color: var(--base-color);
-
-	nav ul {
-		display: flex;
-		gap: 1rem;
 	}
 }
 
