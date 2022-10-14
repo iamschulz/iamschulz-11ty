@@ -24,5 +24,8 @@
 		"postbuild": "lightningcss --minify --targets '> 0.25%, not IE 11' dist/*.css -o dist/*.css",
 		"start": "npm-run-all build:sass --parallel watch:*",
 		"build": "npm-run-all build:sass build:ts build:eleventy"
+	},
+	"dependencies": {
+		"markdown-it": "^13.0.1"
 	}
 }

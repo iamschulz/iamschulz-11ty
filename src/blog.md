@@ -1,6 +1,6 @@
 ---
-layout: 'blogListing.njk'
-title: 'Blog'
+layout: "blogListing.njk"
+title: "Blog"
 pagination:
     data: blogs
     size: 5

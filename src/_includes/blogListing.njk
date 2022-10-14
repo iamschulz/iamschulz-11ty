@@ -1,12 +1,28 @@
 {% extends "base.njk" %}
-{% from '../macros/articleCard.njk' import articleCard %}
 
 {% block content %}
     <h1 class="nomargin-v fancyfont">Blog</h1>
     <ul class="grid-list nolist">
     {%- for post in blog %}
         <li>
-            {{ articleCard(post) }}
+            <section class="article-card">
+                <header class="article-card__header">
+                    {% if post.cover and post.coverAlt %}
+                        <div class="article-card__cover">
+                            {% image post.cover, post.coverAlt %}
+                        </div>
+                    {% endif %}
+                    <h2 class="article-card__title">
+                        <a class="fancyfont" href="/{{ post.title | slug | url }}">{{ post.title }}</a>
+                    </h2>
+                </header>
+                <time datetime="2022-06-14">{{ post.publishedAt }}</time>
+            </section>
+            {% if post.excerpt %}
+            <div>
+                {% renderMd post.excerpt %}
+            </div>
+            {% endif %}
         </li>
     {%- endfor -%}
     </ul>
@@ -18,5 +34,5 @@
     {% if pagination.nextPageLink %}
         <a class="pagination__item" href="{{ pagination.nextPageHref}}">Next</a>
     {% endif %}
-</nav>
+    </nav>
 {% endblock %}

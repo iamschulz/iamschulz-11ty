@@ -1,12 +1,12 @@
 ---
-layout: 'blogPost.njk'
+layout: "blogPost.njk"
 pagination:
     data: blogs
     size: 1
     alias: post
-permalink: '{{ post.title | slug }}/index.html'
+permalink: "{{ post.title | slug }}/index.html"
 eleventyComputed:
-    title: '{{ post.title }}'
+    title: "{{ post.title }}"
 ---
 
 {% render post.content %}
