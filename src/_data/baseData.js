@@ -18,14 +18,17 @@ module.exports = () => ({
 		{
 			label: "about",
 			url: "/about/",
+			active: ["about"],
 		},
 		{
 			label: "blog",
 			url: "/blog/",
+			active: ["blog", "blogPost"],
 		},
 		{
 			label: "projects",
 			url: "/projects/",
+			active: ["projects", "projectsDetail"],
 		},
 	],
 	footerNavigation: [

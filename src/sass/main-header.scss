@@ -5,10 +5,10 @@
 
 	&__title {
 		color: var(--fg-color);
-		text-decoration-color: var(--accent-color);
+		text-decoration: none;
 
-		&:not(:hover) {
-			text-decoration: none;
+		&:hover {
+			color: var(--accent-color);
 		}
 	}
 }

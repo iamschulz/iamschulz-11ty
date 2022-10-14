@@ -1,7 +1,6 @@
 {% extends "base.njk" %}
 
 {% block content %}
-    <h1 class="nomargin-v fancyfont">Blog</h1>
     <ul class="grid-list nolist">
     {%- for post in blog %}
         <li>
@@ -13,7 +12,7 @@
                         </div>
                     {% endif %}
                     <h2 class="article-card__title">
-                        <a class="fancyfont" href="/{{ post.title | slug | url }}">{{ post.title }}</a>
+                        <a href="/{{ post.title | slug | url }}">{{ post.title }}</a>
                     </h2>
                 </header>
                 <time datetime="2022-06-14">{{ post.publishedAt }}</time>

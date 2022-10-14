@@ -4,7 +4,7 @@
             <li class="main-navigation__entry">
                 <a class="
                     main-navigation__link
-                    {%- if entry.url === page.url -%}main-navigation__link--active{%- endif -%}
+                    {% if entry.active.includes(page.fileSlug) %}main-navigation__link--active{% endif %}
                     " href="{{ entry.url }}">{{ entry.label }} </a>
             </li>
         {%- endfor -%}

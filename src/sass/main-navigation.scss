@@ -9,6 +9,21 @@
 	}
 
 	&__link {
+		position: relative;
 		color: var(--fg-color);
+		text-decoration: none;
+
+		&--active,
+		&:hover {
+			&::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: -0.5rem;
+				width: 1ch;
+				height: 0.2rem;
+				background-color: var(--accent-color);
+			}
+		}
 	}
 }
