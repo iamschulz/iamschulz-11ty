@@ -11,21 +11,22 @@ module.exports = function codepenShortcode(content) {
 		<img
 			class="codepen-embed__thumbnail"
 			srcset="
-                    https://codepen.io/user/pen/{{ $id }}/image/small.png 360w,
-                    https://codepen.io/user/pen/{{ $id }}/image/large.png 1280w
+                ${content}/image/small.png 360w,
+                ${content}/image/large.png 1280w
                 "
+            sizes="(min-width: 30em) 50vw, 100vw"
 			src="${content}/image/large.png"
 			alt="Screenshot of a CodePen Embed"
 			loading="lazy"
 			decoding="async"
-		/>
+		>
 		<span class="codepen-embed__icon">
 			<!-- todo: codepen logo here -->
 		</span>
 	</a>
 	<span class="codepen-embed__legal">
 		Activating this Feature allows CodePen to place cookies and communicate
-		with CodePen's servers.<br />
+		with CodePen's servers.<br>
 		<a href="/legal">(more info)</a>
 	</span>
 	<iframe
@@ -33,11 +34,8 @@ module.exports = function codepenShortcode(content) {
 		class="codepen-embed__iframe"
 		style="width: 100%"
 		hidden
-		scrolling="no"
-		src=""
+		src="#"
 		data-src="${content}?height=265&theme-id=dark"
-		frameborder="no"
-		allowtransparency="true"
 	></iframe>
 </div>
 `;

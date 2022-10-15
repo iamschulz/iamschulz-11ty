@@ -26,6 +26,7 @@
 		"build": "npm-run-all build:sass build:ts build:eleventy"
 	},
 	"dependencies": {
+		"eleventy-plugin-html-validate": "^0.0.5",
 		"markdown-it": "^13.0.1"
 	}
 }

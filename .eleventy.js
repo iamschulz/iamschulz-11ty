@@ -2,6 +2,7 @@ const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const imageShortcode = require("./src/_shortcodes/image.js");
 const codepenShortcode = require("./src/_shortcodes/codepen.js");
 const getSvgContent = require("./src/_shortcodes/svg.js");
+const eleventyHTMLValidate = require("eleventy-plugin-html-validate");
 
 const markdownIt = require("markdown-it");
 const md = markdownIt({
@@ -13,6 +14,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addWatchTarget("./src/ts/");
 	eleventyConfig.setTemplateFormats(["md"]);
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
+	eleventyConfig.addPlugin(eleventyHTMLValidate);
 	eleventyConfig.addPassthroughCopy({ "src/static/public": "assets" });
 	eleventyConfig.addShortcode("svg", getSvgContent);
 	eleventyConfig.addNunjucksShortcode("codepen", codepenShortcode);
