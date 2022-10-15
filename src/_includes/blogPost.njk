@@ -8,6 +8,11 @@
             {% endif %}
             <h1 class="fancyfont">{{ post.title }}</h1>
         </header>
+        {% if content | toc %}
+            <aside>
+                {{ content | toc | safe }}
+            </aside>
+        {% endif %}
         {{ content | safe }}
     </article>
 {% endblock %}

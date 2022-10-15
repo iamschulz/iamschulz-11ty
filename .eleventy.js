@@ -1,10 +1,12 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
+const markdownIt = require("markdown-it");
+const markdownItAnchor = require("markdown-it-anchor");
 const imageShortcode = require("./src/_shortcodes/image.js");
 const codepenShortcode = require("./src/_shortcodes/codepen.js");
 const getSvgContent = require("./src/_shortcodes/svg.js");
 const eleventyHTMLValidate = require("eleventy-plugin-html-validate");
+const pluginTOC = require("eleventy-plugin-toc");
 
-const markdownIt = require("markdown-it");
 const md = markdownIt({
 	html: true,
 });
@@ -13,8 +15,15 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addWatchTarget("./src/sass/");
 	eleventyConfig.addWatchTarget("./src/ts/");
 	eleventyConfig.setTemplateFormats(["md"]);
+	eleventyConfig.setLibrary(
+		"md",
+		markdownIt({
+			html: true,
+		}).use(markdownItAnchor)
+	);
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 	eleventyConfig.addPlugin(eleventyHTMLValidate);
+	eleventyConfig.addPlugin(pluginTOC);
 	eleventyConfig.addPassthroughCopy({ "src/static/public": "assets" });
 	eleventyConfig.addShortcode("svg", getSvgContent);
 	eleventyConfig.addNunjucksShortcode("codepen", codepenShortcode);
