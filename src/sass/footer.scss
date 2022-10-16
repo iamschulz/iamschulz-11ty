@@ -1,3 +1,34 @@
-footer {
-	margin-top: 10rem;
+.footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-width: var(--content-width);
+	padding: var(--spacing-y) var(--spacing-x);
+	margin: calc(var(--spacing-y) * 10) var(--content-margin) 0;
+	color: var(--grey);
+	font-size: 1rem;
+
+	&__list {
+		list-style: none;
+		margin-right: var(--spacing-x);
+		padding-inline-start: 0;
+		max-width: 20rem;
+	}
+
+	&__entry {
+		display: inline-block;
+		margin-right: 1ch;
+
+		&--copy {
+			display: block;
+		}
+	}
+
+	&__link:not(:hover) {
+		color: inherit;
+	}
+
+	&__search {
+		margin-top: var(--spacing-y);
+	}
 }
