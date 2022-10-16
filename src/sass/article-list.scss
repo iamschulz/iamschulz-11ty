@@ -1,0 +1,23 @@
+.article-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	&__entry {
+		& + & {
+			padding-top: calc(2 * var(--spacing-y));
+			margin-top: calc(2 * var(--spacing-y));
+			border-top: var(--border-width) dashed var(--grey);
+		}
+	}
+}
+
+@media screen and (min-width: $md-width) {
+	.article-list__entry:nth-of-type(odd) {
+		padding-right: 20%;
+	}
+
+	.article-list__entry:nth-of-type(even) {
+		padding-left: 20%;
+	}
+}

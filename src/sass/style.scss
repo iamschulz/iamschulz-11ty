@@ -1,39 +1,14 @@
+@import "./global/breakpoints";
 @import "./global/colors.scss";
 @import "./global/typography.scss";
 @import "./global/high-contrast.scss";
 
+@import "./layout.scss";
 @import "./main-header.scss";
 @import "./main-navigation.scss";
+@import "./footer.scss";
 
-* {
-	box-sizing: border-box;
-}
-
-body {
-	width: MIN(52rem, 100%);
-	margin: auto;
-	padding: 1rem;
-
-	* {
-		max-width: 100%;
-	}
-}
-
-h2,
-:is(.h2) {
-	font-size: 2rem;
-}
-
-footer {
-	margin-top: 10rem;
-	border-top: 1px solid currentColor;
-}
-
-a {
-	color: var(--accent-color);
-}
-
-:is(.nolist) {
-	list-style: none;
-	padding: 0;
-}
+@import "./utility/fancyfont.scss";
+@import "./utility/nolist.scss";
+@import "./utility/headlines.scss";
+@import "./utility/container.scss";

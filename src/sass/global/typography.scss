@@ -15,10 +15,6 @@
 	--headline-font: GloomyThings, Arial, Helvetica Neue, Helvetica, sans-serif; //todo: find better stack
 }
 
-:is(.fancyfont) {
-	font-family: var(--headline-font);
-}
-
 body {
 	font-family: var(--base-font);
 	letter-spacing: var(--base-letter-spacing);

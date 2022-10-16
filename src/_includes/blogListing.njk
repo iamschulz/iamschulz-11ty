@@ -1,9 +1,9 @@
 {% extends "base.njk" %}
 
 {% block content %}
-    <ul class="grid-list nolist">
+    <ul class="article-list grid-list nolist">
     {%- for post in blog %}
-        <li>
+        <li class="article-list__entry">
             <section class="article-card">
                 <header class="article-card__header">
                     {% if post.cover and post.coverAlt %}
