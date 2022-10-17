@@ -8,11 +8,18 @@
 
 :root {
 	--base-font-size: min(max(1rem, 2vw), 1.5rem);
-	--base-line-height: 1.6em;
+	--large-font-size: min(max(2rem, 4vw), 3rem);
+	--x-large-font-size: min(max(3rem, 6vw), 5rem);
+	--base-line-height: 1.6;
 	--base-letter-spacing: 0.01875em;
 	--base-font: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica,
 		Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 	--headline-font: GloomyThings, Arial, Helvetica Neue, Helvetica, sans-serif; //todo: find better stack
+}
+
+:is(.fancyfont) {
+	font-family: var(--headline-font);
+	line-height: 1;
 }
 
 body {

@@ -1,18 +1,20 @@
 {% extends "base.njk" %}
 
 {% block content %}
-    <article>
-        <header>
+    <article class="article">
+        <header class="article__header">
             {% if post.cover and post.coverAlt %}
-                {% image post.cover, post.coverAlt %}
+                {% image post.cover, post.coverAlt, "article__cover", false %}
             {% endif %}
-            <h1 class="fancyfont">{{ post.title }}</h1>
+            <h1 class="article__title fancyfont font-size-x-large">{{ post.title }}</h1>
         </header>
         {% if content | toc %}
-            <aside>
+            <aside class="article__toc">
                 {{ content | toc | safe }}
             </aside>
         {% endif %}
-        {{ content | safe }}
+        <div class="article__content">
+            {{ content | safe }}
+        </div>
     </article>
 {% endblock %}

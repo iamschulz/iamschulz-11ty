@@ -7,11 +7,9 @@
             <section class="article-card">
                 <header class="article-card__header">
                     {% if post.cover and post.coverAlt %}
-                        <div class="article-card__cover">
-                            {% image post.cover, post.coverAlt %}
-                        </div>
+                            {% image post.cover, post.coverAlt, "article-card__cover" %}
                     {% endif %}
-                    <h2 class="article-card__title">
+                    <h2 class="article-card__title font-size-large">
                         <a href="/{{ post.title | slug | url }}">{{ post.title }}</a>
                     </h2>
                 </header>

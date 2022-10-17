@@ -10,6 +10,10 @@
 			border-top: var(--border-width) dashed var(--grey);
 		}
 	}
+
+	&__cover {
+		max-width: 100%;
+	}
 }
 
 @media screen and (min-width: $md-width) {

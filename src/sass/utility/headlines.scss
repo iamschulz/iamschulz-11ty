@@ -1,4 +1,7 @@
-h2,
-:is(.h2) {
-	font-size: 2rem;
+:is(.font-size-x-large) {
+	font-size: var(--x-large-font-size);
+}
+
+:is(.font-size-large) {
+	font-size: var(--large-font-size);
 }

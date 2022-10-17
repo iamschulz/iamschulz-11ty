@@ -1,0 +1,15 @@
+.article {
+	&__cover {
+		max-width: 100%;
+	}
+
+	&__content {
+		div,
+		img,
+		video,
+		iframe,
+		embed {
+			max-width: 100%;
+		}
+	}
+}
