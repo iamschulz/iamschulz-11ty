@@ -1,4 +1,5 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
+const tinyHTML = require("@sardine/eleventy-plugin-tinyhtml");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const imageShortcode = require("./src/_shortcodes/image.js");
@@ -25,6 +26,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 	eleventyConfig.addPlugin(eleventyHTMLValidate);
 	eleventyConfig.addPlugin(pluginTOC);
+	eleventyConfig.addPlugin(tinyHTML);
 	eleventyConfig.addPassthroughCopy({ "src/static/public": "assets" });
 	eleventyConfig.addShortcode("svg", getSvgContent);
 	eleventyConfig.addShortcode("year", getYear);
