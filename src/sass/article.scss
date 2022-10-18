@@ -1,15 +1,37 @@
 .article {
+	display: grid;
+	grid-template-columns: 100% 0;
+	grid-template-rows: auto auto auto;
+	grid-template-areas: "header side" "toc side" "content side";
+
 	&__cover {
 		max-width: 100%;
+		grid-area: header;
+	}
+
+	&__toc {
+		grid-area: toc;
 	}
 
 	&__content {
+		grid-area: content;
+
 		div,
 		img,
 		video,
 		iframe,
 		embed {
 			max-width: 100%;
+		}
+	}
+}
+
+@media (min-width: $xl-width) {
+	.article {
+		grid-template-columns: 100% var(--aside-width);
+
+		&__toc {
+			grid-area: side;
 		}
 	}
 }

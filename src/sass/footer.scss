@@ -6,7 +6,7 @@
 	padding: var(--spacing-y) var(--spacing-x);
 	margin: calc(var(--spacing-y) * 10) var(--content-margin) 0;
 	color: var(--grey);
-	font-size: 1rem;
+	font-size: var(--small-font-size);
 
 	&__list {
 		list-style: none;

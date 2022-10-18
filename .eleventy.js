@@ -25,7 +25,9 @@ module.exports = function (eleventyConfig) {
 	);
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 	eleventyConfig.addPlugin(eleventyHTMLValidate);
-	eleventyConfig.addPlugin(pluginTOC);
+	eleventyConfig.addPlugin(pluginTOC, {
+		flat: true,
+	});
 	eleventyConfig.addPlugin(tinyHTML);
 	eleventyConfig.addPassthroughCopy({ "src/static/public": "assets" });
 	eleventyConfig.addShortcode("svg", getSvgContent);

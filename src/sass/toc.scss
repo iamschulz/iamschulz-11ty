@@ -1,0 +1,18 @@
+.toc {
+	ol {
+		list-style: none;
+		padding-inline-start: 0;
+	}
+
+	a {
+		color: var(--grey);
+	}
+}
+
+@media (min-width: $xl-width) {
+	.toc {
+		position: sticky;
+		top: 3rem; // account for header height
+		padding-left: var(--spacing-x);
+	}
+}

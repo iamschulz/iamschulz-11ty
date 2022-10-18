@@ -2,6 +2,7 @@
 	position: sticky;
 	top: -2.5rem;
 	margin-bottom: 5rem;
+	z-index: var(--z-header);
 
 	&__title {
 		color: var(--fg-color);
