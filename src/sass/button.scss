@@ -1,0 +1,38 @@
+:is(button, .button) {
+	display: inline-block;
+	margin: 0;
+	padding: 0.4ch 0.5em;
+	border: none;
+	background: var(--fg-color);
+	color: var(--base-color);
+	font-size: calc(var(--base-font-size) * 0.8);
+	text-decoration: none;
+	cursor: pointer;
+
+	&.is--icon {
+		display: flex;
+		padding: 1ch;
+	}
+
+	&:hover {
+		color: var(--accent-color);
+	}
+
+	* {
+		vertical-align: middle;
+	}
+
+	&:not(:disabled):hover {
+		border-color: var(--grey);
+	}
+
+	&:not(:disabled):active {
+		border-color: var(--accent-color);
+	}
+
+	&:disabled {
+		border-style: dashed;
+		color: var(--grey);
+		cursor: not-allowed;
+	}
+}

@@ -3,10 +3,47 @@
 	grid-template-columns: 100% 0;
 	grid-template-rows: auto auto auto;
 	grid-template-areas: "header side" "toc side" "content side";
+	word-break: break-word;
 
 	&__cover {
 		max-width: 100%;
 		grid-area: header;
+	}
+
+	&__title {
+		margin: var(--spacing-y) 0;
+	}
+
+	&__meta {
+		display: grid;
+		grid-auto-flow: column;
+		align-items: center;
+		justify-content: flex-start;
+		grid-gap: var(--spacing-x);
+		color: var(--grey);
+		font-size: calc(var(--base-font-size) * 0.8);
+
+		&:first-child {
+			margin-top: -0.2em;
+		}
+	}
+
+	&__date {
+		display: inline-block;
+		margin: 0;
+	}
+
+	&__language {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 1.4em;
+		margin: 0;
+		padding: 0 0.4ch;
+		font-size: 0.8em;
+		text-transform: uppercase;
+		color: var(--base-color);
+		background-color: var(--grey);
 	}
 
 	&__toc {
