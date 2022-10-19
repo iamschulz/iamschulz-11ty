@@ -6,6 +6,10 @@
             {% if post.cover and post.coverAlt %}
                 {% image post.cover, post.coverAlt, "article__cover", false %}
             {% endif %}
+            <aside class="article__meta">
+                <time datetime="2022-06-14">{{ post.date }}</time>
+                <p class="article__language">{{ post.language }}</p>
+            </aside>
             <h1 class="article__title fancyfont font-size-x-large">{{ post.title }}</h1>
         </header>
         {% if content | toc %}

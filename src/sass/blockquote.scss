@@ -1,0 +1,21 @@
+:is(blockquote) {
+	position: relative;
+	max-width: var(--content-narrow-width);
+	margin: auto;
+	padding-left: var(--spacing-x);
+	margin: var(--spacing-y) 0;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 1px;
+		height: 100%;
+		border-left: var(--border-width) dashed var(--grey);
+	}
+
+	> footer {
+		margin-top: calc(var(--spacing-y) / 2);
+	}
+}

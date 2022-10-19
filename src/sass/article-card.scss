@@ -1,12 +1,6 @@
 .article-card {
 	&__cover {
 		max-width: 100%;
-	}
-}
-
-.article-card {
-	&__cover {
-		max-width: 100%;
 		border: var(--border-width) solid var(--fg-color);
 
 		&:hover {
@@ -28,10 +22,6 @@
 
 	&__meta {
 		@extend .article__meta;
-	}
-
-	&__date {
-		@extend .article__date;
 	}
 
 	&__language {
