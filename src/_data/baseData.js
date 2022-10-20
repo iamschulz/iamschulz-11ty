@@ -17,8 +17,8 @@ module.exports = () => ({
 	mainNavigation: [
 		{
 			label: "about",
-			url: "/about/",
-			active: ["about"],
+			url: "/",
+			active: [""],
 		},
 		{
 			label: "blog",

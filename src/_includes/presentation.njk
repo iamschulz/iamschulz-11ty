@@ -1,0 +1,91 @@
+{% extends "base.njk" %}
+
+{% block content %}
+<article class="presentation">
+    <header class="presentation__head">
+        <div class="presentation__image">
+            <h2 class="presentation__greeting fancyfont">Hi</h2>
+            {% svg "static/presentationImage.svg" %}
+        </div>
+
+        <ul class="presentation__list">
+            <li class="presentation__list-entry">I code websites.</li>
+            <li class="presentation__list-entry">I do artsy stuff.</li>
+            <li class="presentation__list-entry">I blog sometimes.</li>
+        </ul>
+    </header>
+
+    <hr>
+
+    <section class="presentation__contact">
+        <h2>Find me here:</h2>
+
+        <ul class="presentation__networks nolist">
+            <li class="presentation__networks-entry">
+                <a class="presentation__networks-link" href="https://twitter.com/IamSchulz">
+                    {% svg "static/twitter-brands.svg" %}
+                    <span class="visually-hidden">Twitter</span>
+                </a>
+            </li>
+            <li class="presentation__networks-entry">
+                <a class="presentation__networks-link" href="https://dev.to/iamschulz">
+                    {% svg "static/dev-brands.svg" %}
+                    <span class="visually-hidden">DEV</span>
+                </a>
+            </li>
+            <li class="presentation__networks-entry">
+                <a class="presentation__networks-link" href="https://www.linkedin.com/in/iamschulz/">
+                    {% svg "static/linkedin-brands.svg" %}
+                    <span class="visually-hidden">LinkedIn</span>
+                </a>
+            </li>
+            <li class="presentation__networks-entry">
+                <a class="presentation__networks-link" href="https://www.xing.com/profile/Daniel_Schulz221/">
+                    {% svg "static/xing-brands.svg" %}
+                    <span class="visually-hidden">Xing</span>
+                </a>
+            </li>
+            <li class="presentation__networks-entry">
+                <a class="presentation__networks-link" href="https://github.com/iamschulz">
+                    {% svg "static/github-brands.svg" %}
+                    <span class="visually-hidden">GitHub</span>
+                </a>
+            </li>
+            <li class="presentation__networks-entry">
+                <a class="presentation__networks-link" href="https://codepen.io/iamschulz">
+                    {% svg "static/codepen-brands.svg" %}
+                    <span class="visually-hidden">CodePen</span>
+                </a>
+            </li>
+            <li hidden><a rel="me" href="https://mastodon.social/@iamschulz">Mastodon</a></li>
+        </ul>
+        <p>
+            Or send me a <a class="button" href="mailto:hallo@iamschulz.de">{% svg "static/envelope-open-solid.svg" %}&nbsp;love letter</a>
+            <a href="http://pool.sks-keyservers.net/pks/lookup?search=0xD2EE2C51FDBD4D09&op=vindex" title="PGP-Key">{% svg "static/key-solid.svg" %}</a>
+        </p>
+    </section>
+
+    <hr>
+
+    <section class="presentation__references">
+        <h2>Working on it:</h2>
+        <p>
+            Right now I'm tricking websites into going fast at
+            <a title="Baqend" href="https://baqend.com">{% svg "static/speedkit.svg" %}</a>
+        </p>
+
+        <p>
+            In the past I've been working with <a title="E-Tribes" href="https://etribes.de">{%- svg "static/etribes.svg" -%}</a> and <a title="Der Spiegel" href="https://spiegel.de">{%- svg "static/spiegel.svg" -%}</a>
+        </p>
+	</section>
+    
+    <hr>
+
+    <h2>Here's my latest article:</h2>
+
+
+    <hr>
+
+    <p>Open the Javascript Console (<kbd>F12</kbd> in most browsers) to play this website as a text adventure!</p>
+</article>
+{% endblock %}

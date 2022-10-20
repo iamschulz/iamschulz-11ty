@@ -36,6 +36,8 @@
 		margin-top: var(--spacing-y);
 
 		svg {
+			width: 2ch;
+
 			&:nth-last-of-type(3) {
 				transform: scale(0.8);
 			}
