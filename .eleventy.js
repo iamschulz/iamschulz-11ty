@@ -6,6 +6,7 @@ const imageShortcode = require("./src/_shortcodes/image.js");
 const codepenShortcode = require("./src/_shortcodes/codepen.js");
 const getYear = require("./src/_shortcodes/getYear.js");
 const getSvgContent = require("./src/_shortcodes/svg.js");
+const formatDate = require("./src/_shortcodes/formatDate.js");
 const eleventyHTMLValidate = require("eleventy-plugin-html-validate");
 const pluginTOC = require("eleventy-plugin-toc");
 
@@ -31,6 +32,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPlugin(tinyHTML);
 	eleventyConfig.addPassthroughCopy({ "src/static/public": "assets" });
 	eleventyConfig.addShortcode("svg", getSvgContent);
+	eleventyConfig.addShortcode("date", formatDate);
 	eleventyConfig.addShortcode("year", getYear);
 	eleventyConfig.addNunjucksShortcode("codepen", codepenShortcode);
 	eleventyConfig.addNunjucksShortcode("image", imageShortcode);

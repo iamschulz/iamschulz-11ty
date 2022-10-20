@@ -35,16 +35,16 @@
 	&__more {
 		margin-top: var(--spacing-y);
 
-		.icon {
+		svg {
 			&:nth-last-of-type(3) {
-				transform: scale(0.6);
+				transform: scale(0.8);
 			}
 			&:nth-last-of-type(2) {
-				transform: scale(0.8);
+				transform: scale(1);
 				margin-left: -0.6ch;
 			}
 			&:nth-last-of-type(1) {
-				transform: scale(1);
+				transform: scale(1.2);
 				margin-left: -0.6ch;
 			}
 		}
@@ -52,7 +52,7 @@
 		&:hover {
 			color: var(--base-color);
 
-			.icon {
+			svg {
 				color: var(--accent-color);
 				transition: color 0s;
 				&:nth-last-of-type(2) {

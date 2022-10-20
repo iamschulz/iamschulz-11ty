@@ -1,14 +1,16 @@
 .main-header {
 	position: sticky;
-	top: -2.5rem;
-	margin-bottom: 5rem;
+	top: -2rem;
+	margin-top: var(--spacing-y);
+	margin-bottom: calc(var(--spacing-y) * 5);
 	z-index: var(--z-header);
 	background: var(--base-color);
+	padding-bottom: 0.8rem;
 
 	&__title {
 		color: var(--fg-color);
 		text-decoration: none;
-		font-size: 1.6rem;
+		font-size: 2rem;
 
 		&:hover {
 			color: var(--accent-color);

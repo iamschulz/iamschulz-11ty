@@ -5,8 +5,8 @@
 
 	&__entry {
 		& + & {
-			padding-top: calc(2 * var(--spacing-y));
-			margin-top: calc(2 * var(--spacing-y));
+			padding-top: calc(5 * var(--spacing-y));
+			margin-top: calc(5 * var(--spacing-y));
 			border-top: var(--border-width) dashed var(--grey);
 		}
 	}

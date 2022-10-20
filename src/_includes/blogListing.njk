@@ -8,11 +8,15 @@
                 <header class="article-card__header">
                     {% if post.cover and post.coverAlt %}
                         <a href="/{{ post.title | slug | url }}">
-                            {% image post.cover, post.coverAlt, "article-card__cover" %}
+                            {% if loop.index <= 3 %}
+                                {% image post.cover, post.coverAlt, "article-card__cover", false %}
+                            {% else %}
+                                {% image post.cover, post.coverAlt, "article-card__cover", true %}
+                            {% endif %}
                         </a>
                     {% endif %}
                     <aside class="article-card__meta">
-                        <time datetime="2022-06-14">{{ post.date }}</time>
+                        <time datetime="{{ post.date }}">{% date post.date %}</time>
                         <p class="article-card__language">{{ post.language }}</p>
                     </aside>
                     <h2 class="article-card__title fancyfont font-size-large">
@@ -24,7 +28,12 @@
                 <div class="article-card__content">
                     {% renderMd post.excerpt %}
                 </div>
-                <a class="article-card__more button" href="/{{ post.title | slug | url }}">more</a>
+                <a class="article-card__more button" href="/{{ post.title | slug | url }}">
+                    <span class="visually-hidden">read more</span>
+                    {%- svg "static/chevron-right-solid.svg" -%}
+                    {%- svg "static/chevron-right-solid.svg" -%}
+                    {%- svg "static/chevron-right-solid.svg" -%}
+                </a>
             {% endif %}
         </li>
     {%- endfor -%}

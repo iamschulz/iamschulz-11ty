@@ -1,6 +1,8 @@
 .container {
 	width: MIN(var(--content-width), 100%);
 	max-width: 64rem;
-	margin: var(--content-margin);
-	padding: 0 var(--spacing-x) var(--spacing-y);
+	margin-left: var(--content-margin);
+	margin-right: var(--content-margin);
+	padding-left: var(--spacing-x);
+	padding-right: var(--spacing-x);
 }
