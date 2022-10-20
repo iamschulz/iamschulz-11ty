@@ -4,7 +4,7 @@
 <article class="presentation">
     <header class="presentation__head">
         <div class="presentation__image">
-            <h2 class="presentation__greeting fancyfont">Hi</h2>
+            <h2 class="presentation__greeting fancyfont">Moin!</h2>
             {% svg "static/presentationImage.svg" %}
         </div>
 
@@ -18,7 +18,7 @@
     <hr>
 
     <section class="presentation__contact">
-        <h2>Find me here:</h2>
+        <h2 class="fancyfont">Find me here:</h2>
 
         <ul class="presentation__networks nolist">
             <li class="presentation__networks-entry">
@@ -68,21 +68,54 @@
     <hr>
 
     <section class="presentation__references">
-        <h2>Working on it:</h2>
+        <h2 class="fancyfont">Working on it:</h2>
         <p>
             Right now I'm tricking websites into going fast at
-            <a title="Baqend" href="https://baqend.com">{% svg "static/speedkit.svg" %}</a>
+            <a title="SpeedKit" href="https://speedkit.com">{% svg "static/speedkit.svg" %}</a>
         </p>
 
         <p>
             In the past I've been working with <a title="E-Tribes" href="https://etribes.de">{%- svg "static/etribes.svg" -%}</a> and <a title="Der Spiegel" href="https://spiegel.de">{%- svg "static/spiegel.svg" -%}</a>
         </p>
 	</section>
-    
+
     <hr>
 
-    <h2>Here's my latest article:</h2>
-
+    <section class="presentation__blog">
+        <h2 class="fancyfont">Here's my latest article:</h2>
+        {% set post = blogs[0] %}
+        <article class="article-card">
+            <header class="article-card__header">
+                {% if post.cover and post.coverAlt %}
+                    <a href="/{{ post.title | slug | url }}">
+                        {% if loop.index <= 3 %}
+                            {% image post.cover, post.coverAlt, "article-card__cover", false %}
+                        {% else %}
+                            {% image post.cover, post.coverAlt, "article-card__cover", true %}
+                        {% endif %}
+                    </a>
+                {% endif %}
+                <aside class="article-card__meta">
+                    <time datetime="{{ post.date }}">{% date post.date %}</time>
+                    <p class="article-card__language">{{ post.language }}</p>
+                </aside>
+                <h2 class="article-card__title fancyfont font-size-large">
+                    <a href="/{{ post.title | slug | url }}" class="article-card__link">{{ post.title }}</a>
+                </h2>
+            </header>
+            {% if post.excerpt %}
+                <div class="article-card__content">
+                    {% renderMd post.excerpt %}
+                </div>
+                <a class="article-card__more button" href="/{{ post.title | slug | url }}">
+                    <span class="visually-hidden">read more</span>
+                    {%- svg "static/chevron-right-solid.svg" -%}
+                    {%- svg "static/chevron-right-solid.svg" -%}
+                    {%- svg "static/chevron-right-solid.svg" -%}
+                </a>
+            {% endif %}
+        </article>
+    </section>
 
     <hr>
 

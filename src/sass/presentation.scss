@@ -13,14 +13,14 @@
 	&__head {
 		display: grid;
 		place-items: center;
-		min-height: calc(100vh - 16rem);
+		min-height: calc(100vh - 11rem);
 		grid-template-columns: repeat(auto-fill, minmax(21.25rem, 1fr));
 		margin: 0 0 calc(var(--spacing-y) * 5);
 	}
 
 	&__greeting {
 		position: absolute;
-		left: calc(50% - 10rem);
+		left: calc(50% - 11rem);
 		background: var(--fg-color);
 		color: var(--base-color);
 		margin-top: calc(var(--spacing-y) * 2);
@@ -149,7 +149,7 @@
 			margin-right: 0.6ch;
 			vertical-align: middle;
 			position: relative;
-			top: -0.6ex;
+			top: -0.2ex;
 
 			svg {
 				max-width: 6em;
@@ -166,7 +166,7 @@
 		}
 
 		&__greeting {
-			left: calc(50% - 11rem);
+			left: calc(50% - 16rem);
 		}
 
 		&__image {

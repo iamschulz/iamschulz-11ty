@@ -4,7 +4,7 @@
     <ul class="article-list grid-list nolist">
     {%- for post in blog %}
         <li class="article-list__entry">
-            <section class="article-card">
+            <article class="article-card">
                 <header class="article-card__header">
                     {% if post.cover and post.coverAlt %}
                         <a href="/{{ post.title | slug | url }}">
@@ -23,18 +23,18 @@
                         <a href="/{{ post.title | slug | url }}" class="article-card__link">{{ post.title }}</a>
                     </h2>
                 </header>
-            </section>
-            {% if post.excerpt %}
-                <div class="article-card__content">
-                    {% renderMd post.excerpt %}
-                </div>
-                <a class="article-card__more button" href="/{{ post.title | slug | url }}">
-                    <span class="visually-hidden">read more</span>
-                    {%- svg "static/chevron-right-solid.svg" -%}
-                    {%- svg "static/chevron-right-solid.svg" -%}
-                    {%- svg "static/chevron-right-solid.svg" -%}
-                </a>
-            {% endif %}
+                {% if post.excerpt %}
+                    <div class="article-card__content">
+                        {% renderMd post.excerpt %}
+                    </div>
+                    <a class="article-card__more button" href="/{{ post.title | slug | url }}">
+                        <span class="visually-hidden">read more</span>
+                        {%- svg "static/chevron-right-solid.svg" -%}
+                        {%- svg "static/chevron-right-solid.svg" -%}
+                        {%- svg "static/chevron-right-solid.svg" -%}
+                    </a>
+                {% endif %}
+            </article>
         </li>
     {%- endfor -%}
     </ul>
