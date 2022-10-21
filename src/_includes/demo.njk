@@ -1,0 +1,22 @@
+{% extends "base.njk" %}
+
+{% block content %}
+    <ul class="article-list grid-list nolist">
+    {%- for post in demo %}
+        <li class="article-list__entry">
+            <article class="article-card">
+                <h2>{{post.title}}</h2>
+            </article>
+        </li>
+    {%- endfor -%}
+    </ul>
+
+    <nav class="pagination">
+    {% if pagination.previousPageLink %}
+        <a class="pagination__item" href="{{ pagination.previousPageHref }}">Previous</a>
+    {% endif %}
+    {% if pagination.nextPageLink %}
+        <a class="pagination__item" href="{{ pagination.nextPageHref}}">Next</a>
+    {% endif %}
+    </nav>
+{% endblock %}

@@ -10,9 +10,8 @@ module.exports = async () => {
 	});
 	const n2m = new NotionToMarkdown({ notionClient: notion });
 
-	const databaseId = "ff540d032dd4427988cab57db47b4544";
 	const db = await notion.databases.query({
-		database_id: databaseId,
+		database_id: process.env.NOTION_BLOG_ID,
 		filter: {
 			property: "Draft",
 			checkbox: {

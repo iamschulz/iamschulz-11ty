@@ -26,9 +26,14 @@ module.exports = () => ({
 			active: ["blog", "blogPost"],
 		},
 		{
-			label: "projects",
-			url: "/projects/",
-			active: ["projects", "projectsDetail"],
+			label: "demo",
+			url: "/demo/",
+			active: ["demo"],
+		},
+		{
+			label: "art",
+			url: "/art/",
+			active: ["art", "artPost"],
 		},
 	],
 	footerNavigation: [
