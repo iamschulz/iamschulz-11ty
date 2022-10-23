@@ -1,8 +1,4 @@
 .article-list {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-
 	&__entry {
 		& + & {
 			padding-top: calc(5 * var(--spacing-y));

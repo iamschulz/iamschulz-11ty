@@ -31,6 +31,7 @@ module.exports = async () => {
 		coverAlt:
 			result.properties["Cover Alt"]?.rich_text.pop()?.plain_text || "",
 		date: result.properties["Date"]?.date.start,
+		url: result.properties["URL"]?.url,
 	}));
 
 	return posts;

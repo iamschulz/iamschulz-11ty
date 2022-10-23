@@ -1,11 +1,36 @@
 {% extends "base.njk" %}
 
 {% block content %}
-    <ul class="article-list grid-list nolist">
+    <ul class="article-list nolist">
     {%- for post in demo %}
         <li class="article-list__entry">
             <article class="article-card">
-                <h2>{{post.title}}</h2>
+                <header class="article-card__header">
+                    <a href="{{ post.url }}">
+                        {% if post.cover and post.coverAlt %}
+                            {% if loop.index <= 3 %}
+                                {% image post.cover, post.coverAlt, "article-card__cover", false %}
+                            {% else %}
+                                {% image post.cover, post.coverAlt, "article-card__cover", true %}
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                    <aside class="article-card__meta">
+                        <time datetime="{{ post.date }}">{% date post.date %}</time>
+                    </aside>
+                    <h2 class="article-card__title fancyfont font-size-large">
+                        <a href="{{ post.url }}" class="article-card__link">{{ post.title }}</a>
+                    </h2>
+                </header>
+                <div class="article-card__content">
+                    <p>{{ post.content }}</p>
+                </div>
+                <a class="article-card__more button" href="{{ post.url }}">
+                    <span class="visually-hidden">demo</span>
+                    {%- svg "static/chevron-right-solid.svg" -%}
+                    {%- svg "static/chevron-right-solid.svg" -%}
+                    {%- svg "static/chevron-right-solid.svg" -%}
+                </a>
             </article>
         </li>
     {%- endfor -%}

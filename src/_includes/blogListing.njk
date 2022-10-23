@@ -1,10 +1,10 @@
 {% extends "base.njk" %}
 
 {% block content %}
-    <ul class="article-list grid-list nolist">
+    <ul class="article-list nolist">
     {%- for post in blog %}
         <li class="article-list__entry">
-            <article class="article-card">
+            <section class="article-card">
                 <header class="article-card__header">
                     {% if post.cover and post.coverAlt %}
                         <a href="/{{ post.title | slug | url }}">
@@ -34,7 +34,7 @@
                         {%- svg "static/chevron-right-solid.svg" -%}
                     </a>
                 {% endif %}
-            </article>
+            </section>
         </li>
     {%- endfor -%}
     </ul>
