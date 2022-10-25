@@ -1,4 +1,4 @@
-.article-card {
+.demo-card {
 	&__cover {
 		max-width: 100%;
 		border: var(--border-width) solid var(--fg-color);
@@ -12,20 +12,13 @@
 		@extend .article__title;
 	}
 
-	&__link {
-		text-decoration: none;
-
-		&:not(:hover) {
-			color: var(--fg-color);
-		}
-	}
-
 	&__meta {
 		@extend .article__meta;
 	}
 
-	&__language {
-		@extend .article__language;
+	&__gallery {
+		perspective: 800px;
+		text-align: center;
 	}
 
 	&__content {
@@ -34,5 +27,13 @@
 
 	&__more {
 		margin-top: var(--spacing-y);
+	}
+}
+
+@media screen and (min-width: $sm-width) {
+	.demo-card {
+		&__gallery {
+			text-align: left;
+		}
 	}
 }

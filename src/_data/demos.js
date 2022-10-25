@@ -32,6 +32,9 @@ module.exports = async () => {
 			result.properties["Cover Alt"]?.rich_text.pop()?.plain_text || "",
 		date: result.properties["Date"]?.date.start,
 		url: result.properties["URL"]?.url,
+		screenshots: result.properties["Screenshots"].files.map(
+			(image) => image.file.url
+		),
 	}));
 
 	return posts;

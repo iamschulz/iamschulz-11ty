@@ -4,33 +4,23 @@
     <ul class="article-list nolist">
     {%- for post in demo %}
         <li class="article-list__entry">
-            <article class="article-card">
-                <header class="article-card__header">
-                    <a href="{{ post.url }}">
-                        {% if post.cover and post.coverAlt %}
-                            {% if loop.index <= 3 %}
-                                {% image post.cover, post.coverAlt, "article-card__cover", false %}
-                            {% else %}
-                                {% image post.cover, post.coverAlt, "article-card__cover", true %}
-                            {% endif %}
-                        {% endif %}
-                    </a>
-                    <aside class="article-card__meta">
-                        <time datetime="{{ post.date }}">{% date post.date %}</time>
-                    </aside>
-                    <h2 class="article-card__title fancyfont font-size-large">
-                        <a href="{{ post.url }}" class="article-card__link">{{ post.title }}</a>
-                    </h2>
+            <article class="demo-card">
+                <header class="demo-card__header">
+                    <h2 class="demo-card__title fancyfont font-size-large">{{ post.title }}</h2>
                 </header>
-                <div class="article-card__content">
+                <aside class="demo-card__meta">
+                    <time datetime="{{ post.date }}">{% date post.date %}</time>
+                </aside>
+                <div class="demo-card__gallery">
+                    {% for screenshot in post.screenshots %}
+                        <a class="screenshot" href="{{ post.url }}">
+                            {% image screenshot, "screenshot of "+post.url, "screenshot__image" %}
+                        </a>
+                    {% endfor %}
+                </div>
+                <div class="demo-card__content">
                     <p>{{ post.content }}</p>
                 </div>
-                <a class="article-card__more button" href="{{ post.url }}">
-                    <span class="visually-hidden">demo</span>
-                    {%- svg "static/chevron-right-solid.svg" -%}
-                    {%- svg "static/chevron-right-solid.svg" -%}
-                    {%- svg "static/chevron-right-solid.svg" -%}
-                </a>
             </article>
         </li>
     {%- endfor -%}

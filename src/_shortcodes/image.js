@@ -24,8 +24,6 @@ module.exports = function imageShortcode(
 		decoding: "async",
 	};
 
-	console.log(src);
-
 	// get metadata even the images are not fully generated
 	const metadata = Image.statsByDimensionsSync(src, 1000, 1000, options);
 	let html = Image.generateHTML(metadata, imageAttributes);

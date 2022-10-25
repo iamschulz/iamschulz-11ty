@@ -1,0 +1,75 @@
+.screenshot {
+	--border-width: 4px;
+	--border-radius: 15px;
+	--depth: 5px;
+
+	position: relative;
+	display: inline-block;
+	border: var(--border-width) solid var(--grey);
+	background: var(--grey);
+	border-radius: var(--border-radius);
+	overflow: hidden;
+	transform: rotate3d(0, 1, 0, 10deg) scale(0.9);
+	box-shadow: rgba(0, 0, 0, 0.2) calc(var(--depth) * -1) 0px 0 0px,
+		var(--grey) calc(var(--depth) * -1) 0px 0 0px;
+	transition: transform ease-out 0.2s, box-shadow ease-out 0.2s;
+
+	&::before {
+		content: "";
+		position: absolute;
+		bottom: calc(var(--border-width) * -2); // add device chin
+		left: calc(var(--border-width) * -1);
+		right: 0;
+		width: 100%;
+		height: var(--border-width);
+		background-color: var(--grey);
+		border: var(--border-width) solid var(--grey);
+		border-radius: 0 0 var(--border-radius) var(--border-radius);
+		z-index: 1;
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: var(--border-width);
+		border-radius: calc(var(--border-radius) - var(--border-width));
+		background: radial-gradient(
+			3000px 100% at 100% 120%,
+			transparent 41%,
+			white 41%,
+			transparent 100%
+		);
+		opacity: 0.2;
+		z-index: 3;
+		transform: scale(1.5) rotate(0deg) translate(10%, -20%);
+		transition: transform ease-out 0.2s, opacity ease-out 0.2s;
+	}
+
+	&:hover {
+		box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0 0px, var(--grey) 0px 0px 0 0px;
+		transform: rotate3d(0, 1, 0, 0deg) scale(1);
+
+		&::after {
+			opacity: 0.1;
+			transform: scale(1.5) rotate(2deg) translate(-10%, -20%);
+		}
+	}
+
+	&__image {
+		max-width: 100%;
+		max-height: min(20rem, 50vw);
+		border-radius: calc(var(--border-radius) - var(--border-width));
+		z-index: 2;
+		position: relative;
+	}
+}
+
+@media screen and (min-width: $sm-width) {
+	.screenshot {
+		--border-width: 8px;
+		--border-radius: 20px;
+	}
+}
