@@ -8,7 +8,7 @@
 </head>
 <body data-component="body">
     {% include 'header.njk' %}
-    <main class="container">
+    <main class="container" id="content">
         {% block content %}
             {{ content | safe }}
         {% endblock %}

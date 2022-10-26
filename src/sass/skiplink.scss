@@ -1,0 +1,8 @@
+.skiplink {
+	position: absolute;
+	left: 14rem;
+
+	&:not(:focus) {
+		@extend .visually-hidden;
+	}
+}
