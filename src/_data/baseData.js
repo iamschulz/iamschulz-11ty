@@ -46,8 +46,12 @@ module.exports = () => ({
 			url: "/rss/",
 		},
 		{
+			label: "Blog Roll",
+			url: "/blogroll/",
+		},
+		{
 			label: "Source Code",
-			url: "#pending",
+			url: "https://github.com/iamschulz/iamschulz-11ty",
 		},
 	],
 });
