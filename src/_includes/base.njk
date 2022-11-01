@@ -6,7 +6,7 @@
         <meta name="foo" content="default" >
     {% endblock %}
 </head>
-<body data-component="body">
+<body>
     {% include 'header.njk' %}
     <main class="container" id="content">
         {% block content %}
@@ -14,5 +14,6 @@
         {% endblock %}
     </main>
     {% include 'footer.njk' %}
+    {% include 'scripts.njk' %}
 </body>
 </html>

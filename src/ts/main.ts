@@ -1,2 +1,3 @@
-const foo: string = "bar";
-console.log(foo);
+import { ThemeSwitch } from "./themeSwitch";
+
+new ThemeSwitch();

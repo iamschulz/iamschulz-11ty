@@ -3,44 +3,31 @@
 }
 
 body {
-	--contrast: 95%;
-	--fg-color-contrast: 90%;
-	--hue: 190;
-	--accent-hue: 330;
-	--base-saturation: 10%;
-	--fg-color-saturation: 30%;
+	--theme-hue: 190deg;
+	--theme-lit: 95%;
+	--theme-sat: clamp(0%, calc(65% - var(--theme-lit)), 30%);
+	--theme-hue-accent: 330deg;
 
-	--base-color: hsl(var(--hue), var(--base-saturation), var(--contrast));
+	--base-color: hsl(var(--theme-hue), var(--theme-sat), var(--theme-lit));
+
 	--fg-color: hsl(
-		var(--hue),
-		var(--fg-color-saturation),
-		calc(100% - var(--fg-color-contrast))
+		var(--theme-hue),
+		var(--theme-sat),
+		clamp(20%, calc(100% - (var(--theme-lit) - 40%) * 1000), 80%)
 	);
-	--accent-color: hsl(
-		var(--accent-hue),
-		100%,
-		calc(50% + (50% - var(--fg-color-contrast)) * -0.2)
-	);
-	--grey: hsl(
-		var(--hue),
-		10%,
-		calc(50% + (50% - var(--fg-color-contrast)) * 0.2)
-	);
-}
 
-body[data-state-color-scheme="dark"] {
-	--contrast: 8%;
-	--fg-color-contrast: 25%;
-	--base-saturation: 30%;
-	--fg-color-saturation: 7%;
+	--accent-color: hsl(var(--theme-hue-accent), 100%, 45%);
+
+	--grey: hsl(
+		var(--theme-hue),
+		10%,
+		clamp(55%, calc(100% - (var(--theme-lit) - 57%) * 1000), 65%)
+	);
 }
 
 @media (prefers-color-scheme: dark) {
-	body:not([data-state-color-scheme="light"]) {
-		--contrast: 8%;
-		--fg-color-contrast: 25%;
-		--base-saturation: 30%;
-		--fg-color-saturation: 7%;
+	body {
+		--theme-lit: 8%;
 	}
 }
 
