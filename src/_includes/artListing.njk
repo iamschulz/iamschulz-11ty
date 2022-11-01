@@ -15,10 +15,6 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    <aside class="article-card__meta">
-                        <time datetime="{{ post.date }}">{% date post.date %}</time>
-                        <p class="article-card__language">{{ post.language }}</p>
-                    </aside>
                     <h2 class="article-card__title fancyfont font-size-large">
                         <a href="/{{ post.title | slug | url }}" class="article-card__link">{{ post.title }}</a>
                     </h2>
