@@ -2,7 +2,7 @@
 	color-scheme: light dark;
 }
 
-body {
+:root {
 	--theme-hue: 190deg;
 	--theme-lit: 95%;
 	--theme-sat: clamp(0%, calc(65% - var(--theme-lit)), 30%);
@@ -26,7 +26,7 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-	body {
+	:root {
 		--theme-lit: 8%;
 	}
 }

@@ -2,6 +2,19 @@
 <html lang="en">
 <head>
     {% include 'head.njk' %}
+    {% block blockingScripts %}
+        <script>
+            const brightness = window.localStorage.getItem('theme-brightness');
+            if (brightness >= 0 && brightness <= 100 && brightness !== null) {
+                document.documentElement.style.setProperty("--theme-lit", `${brightness}%`);
+            }
+
+            const color = window.localStorage.getItem('theme-color');
+            if (color) {
+			    document.head.querySelector('[name="theme-color"]').content = color;
+            }
+        </script>
+    {% endblock %}
     {% block additionalHead %}
         <meta name="foo" content="default" >
     {% endblock %}
