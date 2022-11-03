@@ -1,7 +1,6 @@
 .theme-switch {
 	display: flex;
 	align-items: center;
-	font-size: var(--spacing-x);
 
 	&::before {
 		content: "🌙";
@@ -16,6 +15,10 @@
 		height: 1.3em;
 		line-height: 1.1;
 		color: transparent;
-		text-shadow: 0 0 var(--fg-color);
+		text-shadow: 0 0 var(--grey);
+	}
+
+	&__range {
+		max-width: 6rem;
 	}
 }

@@ -21,6 +21,10 @@ export class ThemeSwitch {
 			this.setBrightness();
 			this.setColor();
 		});
+
+		this.toggle.addEventListener("dblclick", () => {
+			this.reset();
+		});
 	}
 
 	private setBrightness() {
@@ -50,5 +54,17 @@ export class ThemeSwitch {
 			)
 		).toString();
 		this.toggle.setAttribute("value", lit);
+	}
+
+	private reset() {
+		const defaultLit =
+			window.matchMedia &&
+			window.matchMedia("(prefers-color-scheme: dark)").matches
+				? "8"
+				: "95";
+		this.toggle.value = defaultLit;
+		this.toggle.dispatchEvent(new Event("input"));
+		window.localStorage.removeItem("theme-color");
+		window.localStorage.removeItem("theme-brightness");
 	}
 }

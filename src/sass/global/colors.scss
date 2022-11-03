@@ -5,7 +5,7 @@
 :root {
 	--theme-hue: 190deg;
 	--theme-lit: 95%;
-	--theme-sat: clamp(0%, calc(65% - var(--theme-lit)), 30%);
+	--theme-sat: clamp(0%, calc(45% - var(--theme-lit)), 30%);
 	--theme-hue-accent: 330deg;
 
 	--base-color: hsl(var(--theme-hue), var(--theme-sat), var(--theme-lit));
@@ -21,7 +21,7 @@
 	--grey: hsl(
 		var(--theme-hue),
 		10%,
-		clamp(55%, calc(100% - (var(--theme-lit) - 57%) * 1000), 65%)
+		clamp(55%, calc(100% - (var(--theme-lit) - 62%) * 1000), 65%)
 	);
 }
 
