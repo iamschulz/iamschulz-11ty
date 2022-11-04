@@ -37,7 +37,9 @@ export class ThemeSwitch {
 	}
 
 	private setColor() {
-		const color = getComputedStyle(document.body)["background"];
+		const color = this.rgbToHex(
+			getComputedStyle(document.body)["background"]
+		);
 		(
 			document.head.querySelector(
 				'[name="theme-color"]'
@@ -66,5 +68,18 @@ export class ThemeSwitch {
 		this.toggle.dispatchEvent(new Event("input"));
 		window.localStorage.removeItem("theme-color");
 		window.localStorage.removeItem("theme-brightness");
+	}
+
+	private rgbToHex(rgb) {
+		const cleanRgb = rgb.split("(")[1].split(")")[0];
+		const rgbArr = cleanRgb.split(",");
+
+		const hex = rgbArr.map(function (x) {
+			//For each array element
+			x = parseInt(x).toString(16); //Convert to a base16 string
+			return x.length == 1 ? "0" + x : x; //Add zero if we get only one character
+		});
+
+		return `#${hex.join("")}`;
 	}
 }
