@@ -9,11 +9,6 @@
 	text-decoration: none;
 	cursor: pointer;
 
-	&.is--icon {
-		display: flex;
-		padding: 1ch;
-	}
-
 	&:hover {
 		color: var(--accent-color);
 	}
@@ -67,5 +62,11 @@
 				}
 			}
 		}
+	}
+}
+
+.button {
+	&--highlight {
+		text-decoration: underline;
 	}
 }

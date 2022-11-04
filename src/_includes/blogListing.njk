@@ -40,11 +40,22 @@
     </ul>
 
     <nav class="pagination">
-    {% if pagination.previousPageLink %}
-        <a class="pagination__item" href="{{ pagination.previousPageHref }}">Previous</a>
-    {% endif %}
-    {% if pagination.nextPageLink %}
-        <a class="pagination__item" href="{{ pagination.nextPageHref}}">Next</a>
-    {% endif %}
+        {% if pagination.previousPageLink %}
+            <a class="pagination__item button" href="{{ pagination.previousPageHref }}">
+                {%- svg "static/chevron-left-solid.svg" -%}
+                <span class="visually-hidden">Previous</span>
+            </a>
+        {% endif %}
+        {%- for url in pagination.hrefs %}
+            <a class="pagination__item button{% if url === page.url %} button--highlight{% endif %}" href="{{ url }}">
+                {{loop.index}}
+            </a>
+        {% endfor -%}
+        {% if pagination.nextPageLink %}
+            <a class="pagination__item button" href="{{ pagination.nextPageHref}}">
+                <span class="visually-hidden">Next</span>
+                {%- svg "static/chevron-right-solid.svg" -%}
+            </a>
+        {% endif %}
     </nav>
 {% endblock %}
