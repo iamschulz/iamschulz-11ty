@@ -35,12 +35,5 @@
     {%- endfor -%}
     </ul>
 
-    <nav class="pagination">
-    {% if pagination.previousPageLink %}
-        <a class="pagination__item" href="{{ pagination.previousPageHref }}">Previous</a>
-    {% endif %}
-    {% if pagination.nextPageLink %}
-        <a class="pagination__item" href="{{ pagination.nextPageHref}}">Next</a>
-    {% endif %}
-    </nav>
+    {{ blogPagination(pagination=pagination) }}
 {% endblock %}
