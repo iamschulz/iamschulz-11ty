@@ -1,4 +1,4 @@
-.youtube-player,
+.youtube-embed,
 .codepen-embed {
 	position: relative;
 
@@ -48,8 +48,8 @@
 		background: rgba(0, 0, 0, 0.1);
 
 		svg {
-			width: 50%;
-			height: 50%;
+			width: min(50%, 10rem);
+			height: min(50%, 10rem);
 		}
 	}
 
@@ -76,7 +76,7 @@
 	}
 }
 
-.youtube-player {
+.youtube-embed {
 	&::before {
 		padding-top: 56.2%;
 	}

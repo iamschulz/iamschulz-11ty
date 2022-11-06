@@ -4,6 +4,7 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const imageShortcode = require("./src/_shortcodes/image.js");
 const codepenShortcode = require("./src/_shortcodes/codepen.js");
+const youtubeShortcode = require("./src/_shortcodes/youtube.js");
 const getYear = require("./src/_shortcodes/getYear.js");
 const getSvgContent = require("./src/_shortcodes/svg.js");
 const formatDate = require("./src/_shortcodes/formatDate.js");
@@ -35,6 +36,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addShortcode("date", formatDate);
 	eleventyConfig.addShortcode("year", getYear);
 	eleventyConfig.addNunjucksShortcode("codepen", codepenShortcode);
+	eleventyConfig.addNunjucksShortcode("youtube", youtubeShortcode);
 	eleventyConfig.addNunjucksShortcode("image", imageShortcode);
 	eleventyConfig.addNunjucksAsyncShortcode(
 		"render",

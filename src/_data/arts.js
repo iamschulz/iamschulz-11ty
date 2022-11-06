@@ -3,6 +3,7 @@ const { Client } = require("@notionhq/client");
 const { NotionToMarkdown } = require("notion-to-md");
 const imageToShortCode = require("../_helpers/imageToShortCode");
 const codepenToShortCode = require("../_helpers/codepenToShortCode");
+const youtubeToShortCode = require("../_helpers/youtubeToShortCode");
 
 module.exports = async () => {
 	const notion = new Client({
@@ -37,12 +38,14 @@ module.exports = async () => {
 			excerptMdString = n2m.toMarkdownString(excerptBlocks);
 			excerptMdString = imageToShortCode(excerptMdString);
 			excerptMdString = codepenToShortCode(excerptMdString);
+			excerptMdString = youtubeToShortCode(excerptMdString);
 			mdblocks.splice(dividerIndex, 1);
 		}
 
 		let contentMdString = n2m.toMarkdownString(mdblocks);
 		contentMdString = imageToShortCode(contentMdString);
 		contentMdString = codepenToShortCode(contentMdString);
+		contentMdString = youtubeToShortCode(contentMdString);
 
 		return {
 			excerpt: excerptMdString,
