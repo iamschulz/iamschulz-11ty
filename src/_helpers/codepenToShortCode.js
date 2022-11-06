@@ -1,7 +1,7 @@
 module.exports = (markdown) => {
 	let result = markdown;
 
-	const regex = /\[embed\]\(https\:\/\/codepen\.io\/(?<url>[\w\/]+)\)/gm;
+	const regex = /\[embed\]\(https\:\/\/codepen\.io\/(?<url>[-_\w\/]+)\)/gm;
 	match = regex.exec(markdown);
 
 	while (match != null) {
