@@ -1,3 +1,5 @@
+const svg = require("./svg");
+
 module.exports = function codepenShortcode(content) {
 	const uuid = Math.round(Math.random() * 1000000);
 	let result = `
@@ -21,13 +23,14 @@ module.exports = function codepenShortcode(content) {
 			decoding="async"
 		>
 		<span class="codepen-embed__icon">
-			<!-- todo: codepen logo here -->
+            ${svg("static/codepen-brands.svg")}
 		</span>
 	</a>
 	<span class="codepen-embed__legal">
 		Activating this Feature allows CodePen to place cookies and communicate
 		with CodePen's servers.<br>
-		<a href="/legal">(more info)</a>
+		<a href="/legal">more info</a><br>
+        <a href="${content}" rel="noopener" target="_blank">open in new tab</a>
 	</span>
 	<iframe
 		data-iframe-replace-id="${uuid}"
@@ -35,7 +38,10 @@ module.exports = function codepenShortcode(content) {
 		style="width: 100%"
 		hidden
 		src="#"
-		data-src="${content}?height=265&theme-id=dark"
+		data-src="${content.replace(
+			"/pen/",
+			"/embed/"
+		)}?height=265&theme-id=dark&default-tab=result"
 	></iframe>
 </div>
 `;
