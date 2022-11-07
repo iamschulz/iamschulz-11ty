@@ -1,5 +1,4 @@
-.youtube-embed,
-.codepen-embed {
+.replace-embed {
 	position: relative;
 
 	&::before {
@@ -22,9 +21,11 @@
 
 	&__replacer {
 		border: var(--border-width) solid var(--fg-color);
+		color: #fff;
 
 		&:hover {
 			border-color: var(--accent-color);
+			color: var(--accent-color);
 		}
 	}
 
@@ -43,7 +44,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		color: #fff;
 		box-shadow: 0 0 160px 200px rgba(0, 0, 0, 0.1);
 		background: rgba(0, 0, 0, 0.1);
 
@@ -53,7 +53,12 @@
 		}
 	}
 
+	&__replacer + &__legal {
+		display: block;
+	}
+
 	&__legal {
+		display: none;
 		position: absolute;
 		bottom: 0;
 		left: 0;
@@ -74,29 +79,45 @@
 			pointer-events: all;
 		}
 	}
-}
 
-.youtube-embed {
-	&::before {
-		padding-top: 56.2%;
-	}
-}
-
-.codepen-embed {
-	&::before {
-		padding-top: 150%;
+	&:is([data-source="youtube"]) {
+		&::before {
+			padding-top: 56.2%;
+		}
 	}
 
-	&__thumbnail {
-		filter: blur(2px);
-		transform: scale(1.1);
+	&:is([data-source="codepen"]) {
+		&::before {
+			padding-top: 150%;
+		}
+
+		.replace-embed__thumbnail {
+			filter: blur(2px);
+			transform: scale(1.1);
+		}
+	}
+
+	// loading attribute sits on replacer
+	:is([data-loading="true"]) {
+		.replace-embed__icon {
+			&::before {
+				content: "Loading...";
+				font-size: 2rem;
+			}
+
+			svg {
+				display: none;
+			}
+		}
 	}
 }
 
 @media (min-width: $sm-width) {
-	.codepen-embed {
-		&::before {
-			padding-top: 56.2%;
+	.replace-embed {
+		&:is([data-source="codepen"]) {
+			&::before {
+				padding-top: 56.2%;
+			}
 		}
 	}
 }
