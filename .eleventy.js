@@ -10,6 +10,8 @@ const getSvgContent = require("./src/_shortcodes/svg.js");
 const formatDate = require("./src/_shortcodes/formatDate.js");
 const eleventyHTMLValidate = require("eleventy-plugin-html-validate");
 const pluginTOC = require("eleventy-plugin-toc");
+const escapeNjk = require("./src/_helpers/escapeNjk.js");
+const unescapeNjk = require("./src/_helpers/unescapeNjk.js");
 
 const md = markdownIt({
 	html: true,
@@ -38,14 +40,15 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addNunjucksShortcode("codepen", codepenShortcode);
 	eleventyConfig.addNunjucksShortcode("youtube", youtubeShortcode);
 	eleventyConfig.addNunjucksShortcode("image", imageShortcode);
-	eleventyConfig.addNunjucksAsyncShortcode(
-		"render",
-		async (content) =>
-			await eleventyConfig.javascriptFunctions.renderTemplate(
-				content,
-				"njk"
-			)
-	);
+	eleventyConfig.addNunjucksAsyncShortcode("render", async (content) => {
+		// escape nunjucks code in content inside data handlers
+		content = await eleventyConfig.javascriptFunctions.renderTemplate(
+			content,
+			"njk"
+		);
+		content = unescapeNjk(content);
+		return content;
+	});
 	eleventyConfig.addNunjucksAsyncShortcode("renderMd", async (content) => {
 		const renderedShortcodes =
 			await eleventyConfig.javascriptFunctions.renderTemplate(

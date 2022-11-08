@@ -15,8 +15,7 @@ module.exports = (markdown) => {
 		}
 
 		if (!alt) {
-			console.error(`alt missing for ${mdImage}`);
-			return;
+			console.warn(`alt missing for ${mdImage}`);
 		}
 
 		// replace with new url

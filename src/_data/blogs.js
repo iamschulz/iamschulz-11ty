@@ -4,6 +4,7 @@ const { NotionToMarkdown } = require("notion-to-md");
 const imageToShortCode = require("../_helpers/imageToShortCode");
 const codepenToShortCode = require("../_helpers/codepenToShortCode");
 const youtubeToShortCode = require("../_helpers/youtubeToShortCode");
+const escapeNjk = require("../_helpers/escapeNjk");
 
 module.exports = async () => {
 	const notion = new Client({
@@ -36,6 +37,8 @@ module.exports = async () => {
 		let excerptMdString = undefined;
 		if (excerptBlocks) {
 			excerptMdString = n2m.toMarkdownString(excerptBlocks);
+			excerptMdString = escapeNjk(excerptMdString); // unescaping is in render shortcode
+			// todo: escape code blocks, prevent markdown from rendering
 			excerptMdString = imageToShortCode(excerptMdString);
 			excerptMdString = codepenToShortCode(excerptMdString);
 			excerptMdString = youtubeToShortCode(excerptMdString);
@@ -43,6 +46,10 @@ module.exports = async () => {
 		}
 
 		let contentMdString = n2m.toMarkdownString(mdblocks);
+		contentMdString = escapeNjk(contentMdString); // unescaping is in render shortcode
+		if (contentMdString.includes("Rendering, again")) {
+			console.log(contentMdString);
+		}
 		contentMdString = imageToShortCode(contentMdString);
 		contentMdString = codepenToShortCode(contentMdString);
 		contentMdString = youtubeToShortCode(contentMdString);
