@@ -1,3 +1,5 @@
+const isMatchInCodeBlock = require("./isMatchInCodeBlock");
+
 module.exports = (markdown) => {
 	let result = markdown;
 
@@ -14,8 +16,10 @@ module.exports = (markdown) => {
 			return;
 		}
 
-		// replace with shortcode
-		result = result.replace(mdYoutube, `{% youtube "${id}" %}`);
+		if (!isMatchInCodeBlock(match, markdown)) {
+			// replace with shortcode
+			result = result.replace(mdYoutube, `{% youtube "${id}" %}`);
+		}
 
 		match = regex.exec(markdown);
 	}

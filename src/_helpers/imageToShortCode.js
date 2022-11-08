@@ -1,3 +1,5 @@
+const isMatchInCodeBlock = require("./isMatchInCodeBlock");
+
 module.exports = (markdown) => {
 	let result = markdown;
 
@@ -18,8 +20,10 @@ module.exports = (markdown) => {
 			console.warn(`alt missing for ${mdImage}`);
 		}
 
-		// replace with new url
-		result = result.replace(mdImage, `{% image "${url}", "${alt}" %}`);
+		if (!isMatchInCodeBlock(match, markdown)) {
+			// replace with new url
+			result = result.replace(mdImage, `{% image "${url}", "${alt}" %}`);
+		}
 
 		match = regex.exec(markdown);
 	}

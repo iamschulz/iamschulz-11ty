@@ -5,12 +5,12 @@ const markdownItAnchor = require("markdown-it-anchor");
 const imageShortcode = require("./src/_shortcodes/image.js");
 const codepenShortcode = require("./src/_shortcodes/codepen.js");
 const youtubeShortcode = require("./src/_shortcodes/youtube.js");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const getYear = require("./src/_shortcodes/getYear.js");
 const getSvgContent = require("./src/_shortcodes/svg.js");
 const formatDate = require("./src/_shortcodes/formatDate.js");
 const eleventyHTMLValidate = require("eleventy-plugin-html-validate");
 const pluginTOC = require("eleventy-plugin-toc");
-const escapeNjk = require("./src/_helpers/escapeNjk.js");
 const unescapeNjk = require("./src/_helpers/unescapeNjk.js");
 
 const md = markdownIt({
@@ -40,6 +40,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addNunjucksShortcode("codepen", codepenShortcode);
 	eleventyConfig.addNunjucksShortcode("youtube", youtubeShortcode);
 	eleventyConfig.addNunjucksShortcode("image", imageShortcode);
+	eleventyConfig.addPlugin(syntaxHighlight);
 	eleventyConfig.addNunjucksAsyncShortcode("render", async (content) => {
 		// escape nunjucks code in content inside data handlers
 		content = await eleventyConfig.javascriptFunctions.renderTemplate(
