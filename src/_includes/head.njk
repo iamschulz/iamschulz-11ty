@@ -5,7 +5,7 @@
     {% if title.length %} {{ title }} &bull; {% endif %}
     {{ baseData.pageTitle }}
 </title>
-<meta name="description" content="{{ baseData.description }}">
+<meta name="description" content="{{ baseData.meta.description }}">
 <meta name="author" content="{{ baseData.authorName }}">
 <link rel="preload" href="{{ '/style.css' | url }}" as="style">
 <link rel="preload" href="{{ '/main.js' | url }}" as="script">
