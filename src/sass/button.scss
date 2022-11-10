@@ -1,4 +1,5 @@
 :is(button, .button) {
+	position: relative;
 	display: inline-block;
 	margin: 0;
 	padding: 0.4ch 0.5em;
@@ -9,8 +10,33 @@
 	text-decoration: none;
 	cursor: pointer;
 
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: var(--accent-color);
+		z-index: -1;
+		transform: rotate(0deg);
+
+		@media (prefers-reduced-motion: no-preference) {
+			transition: transform 0.1s ease-out;
+		}
+	}
+
 	&:hover {
-		color: var(--accent-color);
+		background-color: transparent;
+		color: var(--base-color);
+
+		&::before {
+			transform: rotate(3deg);
+		}
+	}
+
+	&:active::before {
+		background-color: var(--pop-color);
 	}
 
 	* {
@@ -52,7 +78,7 @@
 			color: var(--base-color);
 
 			svg {
-				color: var(--accent-color);
+				color: var(--pop-color);
 				transition: color 0s;
 				&:nth-last-of-type(2) {
 					transition-delay: 0.1s;
@@ -61,6 +87,11 @@
 					transition-delay: 0.2s;
 				}
 			}
+		}
+
+		&:active svg {
+			color: var(--accent-color);
+			transition: none;
 		}
 	}
 }

@@ -33,7 +33,7 @@ module.exports = () => ({
 		{
 			label: "art",
 			url: "/art/",
-			active: ["art", "artPost"],
+			active: ["art", "artPiece"],
 		},
 	],
 	footerNavigation: [

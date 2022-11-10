@@ -48,13 +48,16 @@
 		transition: transform ease-out 0.2s, opacity ease-out 0.2s;
 	}
 
-	&:hover {
-		box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0 0px, var(--grey) 0px 0px 0 0px;
-		transform: rotate3d(0, 1, 0, 0deg) scale(1);
+	@media (prefers-reduced-motion: no-preference) {
+		&:hover {
+			box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0 0px,
+				var(--grey) 0px 0px 0 0px;
+			transform: rotate3d(0, 1, 0, 0deg) scale(1);
 
-		&::after {
-			opacity: 0.1;
-			transform: scale(1.5) rotate(2deg) translate(-10%, -20%);
+			&::after {
+				opacity: 0.1;
+				transform: scale(1.5) rotate(2deg) translate(-10%, -20%);
+			}
 		}
 	}
 
