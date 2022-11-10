@@ -1,21 +1,12 @@
 module.exports = () => ({
 	pageTitle: "Daniel Schulz",
-	authorName: "Daniel Schulz",
-	authorEmail: "hallo@iamschulz.de",
-	meta: [
-		{
-			name: "description",
-			content: "and this is my website",
-		},
-		{
-			name: "google-site-verification",
-			content: "YXi9gLgXdTu-0XVP6VAzIPmczJgpXBACJPYcfyjr7bY",
-		},
-		{
-			name: "monetization",
-			content: "$ilp.uphold.com/emhMEXmNazrU",
-		},
-	],
+	meta: {
+		authorName: "Daniel Schulz",
+		authorEmail: "hallo@iamschulz.de",
+		description: "and this is my website",
+		googleSiteVerification: "YXi9gLgXdTu-0XVP6VAzIPmczJgpXBACJPYcfyjr7bY",
+		monetization: "$ilp.uphold.com/emhMEXmNazrU",
+	},
 	mainNavigation: [
 		{
 			label: "about",
