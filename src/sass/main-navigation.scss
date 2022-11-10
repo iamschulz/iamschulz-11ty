@@ -8,19 +8,30 @@
 
 	&__link {
 		position: relative;
-		color: var(--fg-color);
+		color: inherit;
 		text-decoration: none;
+
+		&::before {
+			content: "_";
+			position: absolute;
+			left: 0;
+			bottom: 6.5rem;
+			width: 1ch;
+			height: 0.2rem;
+			font-family: var(--headline-font);
+			color: var(--accent-color);
+			font-size: 6rem;
+			clip-path: inset(0px 100% -7rem 0);
+			transition: clip-path 0.1s ease-out;
+			pointer-events: none;
+		}
 
 		&--active,
 		&:hover {
+			color: inherit;
+
 			&::before {
-				content: "";
-				position: absolute;
-				left: 0;
-				bottom: -0.5rem;
-				width: 1ch;
-				height: 0.2rem;
-				background-color: var(--accent-color);
+				clip-path: inset(0px 0% -7rem 0);
 			}
 		}
 	}

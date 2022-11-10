@@ -6,6 +6,11 @@
 
 	a {
 		color: var(--grey);
+
+		&:hover,
+		&[data-highlight]:hover {
+			color: var(--accent-color);
+		}
 	}
 }
 
@@ -16,7 +21,7 @@
 		padding-left: var(--spacing-x);
 
 		a[data-highlight="true"] {
-			color: var(--fg-color);
+			color: var(--accent-color);
 		}
 	}
 }

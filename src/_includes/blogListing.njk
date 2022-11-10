@@ -8,7 +8,7 @@
             <section class="article-card">
                 <header class="article-card__header">
                     {% if post.cover and post.coverAlt %}
-                        <a href="/{{ post.title | slug | url }}">
+                        <a class="article-card__header-link" href="/{{ post.title | slug | url }}">
                             {% if loop.index <= 3 %}
                                 {% image post.cover, post.coverAlt, "article-card__cover", false %}
                             {% else %}
@@ -21,7 +21,7 @@
                         <p class="article-card__language">{{ post.language }}</p>
                     </aside>
                     <h2 class="article-card__title fancyfont font-size-large">
-                        <a href="/{{ post.title | slug | url }}" class="article-card__link">{{ post.title }}</a>
+                        <a href="/{{ post.title | slug | url }}" class="article-card__link muted">{{ post.title }}</a>
                     </h2>
                 </header>
                 {% if post.excerpt %}

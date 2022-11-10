@@ -1,0 +1,7 @@
+:is(.muted) {
+	color: var(--fg-color);
+
+	&:hover {
+		color: var(--accent-color);
+	}
+}

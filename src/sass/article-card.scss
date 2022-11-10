@@ -2,9 +2,12 @@
 	&__cover {
 		max-width: 100%;
 		border: var(--border-width) solid var(--fg-color);
+		box-shadow: 0 0 0 0 var(--pop-color);
+		transition: box-shadow 0.2s ease-out;
 
 		&:hover {
 			border-color: var(--accent-color);
+			box-shadow: 0.5rem 0.5rem 0 0 var(--pop-color);
 		}
 	}
 

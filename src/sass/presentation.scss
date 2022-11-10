@@ -57,7 +57,7 @@
 			height: 100%;
 			background: radial-gradient(
 				circle,
-				var(--grey) 60%,
+				var(--accent-color) 60%,
 				transparent 60.1%
 			);
 		}
@@ -69,6 +69,10 @@
 				&:hover {
 					fill: var(--accent-color);
 					transition: none;
+				}
+
+				&.cls-261:hover {
+					fill: var(--pop-color);
 				}
 			}
 		}
@@ -116,8 +120,12 @@
 		display: flex;
 		gap: var(--spacing-x);
 
-		&-link:not(:hover) {
+		&-link {
 			color: var(--fg-color);
+
+			&:hover {
+				color: var(--accent-color);
+			}
 		}
 
 		svg {
@@ -127,8 +135,12 @@
 	}
 
 	&__references {
-		a:not(:hover) {
+		a {
 			color: var(--fg-color);
+
+			&:hover {
+				color: var(--accent-color);
+			}
 		}
 
 		svg {

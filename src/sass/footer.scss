@@ -23,10 +23,6 @@
 		}
 	}
 
-	&__link:not(:hover) {
-		color: inherit;
-	}
-
 	&__search {
 		margin-top: var(--spacing-y);
 	}

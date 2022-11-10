@@ -17,6 +17,7 @@
 	);
 
 	--accent-color: hsl(var(--theme-hue-accent), 100%, 45%);
+	--pop-color: hsl(var(--theme-hue), 100%, 45%);
 
 	--grey: hsl(
 		var(--theme-hue),
@@ -38,4 +39,8 @@ body {
 
 a {
 	color: var(--accent-color);
+
+	&:hover {
+		color: var(--pop-color);
+	}
 }
