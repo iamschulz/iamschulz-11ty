@@ -7,6 +7,7 @@
 
 	&__cover {
 		max-width: 100%;
+		height: auto;
 		grid-area: header;
 	}
 
@@ -48,12 +49,9 @@
 	&__content {
 		grid-area: content;
 
-		div,
-		img,
-		video,
-		iframe,
-		embed {
+		:is(div, img, video, iframe, embed) {
 			max-width: 100%;
+			height: auto;
 		}
 	}
 }

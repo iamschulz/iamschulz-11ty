@@ -1,6 +1,7 @@
 .article-card {
 	&__cover {
 		max-width: 100%;
+		height: auto;
 		border: var(--border-width) solid var(--fg-color);
 		box-shadow: 0 0 0 0 var(--pop-color);
 
