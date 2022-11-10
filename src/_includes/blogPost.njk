@@ -13,7 +13,7 @@
             <h1 class="article__title fancyfont font-size-x-large">{{ post.title }}</h1>
         </header>
         {% if content | toc %}
-            <aside class="article__toc">
+            <aside class="article__toc" data-component="toc">
                 {{ content | toc | safe }}
             </aside>
         {% endif %}

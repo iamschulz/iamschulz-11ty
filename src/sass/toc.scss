@@ -14,5 +14,9 @@
 		position: sticky;
 		top: 3rem; // account for header height
 		padding-left: var(--spacing-x);
+
+		a[data-highlight="true"] {
+			color: var(--fg-color);
+		}
 	}
 }
