@@ -1,5 +1,7 @@
 module.exports = () => ({
 	pageTitle: "Daniel Schulz",
+	authorName: "Daniel Schulz",
+	authorEmail: "hallo@iamschulz.de",
 	meta: [
 		{
 			name: "description",
