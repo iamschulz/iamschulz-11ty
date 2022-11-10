@@ -27,6 +27,7 @@ module.exports = function (eleventyConfig) {
 			html: true,
 		}).use(markdownItAnchor)
 	);
+
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 	eleventyConfig.addPlugin(eleventyHTMLValidate);
 	eleventyConfig.addPlugin(pluginTOC, {
@@ -39,7 +40,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addShortcode("year", getYear);
 	eleventyConfig.addNunjucksShortcode("codepen", codepenShortcode);
 	eleventyConfig.addNunjucksShortcode("youtube", youtubeShortcode);
-	eleventyConfig.addNunjucksShortcode("image", imageShortcode);
+	eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
 	eleventyConfig.addPlugin(syntaxHighlight);
 	eleventyConfig.addNunjucksAsyncShortcode("render", async (content) => {
 		// escape nunjucks code in content inside data handlers
@@ -61,6 +62,7 @@ module.exports = function (eleventyConfig) {
 	});
 
 	return {
+		templateFormats: ["md", "njk", "html", "liquid"],
 		markdownTemplateEngine: "njk",
 		dataTemplateEngine: "njk",
 		htmlTemplateEngine: "njk",

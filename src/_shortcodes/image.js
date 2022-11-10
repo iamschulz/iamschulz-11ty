@@ -1,6 +1,6 @@
 const Image = require("@11ty/eleventy-img");
 
-module.exports = function imageShortcode(
+module.exports = async function imageShortcode(
 	src,
 	alt,
 	className = "",
@@ -13,9 +13,6 @@ module.exports = function imageShortcode(
 		outputDir: "./dist/img/",
 	};
 
-	// generate images, while this is async we don’t wait
-	Image(src, options);
-
 	let imageAttributes = {
 		alt,
 		sizes: "100vw",
@@ -24,9 +21,7 @@ module.exports = function imageShortcode(
 		decoding: "async",
 	};
 
-	// get metadata even the images are not fully generated
-	const metadata = Image.statsByDimensionsSync(src, 1000, 1000, options);
+	const metadata = await Image(src, options);
 	let html = Image.generateHTML(metadata, imageAttributes);
-	html = html.replace(/(?:width|height)="[0-9]+"/gm, "");
 	return html;
 };
