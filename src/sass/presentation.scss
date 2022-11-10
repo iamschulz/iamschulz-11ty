@@ -57,22 +57,20 @@
 			height: 100%;
 			background: radial-gradient(
 				circle,
-				var(--accent-color) 60%,
+				var(--grey) 60%,
 				transparent 60.1%
 			);
 		}
 
 		path {
-			transition: fill 1s ease-out;
+			transition: fill 1s ease-out 1s, filter 1s ease-out;
 
 			@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
 				&:hover {
-					fill: var(--accent-color);
-					transition: none;
-				}
-
-				&.cls-261:hover {
 					fill: var(--pop-color);
+					filter: contrast(0%) sepia(100%) saturate(1200%)
+						brightness(67%) hue-rotate(290deg); // hack to --accent-color
+					transition: none;
 				}
 			}
 		}
