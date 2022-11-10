@@ -18,7 +18,7 @@
                 <div class="demo-card__content">
                     <p>{{ post.content }}</p>
                 </div>
-                <a class="demo-card__more button button-arrow" href="/{{ post.title | slug | url }}">
+                <a class="demo-card__more button button-arrow" href="{{ post.url }}">
                         <span class="visually-hidden">read more</span>
                         {%- svg "static/chevron-right-solid.svg" -%}
                         {%- svg "static/chevron-right-solid.svg" -%}

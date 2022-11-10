@@ -55,23 +55,11 @@
 		svg {
 			width: 100%;
 			height: 100%;
-
-			body[data-state-color-scheme="dark"] & {
-				background: radial-gradient(
-					circle,
-					var(--grey) 60%,
-					transparent 60.1%
-				);
-			}
-			@media (prefers-color-scheme: dark) {
-				body:not([data-state-color-scheme="light"]) & {
-					background: radial-gradient(
-						circle,
-						var(--grey) 60%,
-						transparent 60.1%
-					);
-				}
-			}
+			background: radial-gradient(
+				circle,
+				var(--grey) 60%,
+				transparent 60.1%
+			);
 		}
 
 		path {

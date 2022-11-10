@@ -40,11 +40,13 @@ export class ThemeSwitch {
 		const color = this.rgbToHex(
 			getComputedStyle(document.body)["background"]
 		);
-		(
-			document.head.querySelector(
-				'[name="theme-color"]'
-			) as HTMLMetaElement
-		).content = color;
+		window.requestAnimationFrame(() => {
+			(
+				document.head.querySelector(
+					'[name="theme-color"]'
+				) as HTMLMetaElement
+			).content = color;
+		});
 		window.localStorage.setItem("theme-color", color);
 	}
 
@@ -70,7 +72,7 @@ export class ThemeSwitch {
 		window.localStorage.removeItem("theme-brightness");
 	}
 
-	private rgbToHex(rgb) {
+	private rgbToHex(rgb): string {
 		const cleanRgb = rgb.split("(")[1].split(")")[0];
 		const rgbArr = cleanRgb.split(",");
 
