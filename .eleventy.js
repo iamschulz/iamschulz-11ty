@@ -11,6 +11,7 @@ const getSvgContent = require("./src/_shortcodes/svg.js");
 const formatDate = require("./src/_shortcodes/formatDate.js");
 const eleventyHTMLValidate = require("eleventy-plugin-html-validate");
 const pluginTOC = require("eleventy-plugin-toc");
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 const unescapeNjk = require("./src/_helpers/unescapeNjk.js");
 
 const md = markdownIt({
@@ -20,7 +21,7 @@ const md = markdownIt({
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addWatchTarget("./src/sass/");
 	eleventyConfig.addWatchTarget("./src/ts/");
-	eleventyConfig.setTemplateFormats(["md"]);
+	eleventyConfig.setTemplateFormats(["md", "njk"]);
 	eleventyConfig.setLibrary(
 		"md",
 		markdownIt({
@@ -28,6 +29,7 @@ module.exports = function (eleventyConfig) {
 		}).use(markdownItAnchor)
 	);
 
+	eleventyConfig.addPlugin(pluginRss);
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 	eleventyConfig.addPlugin(eleventyHTMLValidate);
 	eleventyConfig.addPlugin(pluginTOC, {
