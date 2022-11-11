@@ -1,5 +1,6 @@
 module.exports = () => ({
 	pageTitle: "Daniel Schulz",
+	url: "https://iamschulz.com",
 	meta: {
 		authorName: "Daniel Schulz",
 		authorEmail: "hallo@iamschulz.de",

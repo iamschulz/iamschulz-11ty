@@ -22,7 +22,7 @@
                 </header>
                 {% if post.excerpt %}
                     <div class="article-card__content">
-                        {% renderMd post.excerpt %}
+                        {{ post.excerpt | renderMd }}
                     </div>
                     <a class="article-card__more button button-arrow" href="/{{ post.title | slug | url }}">
                         <span class="visually-hidden">read more</span>

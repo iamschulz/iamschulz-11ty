@@ -13,6 +13,7 @@ const eleventyHTMLValidate = require("eleventy-plugin-html-validate");
 const pluginTOC = require("eleventy-plugin-toc");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const unescapeNjk = require("./src/_helpers/unescapeNjk.js");
+const escapeSpecialChars = require("./src/_helpers/escapeSpecialChars.js");
 
 const md = markdownIt({
 	html: true,
@@ -21,6 +22,7 @@ const md = markdownIt({
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addWatchTarget("./src/sass/");
 	eleventyConfig.addWatchTarget("./src/ts/");
+	eleventyConfig.addPassthroughCopy({ "src/static/public": "assets" });
 	eleventyConfig.setTemplateFormats(["md", "njk"]);
 	eleventyConfig.setLibrary(
 		"md",
@@ -36,14 +38,13 @@ module.exports = function (eleventyConfig) {
 		flat: true,
 	});
 	eleventyConfig.addPlugin(tinyHTML);
-	eleventyConfig.addPassthroughCopy({ "src/static/public": "assets" });
+	eleventyConfig.addPlugin(syntaxHighlight);
 	eleventyConfig.addShortcode("svg", getSvgContent);
 	eleventyConfig.addShortcode("date", formatDate);
 	eleventyConfig.addShortcode("year", getYear);
 	eleventyConfig.addNunjucksShortcode("codepen", codepenShortcode);
 	eleventyConfig.addNunjucksShortcode("youtube", youtubeShortcode);
 	eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
-	eleventyConfig.addPlugin(syntaxHighlight);
 	eleventyConfig.addNunjucksAsyncShortcode("render", async (content) => {
 		// escape nunjucks code in content inside data handlers
 		content = await eleventyConfig.javascriptFunctions.renderTemplate(
@@ -53,7 +54,7 @@ module.exports = function (eleventyConfig) {
 		content = unescapeNjk(content);
 		return content;
 	});
-	eleventyConfig.addNunjucksAsyncShortcode("renderMd", async (content) => {
+	eleventyConfig.addAsyncFilter("renderMd", async (content) => {
 		const renderedShortcodes =
 			await eleventyConfig.javascriptFunctions.renderTemplate(
 				content,
@@ -61,6 +62,13 @@ module.exports = function (eleventyConfig) {
 			);
 		const renderedMd = md.render(renderedShortcodes);
 		return renderedMd;
+	});
+
+	eleventyConfig.addAsyncFilter("renderRss", async (content) => {
+		content = unescapeNjk(content);
+		// todo: add rss fixes
+		content = escapeSpecialChars(content);
+		return content;
 	});
 
 	return {
