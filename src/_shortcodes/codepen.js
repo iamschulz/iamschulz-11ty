@@ -4,13 +4,7 @@ module.exports = function codepenShortcode(content, eleventyConfig) {
 	const uuid = Math.round(Math.random() * 1000000);
 
 	if (eleventyConfig.globalData.isRss) {
-		return `
-<iframe
-    src="${content.replace(
-		"/pen/",
-		"/embed/"
-	)}?height=265&theme-id=dark&default-tab=result"
-></iframe>`;
+		return `<a href="${content}" rel="noopener" target="_blank">CodePen Embed</a>`;
 	}
 
 	return `

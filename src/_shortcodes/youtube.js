@@ -4,10 +4,7 @@ module.exports = function youtubeShortcode(id, eleventyConfig) {
 	const uuid = Math.round(Math.random() * 1000000);
 
 	if (eleventyConfig.globalData.isRss) {
-		return `
-<iframe
-    src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"
-></iframe>`;
+		return `<a href="https://www.youtube.com/watch?v=${id}">Youtube Video</a>`;
 	}
 
 	return `

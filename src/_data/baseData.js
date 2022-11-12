@@ -37,7 +37,7 @@ module.exports = () => ({
 		},
 		{
 			label: "RSS",
-			url: "/rss/",
+			url: "/index.xml",
 		},
 		{
 			label: "Blog Roll",
