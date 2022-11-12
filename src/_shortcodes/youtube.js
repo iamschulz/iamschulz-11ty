@@ -1,8 +1,16 @@
 const svg = require("./svg");
 
-module.exports = function youtubeShortcode(id) {
+module.exports = function youtubeShortcode(id, eleventyConfig) {
 	const uuid = Math.round(Math.random() * 1000000);
-	let result = `
+
+	if (eleventyConfig.globalData.isRss) {
+		return `
+<iframe
+    src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"
+></iframe>`;
+	}
+
+	return `
 <div class="replace-embed" data-source="youtube">
 	<a
 		data-component="replaceIframe"
@@ -42,5 +50,4 @@ module.exports = function youtubeShortcode(id) {
 	></iframe>
 </div>
 `;
-	return result;
 };

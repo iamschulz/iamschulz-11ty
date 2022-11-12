@@ -41,8 +41,12 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addShortcode("svg", getSvgContent);
 	eleventyConfig.addShortcode("date", formatDate);
 	eleventyConfig.addShortcode("year", getYear);
-	eleventyConfig.addNunjucksShortcode("codepen", codepenShortcode);
-	eleventyConfig.addNunjucksShortcode("youtube", youtubeShortcode);
+	eleventyConfig.addNunjucksShortcode("codepen", (content) =>
+		codepenShortcode(content, eleventyConfig)
+	);
+	eleventyConfig.addNunjucksShortcode("youtube", (content) =>
+		youtubeShortcode(content, eleventyConfig)
+	);
 	eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
 	eleventyConfig.addNunjucksAsyncShortcode("render", async (content) => {
 		// escape nunjucks code in content inside data handlers
@@ -51,6 +55,10 @@ module.exports = function (eleventyConfig) {
 			"njk"
 		);
 		content = unescapeNjk(content);
+		return content;
+	});
+	eleventyConfig.addFilter("useRss", (content) => {
+		eleventyConfig.addGlobalData("isRss", true);
 		return content;
 	});
 	eleventyConfig.addAsyncFilter("renderMd", async (content) => {
@@ -65,7 +73,7 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addAsyncFilter("renderRss", async (content) => {
 		content = unescapeNjk(content);
-		// todo: add rss fixes
+		eleventyConfig.addGlobalData("isRss", false);
 		return content;
 	});
 

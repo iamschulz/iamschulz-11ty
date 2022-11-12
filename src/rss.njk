@@ -23,7 +23,7 @@
     <link href="{{ absolutePostUrl }}"/>
     <updated>{{ post.date }}</updated>
     <id>{{ absolutePostUrl }}</id>
-    <content type="html">{{ post.content | renderMd | htmlToAbsoluteUrls(baseData.url) | renderRss }}</content>
+    <content type="html">{{ post.content | useRss | renderMd | htmlToAbsoluteUrls(baseData.url) | renderRss }}</content>
   </entry>
   {%- endfor %}
 </feed>

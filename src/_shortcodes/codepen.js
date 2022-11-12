@@ -1,8 +1,19 @@
 const svg = require("./svg");
 
-module.exports = function codepenShortcode(content) {
+module.exports = function codepenShortcode(content, eleventyConfig) {
 	const uuid = Math.round(Math.random() * 1000000);
-	let result = `
+
+	if (eleventyConfig.globalData.isRss) {
+		return `
+<iframe
+    src="${content.replace(
+		"/pen/",
+		"/embed/"
+	)}?height=265&theme-id=dark&default-tab=result"
+></iframe>`;
+	}
+
+	return `
 <div class="replace-embed" data-source="codepen">
 	<a
 		data-component="replaceIframe"
