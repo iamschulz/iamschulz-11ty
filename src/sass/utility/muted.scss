@@ -1,4 +1,4 @@
-:is(.muted) {
+:where(.muted) {
 	color: var(--fg-color);
 
 	&:hover {

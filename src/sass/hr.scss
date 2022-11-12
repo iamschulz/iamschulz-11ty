@@ -1,4 +1,4 @@
-:is(hr) {
+:where(hr) {
 	border: none;
 	border-top: var(--border-width) dashed var(--grey);
 	margin: calc(5 * var(--spacing-y)) 0;

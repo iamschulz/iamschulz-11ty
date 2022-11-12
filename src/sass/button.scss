@@ -1,4 +1,4 @@
-:is(button, .button) {
+:where(.button, button) {
 	position: relative;
 	display: inline-block;
 	margin: 0;
@@ -96,8 +96,6 @@
 	}
 }
 
-.button {
-	&--highlight {
-		text-decoration: underline;
-	}
+:where(.button--highlight) {
+	text-decoration: underline;
 }

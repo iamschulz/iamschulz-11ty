@@ -1,4 +1,4 @@
-:is(blockquote) {
+:where(blockquote) {
 	position: relative;
 	max-width: var(--content-narrow-width);
 	margin: auto;

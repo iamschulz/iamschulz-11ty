@@ -80,13 +80,13 @@
 		}
 	}
 
-	&:is([data-source="youtube"]) {
+	&:where([data-source="youtube"]) {
 		&::before {
 			padding-top: 56.2%;
 		}
 	}
 
-	&:is([data-source="codepen"]) {
+	&:where([data-source="codepen"]) {
 		&::before {
 			padding-top: 150%;
 		}
@@ -98,7 +98,7 @@
 	}
 
 	// loading attribute sits on replacer
-	:is([data-loading="true"]) {
+	:where([data-loading="true"]) {
 		.replace-embed__icon {
 			&::before {
 				content: "Loading...";
@@ -114,7 +114,7 @@
 
 @media (min-width: $sm-width) {
 	.replace-embed {
-		&:is([data-source="codepen"]) {
+		&:where([data-source="codepen"]) {
 			&::before {
 				padding-top: 56.2%;
 			}

@@ -21,16 +21,16 @@
 		"Roboto Mono", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 }
 
-:is(.fancyfont) {
+:where(.fancyfont) {
 	font-family: var(--headline-font);
 	line-height: 1;
 }
 
-:is(.font-size-x-large) {
+:where(.font-size-x-large) {
 	font-size: var(--x-large-font-size);
 }
 
-:is(.font-size-large) {
+:where(.font-size-large) {
 	font-size: var(--large-font-size);
 }
 

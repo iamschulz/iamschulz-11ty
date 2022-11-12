@@ -49,7 +49,7 @@
 	&__content {
 		grid-area: content;
 
-		:is(div, img, video, iframe, embed) {
+		:where(div, img, video, iframe, embed) {
 			max-width: 100%;
 			height: auto;
 		}

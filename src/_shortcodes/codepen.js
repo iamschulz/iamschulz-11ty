@@ -1,6 +1,6 @@
 const svg = require("./svg");
 
-module.exports = function codepenShortcode(content, foo) {
+module.exports = function codepenShortcode(content) {
 	const uuid = Math.round(Math.random() * 1000000);
 	let result = `
 <div class="replace-embed" data-source="codepen">

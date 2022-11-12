@@ -37,7 +37,7 @@ body {
 	color: var(--fg-color);
 }
 
-a {
+:where(a) {
 	color: var(--accent-color);
 
 	&:hover {

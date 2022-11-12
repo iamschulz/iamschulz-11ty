@@ -1,4 +1,4 @@
-:is(.nolist) {
+:where(.nolist) {
 	list-style: none;
 	padding-inline-start: 0;
 }
