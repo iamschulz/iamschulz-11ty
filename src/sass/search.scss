@@ -1,0 +1,26 @@
+.search {
+	display: flex;
+	&__label {
+		display: inline-block;
+		margin-right: 1ch;
+	}
+
+	&__input {
+		height: 2rem;
+		background: transparent;
+		border: 1px solid var(--fg-color);
+	}
+
+	&__button {
+		padding: 0.5ch;
+		width: 2rem;
+		height: 2rem;
+		display: inline-grid;
+		place-items: center;
+
+		svg {
+			height: 100%;
+			width: 100%;
+		}
+	}
+}

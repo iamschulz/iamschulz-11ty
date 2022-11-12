@@ -1,11 +1,14 @@
 .footer {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	display: block;
 	max-width: var(--content-width);
 	margin: calc(var(--spacing-y) * 10) var(--content-margin) 0;
 	color: var(--grey);
 	font-size: var(--small-font-size);
+	margin-bottom: var(--spacing-y);
+
+	&__menu {
+		display: inline-block;
+	}
 
 	&__list {
 		list-style: none;
@@ -29,5 +32,13 @@
 
 	&__search {
 		margin-top: var(--spacing-y);
+	}
+}
+
+@media (min-width: $sm-width) {
+	.footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 }
