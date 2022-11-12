@@ -24,6 +24,13 @@
 		10%,
 		clamp(55%, calc(100% - (var(--theme-lit) - 62%) * 1000), 65%)
 	);
+
+	--grey-fade: hsla(
+		var(--theme-hue),
+		10%,
+		clamp(55%, calc(100% - (var(--theme-lit) - 62%) * 1000), 65%),
+		0.2
+	);
 }
 
 @media (prefers-color-scheme: dark) {

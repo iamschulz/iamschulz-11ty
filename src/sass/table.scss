@@ -1,0 +1,23 @@
+:where(table) {
+	border-collapse: collapse;
+}
+
+:where(th) {
+	border-bottom: 1px solid var(--grey);
+}
+
+:where(td) {
+	width: auto;
+	min-width: 10ch;
+	padding: 1ch;
+}
+
+:where(:is(td, th):not(:last-of-type)) {
+	border-right: 1px solid var(--grey);
+}
+
+:where(tbody) {
+	:where(tr:hover) {
+		background-color: var(--grey-fade);
+	}
+}
