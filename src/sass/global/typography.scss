@@ -6,6 +6,15 @@
 	src: local("Gloomy Things"), url(/assets/GloomyThings.woff2) format("woff2");
 }
 
+@font-face {
+	font-family: "Adjusted Arial Fallback";
+	src: local(Arial);
+	size-adjust: 92%;
+	ascent-override: 92%;
+	descent-override: 18%;
+	line-gap-override: 4%;
+}
+
 :root {
 	--base-font-size: min(max(1rem, 2vw), 1.5rem);
 	--small-font-size: 1rem;
@@ -15,8 +24,8 @@
 	--base-letter-spacing: 0.01875em;
 	--base-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
 		Arial, sans-serif;
-	--headline-font: GloomyThings, Arial, "Helvetica Neue", Helvetica,
-		sans-serif; //todo: find better stack
+	--headline-font: GloomyThings, "Adjusted Arial Fallback", Arial,
+		"Helvetica Neue", Helvetica, sans-serif;
 	--mono-font: "Fira Code", FiraCode, "JetBrains Mono", Inconsolata,
 		"Roboto Mono", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 }
