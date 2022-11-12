@@ -23,6 +23,10 @@
 		}
 	}
 
+	&__link {
+		text-decoration-thickness: 1px;
+	}
+
 	&__search {
 		margin-top: var(--spacing-y);
 	}

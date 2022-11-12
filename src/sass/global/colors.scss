@@ -45,9 +45,11 @@ body {
 }
 
 :where(a) {
-	color: var(--accent-color);
+	color: var(--fg-color);
+	text-decoration-color: var(--accent-color);
+	text-decoration-thickness: var(--border-width);
 
 	&:hover {
-		color: var(--pop-color);
+		text-decoration-color: var(--pop-color);
 	}
 }

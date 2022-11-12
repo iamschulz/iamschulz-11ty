@@ -1,7 +1,9 @@
 :where(.muted) {
 	color: var(--fg-color);
+	text-decoration-color: currentColor;
 
 	&:hover {
 		color: var(--accent-color);
+		text-decoration-color: currentColor;
 	}
 }

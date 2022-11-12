@@ -6,10 +6,13 @@
 
 	a {
 		color: var(--grey);
+		text-decoration-color: currentColor;
+		text-decoration-thickness: 1px;
 
 		&:hover,
 		&[data-highlight]:hover {
 			color: var(--accent-color);
+			text-decoration-color: currentColor;
 		}
 	}
 }
