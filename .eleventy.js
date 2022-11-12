@@ -13,7 +13,6 @@ const eleventyHTMLValidate = require("eleventy-plugin-html-validate");
 const pluginTOC = require("eleventy-plugin-toc");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const unescapeNjk = require("./src/_helpers/unescapeNjk.js");
-const escapeSpecialChars = require("./src/_helpers/escapeSpecialChars.js");
 
 const md = markdownIt({
 	html: true,
@@ -67,7 +66,6 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addAsyncFilter("renderRss", async (content) => {
 		content = unescapeNjk(content);
 		// todo: add rss fixes
-		content = escapeSpecialChars(content);
 		return content;
 	});
 
