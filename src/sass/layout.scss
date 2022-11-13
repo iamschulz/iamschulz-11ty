@@ -17,6 +17,10 @@
 	box-sizing: border-box;
 }
 
+:where(main [id]) {
+	scroll-margin-top: 2.5rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
 	html {
 		scroll-behavior: smooth;
