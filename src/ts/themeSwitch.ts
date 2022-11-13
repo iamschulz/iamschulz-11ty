@@ -1,3 +1,5 @@
+import { rgbToHex } from "./rgbToHex";
+
 export class ThemeSwitch {
 	private el: HTMLElement;
 	private toggle: HTMLInputElement;
@@ -37,9 +39,7 @@ export class ThemeSwitch {
 	}
 
 	private setColor() {
-		const color = this.rgbToHex(
-			getComputedStyle(document.body)["background"]
-		);
+		const color = rgbToHex(getComputedStyle(document.body)["background"]);
 		window.requestAnimationFrame(() => {
 			(
 				document.head.querySelector(
@@ -70,18 +70,5 @@ export class ThemeSwitch {
 		this.toggle.dispatchEvent(new Event("input"));
 		window.localStorage.removeItem("theme-color");
 		window.localStorage.removeItem("theme-brightness");
-	}
-
-	private rgbToHex(rgb): string {
-		const cleanRgb = rgb.split("(")[1].split(")")[0];
-		const rgbArr = cleanRgb.split(",");
-
-		const hex = rgbArr.map(function (x) {
-			//For each array element
-			x = parseInt(x).toString(16); //Convert to a base16 string
-			return x.length == 1 ? "0" + x : x; //Add zero if we get only one character
-		});
-
-		return `#${hex.join("")}`;
 	}
 }
