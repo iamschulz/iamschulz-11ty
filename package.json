@@ -32,6 +32,7 @@
 		"build": "npm-run-all build:sass build:ts build:eleventy"
 	},
 	"dependencies": {
-		"@11ty/eleventy-plugin-rss": "^1.2.0"
+		"@11ty/eleventy-plugin-rss": "^1.2.0",
+		"markdown-to-txt": "^2.0.1"
 	}
 }

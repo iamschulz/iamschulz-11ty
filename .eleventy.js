@@ -3,6 +3,7 @@ const tinyHTML = require("@sardine/eleventy-plugin-tinyhtml");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const imageShortcode = require("./src/_shortcodes/image.js");
+const socialImageShortcode = require("./src/_shortcodes/socialImage.js");
 const codepenShortcode = require("./src/_shortcodes/codepen.js");
 const youtubeShortcode = require("./src/_shortcodes/youtube.js");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
@@ -13,6 +14,7 @@ const eleventyHTMLValidate = require("eleventy-plugin-html-validate");
 const pluginTOC = require("eleventy-plugin-toc");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const unescapeNjk = require("./src/_helpers/unescapeNjk.js");
+const { markdownToTxt } = require("markdown-to-txt");
 
 const md = markdownIt({
 	html: true,
@@ -48,6 +50,10 @@ module.exports = function (eleventyConfig) {
 		youtubeShortcode(content, eleventyConfig)
 	);
 	eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+	eleventyConfig.addNunjucksAsyncShortcode(
+		"socialImage",
+		socialImageShortcode
+	);
 	eleventyConfig.addNunjucksAsyncShortcode("render", async (content) => {
 		// escape nunjucks code in content inside data handlers
 		content = await eleventyConfig.javascriptFunctions.renderTemplate(
@@ -69,6 +75,16 @@ module.exports = function (eleventyConfig) {
 			);
 		const renderedMd = md.render(renderedShortcodes);
 		return renderedMd;
+	});
+
+	eleventyConfig.addAsyncFilter("renderTxt", async (content) => {
+		const renderedShortcodes =
+			await eleventyConfig.javascriptFunctions.renderTemplate(
+				content,
+				"njk"
+			);
+		const plainText = markdownToTxt(renderedShortcodes);
+		return plainText;
 	});
 
 	eleventyConfig.addAsyncFilter("renderRss", async (content) => {
