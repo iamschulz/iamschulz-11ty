@@ -2,6 +2,7 @@ const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const tinyHTML = require("@sardine/eleventy-plugin-tinyhtml");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
+const renderShortcode = require("./src/_shortcodes/render.js");
 const imageShortcode = require("./src/_shortcodes/image.js");
 const socialImageShortcode = require("./src/_shortcodes/socialImage.js");
 const codepenShortcode = require("./src/_shortcodes/codepen.js");
@@ -13,12 +14,10 @@ const formatDate = require("./src/_shortcodes/formatDate.js");
 const eleventyHTMLValidate = require("eleventy-plugin-html-validate");
 const pluginTOC = require("eleventy-plugin-toc");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
-const unescapeNjk = require("./src/_helpers/unescapeNjk.js");
-const { markdownToTxt } = require("markdown-to-txt");
-
-const md = markdownIt({
-	html: true,
-});
+const useRssFilter = require("./src/_filters/useRss");
+const renderHtmlFilter = require("./src/_filters/renderHtml");
+const renderTxtFilter = require("./src/_filters/renderTxt");
+const renderRssFilter = require("./src/_filters/renderRss");
 
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addWatchTarget("./src/sass/");
@@ -40,6 +39,7 @@ module.exports = function (eleventyConfig) {
 	});
 	eleventyConfig.addPlugin(tinyHTML);
 	eleventyConfig.addPlugin(syntaxHighlight);
+
 	eleventyConfig.addShortcode("svg", getSvgContent);
 	eleventyConfig.addShortcode("date", formatDate);
 	eleventyConfig.addShortcode("year", getYear);
@@ -54,44 +54,25 @@ module.exports = function (eleventyConfig) {
 		"socialImage",
 		socialImageShortcode
 	);
-	eleventyConfig.addNunjucksAsyncShortcode("render", async (content) => {
-		// escape nunjucks code in content inside data handlers
-		content = await eleventyConfig.javascriptFunctions.renderTemplate(
-			content,
-			"njk"
-		);
-		content = unescapeNjk(content);
-		return content;
-	});
-	eleventyConfig.addFilter("useRss", (content) => {
-		eleventyConfig.addGlobalData("isRss", true);
-		return content;
-	});
-	eleventyConfig.addAsyncFilter("renderMd", async (content) => {
-		const renderedShortcodes =
-			await eleventyConfig.javascriptFunctions.renderTemplate(
-				content,
-				"njk"
-			);
-		const renderedMd = md.render(renderedShortcodes);
-		return renderedMd;
-	});
+	eleventyConfig.addNunjucksAsyncShortcode("render", async (content) =>
+		renderShortcode(content, eleventyConfig)
+	);
 
-	eleventyConfig.addAsyncFilter("renderTxt", async (content) => {
-		const renderedShortcodes =
-			await eleventyConfig.javascriptFunctions.renderTemplate(
-				content,
-				"njk"
-			);
-		const plainText = markdownToTxt(renderedShortcodes);
-		return plainText;
-	});
-
-	eleventyConfig.addAsyncFilter("renderRss", async (content) => {
-		content = unescapeNjk(content);
-		eleventyConfig.addGlobalData("isRss", false);
-		return content;
-	});
+	eleventyConfig.addFilter("useRss", (content) =>
+		useRssFilter(content, eleventyConfig)
+	);
+	eleventyConfig.addAsyncFilter(
+		"renderHtml",
+		async (content) => await renderHtmlFilter(content, eleventyConfig)
+	);
+	eleventyConfig.addAsyncFilter(
+		"renderTxt",
+		async (content) => await renderTxtFilter(content, eleventyConfig)
+	);
+	eleventyConfig.addAsyncFilter(
+		"renderRss",
+		async (content) => await renderRssFilter(content, eleventyConfig)
+	);
 
 	return {
 		templateFormats: ["md", "njk", "html", "liquid"],
