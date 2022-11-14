@@ -2,13 +2,7 @@ pre {
 	font-family: var(--mono-font);
 	position: relative;
 	padding-top: 2rem;
-	background: hsl(
-		var(--theme-hue),
-		var(--theme-sat),
-		calc(var(--theme-lit) - 3%)
-	);
-	border: 2px solid
-		hsl(var(--theme-hue), var(--theme-sat), calc(var(--theme-lit) - 5%));
+	background: var(--grey-fade);
 	border-radius: 0.5rem;
 
 	&::before {
@@ -55,12 +49,7 @@ kbd {
 	font-family: var(--mono-font);
 	display: inline-block;
 	margin: 0 5px;
-	background: hsl(
-		var(--theme-hue),
-		var(--theme-sat),
-		calc(var(--theme-lit) - 3%)
-	);
+	background: var(--grey-fade);
 	border-radius: 5px;
-	box-shadow: 0 0 0 5px
-		hsl(var(--theme-hue), var(--theme-sat), calc(var(--theme-lit) - 3%));
+	box-shadow: 0 0 0 5px var(--grey-fade);
 }

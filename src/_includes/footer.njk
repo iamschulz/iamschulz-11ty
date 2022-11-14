@@ -4,7 +4,7 @@
             <li class="footer__entry footer__entry--copy"><span>© {% year %} by me, plz don't steal</span></li>
             {%- for entry in baseData.footerNavigation -%}
                 <li class="footer__entry">
-                    <a class="footer__link muted" href="{{ entry.url }}">{{ entry.label }} </a>
+                    <a class="footer__link" href="{{ entry.url }}">{{ entry.label }} </a>
                 </li>
             {%- endfor -%}
             <li class="footer__search">

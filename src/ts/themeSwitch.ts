@@ -21,6 +21,9 @@ export class ThemeSwitch {
 	private registerEvents() {
 		this.toggle.addEventListener("input", () => {
 			this.setBrightness();
+		});
+
+		this.toggle.addEventListener("change", () => {
 			this.setColor();
 		});
 

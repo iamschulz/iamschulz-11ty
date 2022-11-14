@@ -8,7 +8,7 @@
 	&__input {
 		height: 2rem;
 		background: transparent;
-		border: 1px solid var(--fg-color);
+		border: 1px solid var(--grey);
 	}
 
 	&__button {
@@ -17,6 +17,11 @@
 		height: 2rem;
 		display: inline-grid;
 		place-items: center;
+		background-color: var(--grey);
+
+		&:hover {
+			background-color: transparent;
+		}
 
 		svg {
 			height: 100%;
