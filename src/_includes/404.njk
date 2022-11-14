@@ -1,0 +1,14 @@
+{% extends "base.njk" %}
+
+{% block content %}
+    <h1>Oopsie, 404</h1>
+    <div id="404image"></div>
+    <script>
+        const rand = Math.ceil(Math.random()*10);
+        const container = document.getElementById('404image');
+        var img = document.createElement('img');
+        img.setAttribute('src', `/assets/404_${rand}.gif`);
+        img.setAttribute('alt', '');
+        container.appendChild(img);
+    </script>
+{% endblock %}
