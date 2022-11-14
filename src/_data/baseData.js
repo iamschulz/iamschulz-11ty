@@ -32,16 +32,16 @@ module.exports = () => ({
 	],
 	footerNavigation: [
 		{
+			label: "Icons by Font Awesome",
+			url: "https://fontawesome.com/",
+		},
+		{
 			label: "Legal",
 			url: "/legal/",
 		},
 		{
 			label: "RSS",
 			url: "/index.xml",
-		},
-		{
-			label: "Blog Roll",
-			url: "/blogroll/",
 		},
 		{
 			label: "Source Code",
