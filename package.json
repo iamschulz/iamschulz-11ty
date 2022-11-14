@@ -33,6 +33,7 @@
 	},
 	"dependencies": {
 		"@11ty/eleventy-plugin-rss": "^1.2.0",
-		"markdown-to-txt": "^2.0.1"
+		"markdown-to-txt": "^2.0.1",
+		"quicklink": "^2.3.0"
 	}
 }
