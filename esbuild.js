@@ -5,7 +5,10 @@ const minifyFlag = process.argv.indexOf("--minify") > -1;
 
 require("esbuild")
 	.build({
-		entryPoints: ["src/ts/main.ts"],
+		entryPoints: [
+			"src/ts/main.ts",
+			"src/ts/textAdventure/textAdventure.ts",
+		],
 		bundle: true,
 		outdir: "dist",
 		watch: watchFlag,
