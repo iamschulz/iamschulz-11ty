@@ -1,5 +1,3 @@
-import { Item } from "./items";
-
 type Portal = {
 	name: string;
 	transition: string;
@@ -14,7 +12,7 @@ export type Place = {
 		west?: Portal;
 		south?: Portal;
 	};
-	items: Item[];
+	items: string[];
 	url?: URL;
 };
 

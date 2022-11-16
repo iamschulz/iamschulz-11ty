@@ -1,12 +1,13 @@
 import { help } from "../help";
 import { ConsoleStyles } from "./ConsoleStyles";
 import { Directions } from "./Directions";
-import { Item } from "./items";
 import { Logger } from "./log";
 import { Place, places } from "./places";
+import { Item, items } from "./items";
 
 class textAdventure {
 	places: Place[];
+	items: Item[];
 	logger: Logger;
 	state: {
 		place: Place;
@@ -17,6 +18,7 @@ class textAdventure {
 	constructor(newGame = false) {
 		this.logger = new Logger();
 		this.places = places;
+		this.items = items;
 		this.state = {
 			place: this.places[0], // first place is default
 			item: null,
@@ -46,7 +48,7 @@ class textAdventure {
 			ConsoleStyles.DEFAULT
 		);
 		console.log(" ");
-		//ta.inspect(this.getCurrentRoom().name);
+		this.inspect(this.state.place.name);
 	}
 
 	resumeGame(): void {
@@ -71,7 +73,7 @@ class textAdventure {
 				ConsoleStyles.DEFAULT
 			);
 		} else {
-			//ta.inspect(this.state.place.name);
+			this.inspect(this.state.place.name);
 		}
 	}
 
@@ -138,11 +140,13 @@ class textAdventure {
 			return;
 		}
 
-		const item = this.state.place.items.find(
-			(x) => x.name.toLowerCase() === interest.toLowerCase() // todo: items are only references by name
+		const itemName = this.state.place.items.find(
+			(x) => x.toLowerCase() === interest.toLowerCase() // todo: items are only references by name
 		);
+		const item = this.items.find((x) => x.name === itemName);
+
 		if (!item) {
-			this.logger.log(`👁️ You can't find ${interest} around here.`);
+			console.log(`👁️ You can't find ${interest} around here.`); // don't highlight this
 			return;
 		}
 		this.logger.log(`👁️ ${item.description}`);
