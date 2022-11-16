@@ -35,9 +35,14 @@ class textAdventure {
 
 		if (newGame) {
 			help();
+		} else {
+			this.loadState();
+			this.state.lastTransition &&
+				this.logger.log(this.state.lastTransition);
+			this.logger.log(`You find yourself in ${this.state.place.name}`);
 		}
 
-		this.logger.log("You see the Town Square beneath the Northern Gate");
+		this.inspect();
 	}
 
 	startGame(): void {
@@ -51,38 +56,23 @@ class textAdventure {
 		this.inspect(this.state.place.name);
 	}
 
-	resumeGame(): void {
-		if (!sessionStorage.ta) return;
-
-		const store = JSON.parse(sessionStorage.ta);
-		this.logger.log(
-			store.lastTransition
-				? `💨 ${store.lastTransition}`
-				: `💨 You find yourself in the mansions ${this.state.place.name}`
+	persistState(): void {
+		sessionStorage.setItem(
+			"ta",
+			JSON.stringify({
+				place: this.state.place.name,
+				item: this.state.item?.name || null,
+				lastTransition: this.state.lastTransition,
+			})
 		);
-
-		if (
-			store.currentItem &&
-			store.currentItem.url &&
-			store.currentItem.url === window.location.href
-		) {
-			this.logger.log(`⚡ ${store.currentItem.interaction}`);
-			console.log(
-				"💡 Use %cta.finish()%c to go back.",
-				ConsoleStyles.HELP,
-				ConsoleStyles.DEFAULT
-			);
-		} else {
-			this.inspect(this.state.place.name);
-		}
 	}
 
-	persistState(): void {
-		sessionStorage.ta = JSON.stringify({
-			places: this.state.place.name,
-			currentItem: this.state.item?.name || null,
-			lastTransition: this.state.lastTransition,
-		});
+	loadState(): void {
+		const save = JSON.parse(sessionStorage.ta);
+		this.state.place =
+			this.places.find((x) => x.name === save.place) || this.places[0];
+		this.state.item = this.items.find((x) => x.name === save.item) || null;
+		this.state.lastTransition = save.lastTransition;
 	}
 
 	/**
@@ -134,14 +124,14 @@ class textAdventure {
 	inspect(interest?: string): void {
 		if (!interest) {
 			this.logger.log(
-				`👁️ You take a look around the ${this.state.place.name}.`
+				`👁️ You take a look around ${this.state.place.name}.`
 			);
 			this.logger.log(`👁️ ${this.state.place.description}`);
 			return;
 		}
 
 		const itemName = this.state.place.items.find(
-			(x) => x.toLowerCase() === interest.toLowerCase() // todo: items are only references by name
+			(x) => x.toLowerCase() === interest.toLowerCase()
 		);
 		const item = this.items.find((x) => x.name === itemName);
 
@@ -153,4 +143,4 @@ class textAdventure {
 	}
 }
 
-new textAdventure(true);
+new textAdventure(!sessionStorage.ta);
