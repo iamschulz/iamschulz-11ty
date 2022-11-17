@@ -29,7 +29,8 @@
 		"build:eleventy": "eleventy",
 		"postbuild": "lightningcss --minify --targets '> 0.25%, not IE 11' dist/*.css -o dist/*.css",
 		"start": "npm-run-all build:sass --parallel watch:*",
-		"build": "npm-run-all build:sass build:ts build:eleventy"
+		"build": "npm-run-all build:sass build:ts build:eleventy",
+		"noIndex": "npm run build && echo 'User-agent: *\nDisallow: /' > dist/robots.txt"
 	},
 	"dependencies": {
 		"@11ty/eleventy-plugin-rss": "^1.2.0",
