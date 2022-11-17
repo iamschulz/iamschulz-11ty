@@ -41,8 +41,6 @@ class textAdventure {
 				this.logger.log(this.state.lastTransition);
 			this.logger.log(`You find yourself in ${this.state.place.name}`);
 		}
-
-		this.inspect();
 	}
 
 	startGame(): void {
