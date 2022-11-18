@@ -8,7 +8,7 @@ module.exports = (markdown) => {
 
 	while (match != null) {
 		const mdImage = match[0];
-		const alt = match[1];
+		let alt = match[1];
 		const url = match[2];
 
 		if (!url) {
@@ -18,6 +18,8 @@ module.exports = (markdown) => {
 
 		if (!alt) {
 			console.warn(`alt missing for ${mdImage}`);
+		} else {
+			alt = alt.replaceAll('"', '\'');
 		}
 
 		if (!isMatchInCodeBlock(match, markdown)) {
