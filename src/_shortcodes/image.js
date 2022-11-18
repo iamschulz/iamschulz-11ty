@@ -13,6 +13,10 @@ module.exports = async function imageShortcode(
 		outputDir: "./dist/img/",
 	};
 
+	alt = alt.replaceAll('"', '&quot;');
+	alt = alt.replaceAll('<', '&lt;');
+	alt = alt.replaceAll('>', '&gt;');
+
 	let imageAttributes = {
 		alt,
 		sizes: "100vw",
