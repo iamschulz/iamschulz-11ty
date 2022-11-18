@@ -9,7 +9,7 @@ module.exports = async function imageShortcode(
 	// todo: add whitelist
 	let options = {
 		widths: [420, 786, 1000],
-		formats: ["avif", "webp", "jpeg", "gif"],
+		formats: ["avif", "webp", "jpeg"],
 		sharpOptions: {
 			animated: true
 		},
