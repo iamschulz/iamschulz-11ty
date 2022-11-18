@@ -35,6 +35,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
 	eleventyConfig.addPlugin(eleventyHTMLValidate);
 	eleventyConfig.addPlugin(pluginTOC, {
+		tags: ['h1', 'h2', 'h3'],
 		flat: true,
 	});
 	eleventyConfig.addPlugin(tinyHTML);
