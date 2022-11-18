@@ -7,9 +7,14 @@ module.exports = async function imageShortcode(
 	lazy = true
 ) {
 	// todo: add whitelist
+
+	const formats = src.endsWith('.gif') ?
+		["webp", "gif"] :
+		["avif", "webp", "jpeg"]
+
 	let options = {
 		widths: [420, 786, 1000],
-		formats: ["avif", "webp", "jpeg"],
+		formats: formats,
 		sharpOptions: {
 			animated: true
 		},
