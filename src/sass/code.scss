@@ -47,9 +47,10 @@ pre {
 :not(pre) > code,
 kbd {
 	font-family: var(--mono-font);
+	font-size: 0.8rem;
 	display: inline-block;
-	margin: 0 5px;
+	margin: 0 1px;
 	background: var(--grey-fade);
 	border-radius: 5px;
-	box-shadow: 0 0 0 5px var(--grey-fade);
+	box-shadow: 0 0 0 1px var(--grey-fade);
 }
