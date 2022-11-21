@@ -8,13 +8,13 @@ module.exports = async function imageShortcode(
 ) {
 	// todo: add whitelist
 
-	const isGif = new URL(src).pathname.endsWith('.gif')
+	const isGif = new URL(src).pathname.endsWith(".gif");
 
 	let options = {
 		widths: [420, 786, 1000],
 		formats: isGif ? ["webp", "gif"] : ["avif", "webp", "jpeg"],
 		sharpOptions: {
-			animated: isGif
+			animated: isGif,
 		},
 		outputDir: "./dist/img/",
 	};

@@ -22,7 +22,7 @@
     <article class="article">
         <header class="article__header">
             {% if post.cover and post.coverAlt %}
-                {% image post.cover, post.coverAlt, "article__cover", false %}
+                {% image post.cover, post.coverAlt | escapeAttribute, "article__cover", false %}
             {% endif %}
             <aside class="article__meta">
                 <time datetime="{{ post.date }}">{% date post.date %}</time>

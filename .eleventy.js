@@ -18,6 +18,7 @@ const useRssFilter = require("./src/_filters/useRss");
 const renderHtmlFilter = require("./src/_filters/renderHtml");
 const renderTxtFilter = require("./src/_filters/renderTxt");
 const renderRssFilter = require("./src/_filters/renderRss");
+const escapeAttribute = require("./src/_filters/escapeAttribute.js");
 
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addWatchTarget("./src/sass/");
@@ -33,7 +34,7 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(pluginRss);
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
-	//eleventyConfig.addPlugin(eleventyHTMLValidate);
+	eleventyConfig.addPlugin(eleventyHTMLValidate);
 	eleventyConfig.addPlugin(pluginTOC, {
 		tags: ["h1", "h2", "h3"],
 		flat: true,
@@ -59,6 +60,7 @@ module.exports = function (eleventyConfig) {
 		renderShortcode(content, eleventyConfig)
 	);
 
+	eleventyConfig.addFilter("escapeAttribute", escapeAttribute);
 	eleventyConfig.addFilter("useRss", (content) =>
 		useRssFilter(content, eleventyConfig)
 	);

@@ -19,7 +19,7 @@ module.exports = (markdown) => {
 		if (!alt) {
 			console.warn(`alt missing for ${mdImage}`);
 		} else {
-			alt = alt.replaceAll('"', '\'');
+			alt = alt.replaceAll('"', "'");
 		}
 
 		if (!isMatchInCodeBlock(match, markdown)) {

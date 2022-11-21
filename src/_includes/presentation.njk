@@ -87,7 +87,7 @@
             <header class="article-card__header">
                 {% if post.cover and post.coverAlt %}
                     <a class="article-card__header-link" href="/{{ post.title | slug | url }}">
-                        {% image post.cover, post.coverAlt, "article-card__cover", true %}
+                        {% image post.cover, post.coverAlt.replaceAll('"', "'"), "article-card__cover", true %}
                     </a>
                 {% endif %}
                 <aside class="article-card__meta">
