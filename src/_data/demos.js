@@ -1,11 +1,7 @@
 require("dotenv").config();
-const { Client } = require("@notionhq/client");
+const EleventyFetch = require("@11ty/eleventy-fetch");
 
 module.exports = async () => {
-	const notion = new Client({
-		auth: process.env.NOTION_KEY,
-	});
-
 	const db = await EleventyFetch(
 		`https://api.notion.com/v1/databases/${process.env.NOTION_DEMO_ID}/query`,
 		{
