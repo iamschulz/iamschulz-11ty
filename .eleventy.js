@@ -33,12 +33,12 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(pluginRss);
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
-	eleventyConfig.addPlugin(eleventyHTMLValidate);
+	//eleventyConfig.addPlugin(eleventyHTMLValidate);
 	eleventyConfig.addPlugin(pluginTOC, {
-		tags: ['h1', 'h2', 'h3'],
+		tags: ["h1", "h2", "h3"],
 		flat: true,
 	});
-	eleventyConfig.addPlugin(tinyHTML);
+	//eleventyConfig.addPlugin(tinyHTML);
 	eleventyConfig.addPlugin(syntaxHighlight);
 
 	eleventyConfig.addShortcode("svg", getSvgContent);

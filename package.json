@@ -33,6 +33,7 @@
 		"noIndex": "npm run build && echo 'User-agent: *\nDisallow: /' > dist/robots.txt"
 	},
 	"dependencies": {
+		"@11ty/eleventy-fetch": "^3.0.0",
 		"@11ty/eleventy-plugin-rss": "^1.2.0",
 		"markdown-to-txt": "^2.0.1",
 		"quicklink": "^2.3.0"

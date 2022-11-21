@@ -6,21 +6,37 @@ module.exports = async () => {
 		auth: process.env.NOTION_KEY,
 	});
 
-	const db = await notion.databases.query({
-		database_id: process.env.NOTION_DEMO_ID,
-		filter: {
-			property: "Draft",
-			checkbox: {
-				equals: false,
+	const db = await EleventyFetch(
+		`https://api.notion.com/v1/databases/${process.env.NOTION_DEMO_ID}/query`,
+		{
+			duration: "1d", // 1 day
+			type: "json",
+			fetchOptions: {
+				method: "POST",
+				withCredentials: true,
+				credentials: "include",
+				body: JSON.stringify({
+					filter: {
+						property: "Draft",
+						checkbox: {
+							equals: false,
+						},
+					},
+					sorts: [
+						{
+							property: "Date",
+							direction: "descending",
+						},
+					],
+				}),
+				headers: {
+					Authorization: `Bearer ${process.env.NOTION_KEY}`,
+					"Notion-Version": "2022-06-28",
+					"Content-Type": "application/json",
+				},
 			},
-		},
-		sorts: [
-			{
-				property: "Date",
-				direction: "descending",
-			},
-		],
-	});
+		}
+	);
 
 	const posts = db.results.map((result) => ({
 		id: result.id,
