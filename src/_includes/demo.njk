@@ -3,6 +3,7 @@
 {% block content %}
     <ul class="article-list nolist">
     {%- for post in posts %}
+        {% set postIndex = loop.index %}
         <li class="article-list__entry">
             <article class="demo-card">
                 <header class="demo-card__header">
@@ -11,7 +12,11 @@
                 <div class="demo-card__gallery">
                     {% for screenshot in post.screenshots %}
                         <a class="screenshot" href="{{ post.url }}">
-                            {% image screenshot, "screenshot of "+post.url, "screenshot__image" %}
+                            {% if postIndex <= 3 %}
+                                {% image screenshot, "screenshot of "+post.url, "screenshot__image", false %}
+                            {% else %}
+                                {% image screenshot, "screenshot of "+post.url, "screenshot__image", true %}
+                            {% endif %}
                         </a>
                     {% endfor %}
                 </div>
@@ -19,7 +24,7 @@
                     <p>{{ post.content }}</p>
                 </div>
                 <a class="demo-card__more button button-arrow" href="{{ post.url }}">
-                        <span class="visually-hidden">read more</span>
+                        <span class="visually-hidden">go to the project</span>
                         {%- svg "static/chevron-right-solid.svg" -%}
                         {%- svg "static/chevron-right-solid.svg" -%}
                         {%- svg "static/chevron-right-solid.svg" -%}

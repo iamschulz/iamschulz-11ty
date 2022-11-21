@@ -1,17 +1,16 @@
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
     {% if title.length %} {{ title }} &bull; {% endif %}
     {{ baseData.pageTitle }}
 </title>
-<meta name="description" content="{{ baseData.meta.description }}">
-<meta name="author" content="{{ baseData.meta.authorName }}">
 <link rel="preload" href="{{ '/style.css' | url }}" as="style">
 <link rel="preload" href="{{ '/main.js' | url }}" as="script">
 <link rel="stylesheet" href="{{ '/style.css' | url }}">
 <link rel="icon" href="/assets/favicon.svg">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="{{ baseData.meta.description }}">
+<meta name="author" content="{{ baseData.meta.authorName }}">
 <meta name="theme-color" content="#0E181B">
 <meta name="google-site-verification" content="{{ baseData.meta.googleSiteVerification }}">
 <meta name="monetization" content="{{ baseData.meta.monetization }}">
-
