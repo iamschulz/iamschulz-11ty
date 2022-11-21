@@ -18,15 +18,14 @@ pre[class*="language-"] {
 }
 
 :root {
-	--code-lit: clamp(55%, calc(100% - (var(--theme-lit) - 40%) * 1000), 75%);
+	--code-lit: clamp(45%, calc(100% - (var(--theme-lit) - 40%) * 1000), 75%);
 	--code-color-1: var(--accent-color);
 	--code-color-2: hsl(190deg, 80%, var(--code-lit));
 	--code-color-3: hsl(190deg, 100%, calc(var(--code-lit) - 10%));
-	--code-color-4: hsl(100deg, 60%, var(--code-lit));
+	--code-color-4: hsl(100deg, 70%, var(--code-lit));
 	--code-color-5: hsl(30deg, 100%, var(--code-lit));
-	--code-color-6: hsl(20deg, 70%, calc(var(--code-lit) - 10%));
-	--code-color-7: hsl(190deg, 80%, calc(var(--code-lit) - 5%));
-	// todo: invert brightness from bg value
+	--code-color-6: hsl(20deg, 80%, calc(var(--code-lit) - 10%));
+	--code-color-7: hsl(190deg, 85%, calc(var(--code-lit) - 5%));
 }
 
 /* Inline code */
