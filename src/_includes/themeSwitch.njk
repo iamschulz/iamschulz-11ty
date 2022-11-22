@@ -1,3 +1,9 @@
 <div class="theme-switch" data-component="theme-switch" hidden>
+    <span class="theme-switch__icon">🌙</span>
     <input class="theme-switch__range" type="range" min="0" max="100" aria-label="Adjust Brightness">
+    <span class="theme-switch__icon">☀️</span>
+    <button class="theme-switch__reset">
+        {%- svg "static/rotate-right-solid.svg" -%}
+        <span class="visually-hidden">Reset theme to system default</span>
+    </button>
 </div>

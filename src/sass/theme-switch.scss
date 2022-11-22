@@ -2,16 +2,7 @@
 	display: flex;
 	align-items: center;
 
-	&::before {
-		content: "🌙";
-	}
-
-	&::after {
-		content: "☀️";
-	}
-
-	&::before,
-	&::after {
+	&__icon {
 		height: 1.3em;
 		line-height: 1.1;
 		color: transparent;
@@ -20,5 +11,15 @@
 
 	&__range {
 		max-width: 6rem;
+	}
+
+	&__reset {
+		margin-top: -0.6ex;
+		background: transparent;
+		color: var(--grey);
+
+		&::before {
+			display: none;
+		}
 	}
 }

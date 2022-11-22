@@ -3,17 +3,20 @@ import { rgbToHex } from "./rgbToHex";
 export class ThemeSwitch {
 	private el: HTMLElement;
 	private toggle: HTMLInputElement;
+	private resetBtn: HTMLButtonElement;
 
 	constructor() {
 		const el = document.querySelector('[data-component="theme-switch"]');
 		const toggle = el?.querySelector("input");
+		const resetBtn = el?.querySelector("button");
 
-		if (!toggle) {
+		if (!toggle || !resetBtn) {
 			return;
 		}
 
 		this.el = el as HTMLElement;
 		this.toggle = toggle as HTMLInputElement;
+		this.resetBtn = resetBtn as HTMLButtonElement;
 		this.registerEvents();
 		this.enableUi();
 	}
@@ -27,7 +30,7 @@ export class ThemeSwitch {
 			this.setColor();
 		});
 
-		this.toggle.addEventListener("dblclick", () => {
+		this.resetBtn.addEventListener("click", () => {
 			this.reset();
 		});
 	}
