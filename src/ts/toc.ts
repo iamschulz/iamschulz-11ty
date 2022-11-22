@@ -34,7 +34,7 @@ export class Toc {
 		) as HTMLElement[];
 
 		elements.forEach((element) => {
-			if (element.matches(":is(h1, h2, h3") && element.id) {
+			if (element.matches(":is(h2, h3, h4") && element.id) {
 				const navigation = this.el.querySelector(
 					`[href="#${element.id}"]`
 				);

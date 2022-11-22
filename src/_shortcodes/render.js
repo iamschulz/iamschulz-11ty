@@ -1,3 +1,4 @@
+const preventMDh1 = require("../_helpers/preventMDh1");
 const unescapeNjk = require("../_helpers/unescapeNjk");
 
 module.exports = async function (content, eleventyConfig) {
@@ -6,6 +7,7 @@ module.exports = async function (content, eleventyConfig) {
 		content,
 		"njk"
 	);
+	content = preventMDh1(content);
 	content = unescapeNjk(content);
 	return content;
 };

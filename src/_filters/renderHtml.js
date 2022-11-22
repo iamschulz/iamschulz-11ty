@@ -7,6 +7,5 @@ module.exports = async function (content, eleventyConfig) {
 
 	const renderedShortcodes =
 		await eleventyConfig.javascriptFunctions.renderTemplate(content, "njk");
-	const renderedMd = md.render(renderedShortcodes);
-	return renderedMd;
+	return md.render(renderedShortcodes);
 };
