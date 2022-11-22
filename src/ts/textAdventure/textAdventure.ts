@@ -5,13 +5,13 @@ import { Logger } from "./log";
 import { Place, places } from "./places";
 import { Item, items } from "./items";
 
-class textAdventure {
+export class textAdventure {
 	places: Place[];
 	items: Item[];
 	logger: Logger;
 	state: {
 		place: Place;
-		item: Item | null;
+		inventory: Item[];
 		lastTransition: string | null;
 	};
 
@@ -21,7 +21,7 @@ class textAdventure {
 		this.items = items;
 		this.state = {
 			place: this.places[0], // first place is default
-			item: null,
+			inventory: [],
 			lastTransition: null,
 		};
 
@@ -29,8 +29,9 @@ class textAdventure {
 			help: help,
 			go: this.movePC.bind(this),
 			inspect: this.inspect.bind(this),
-			//use: this.use.bind(this),
-			//reset: this.resetGame.bind(this),
+			take: this.take.bind(this),
+			use: this.use.bind(this),
+			reset: this.resetGame.bind(this),
 		};
 
 		if (newGame) {
@@ -59,7 +60,7 @@ class textAdventure {
 			"ta",
 			JSON.stringify({
 				place: this.state.place.name,
-				item: this.state.item?.name || null,
+				inventory: this.state.inventory.map((x) => x.name),
 				lastTransition: this.state.lastTransition,
 			})
 		);
@@ -69,7 +70,9 @@ class textAdventure {
 		const save = JSON.parse(sessionStorage.ta);
 		this.state.place =
 			this.places.find((x) => x.name === save.place) || this.places[0];
-		this.state.item = this.items.find((x) => x.name === save.item) || null;
+		this.state.inventory = save.inventory.map((x) =>
+			this.items.find((y) => y.name === x.name)
+		);
 		this.state.lastTransition = save.lastTransition;
 	}
 
@@ -134,10 +137,58 @@ class textAdventure {
 		const item = this.items.find((x) => x.name === itemName);
 
 		if (!item) {
-			console.log(`👁️ You can't find ${interest} around here.`); // don't highlight this
+			console.log(`❌ You can't find ${interest} around here.`); // don't highlight this
 			return;
 		}
 		this.logger.log(`👁️ ${item.description}`);
+	}
+
+	take(itemName: string): void {
+		const item = this.items.find(
+			(x) => x.name.toLowerCase() === itemName.toLowerCase()
+		);
+
+		if (!item) {
+			console.log(`❌ I don't know what ${itemName} even is.`); // don't highlight this
+			return;
+		}
+
+		if (
+			!this.state.place.items.some(
+				(x) => x.toLowerCase() === itemName.toLowerCase()
+			)
+		) {
+			this.logger.log(`❌ There is no ${item.name} around here.`);
+			return;
+		}
+
+		if (!item.grabable) {
+			this.logger.log(`❌ You can't take ${item.name}`);
+			return;
+		}
+
+		this.logger.log(`👜 You take ${item.name}`);
+		this.state.inventory.push(item);
+	}
+
+	use(itemName: string): void {
+		const item = this.state.inventory.find(
+			(x) => x.name.toLowerCase() === itemName.toLowerCase()
+		);
+
+		// todo: you should be able to use items that aren't in the inventory
+
+		if (!item) {
+			this.logger.log(`❌ You don't have ${itemName} in you inventory.`);
+			return;
+		}
+
+		if (!item.interact) {
+			this.logger.log(`❌ This isn't the time to use that.`);
+			return;
+		}
+
+		item.interact(this);
 	}
 }
 

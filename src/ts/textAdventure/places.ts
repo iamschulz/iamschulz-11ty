@@ -27,7 +27,7 @@ export const places = [
 				transition: "you leave the town square for the church.",
 			},
 		},
-		items: ["Apple"],
+		items: ["Apple", "Bench"],
 		url: new URL(`${location.protocol}//${location.host}`),
 	},
 	{

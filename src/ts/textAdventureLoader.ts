@@ -1,6 +1,18 @@
 declare global {
 	interface Window {
-		ta: any;
+		ta:
+			| {
+					start: (boolean) => void;
+			  }
+			| {
+					help: () => void;
+					go: (string) => void;
+					inspect: (string) => void;
+					take: (string) => void;
+					use: (string) => void;
+					reset: () => void;
+			  }
+			| undefined;
 	}
 }
 
