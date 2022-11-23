@@ -5,6 +5,7 @@ const imageToShortCode = require("../_helpers/imageToShortCode");
 const codepenToShortCode = require("../_helpers/codepenToShortCode");
 const youtubeToShortCode = require("../_helpers/youtubeToShortCode");
 const EleventyFetch = require("@11ty/eleventy-fetch");
+const fetchNotionBlocks = require("../_helpers/fetchNotionBlocks");
 
 module.exports = async () => {
 	const notion = new Client({
@@ -45,25 +46,8 @@ module.exports = async () => {
 	);
 
 	const getContent = async (id) => {
-		const notionBlocks = await EleventyFetch(
-			`https://api.notion.com/v1/blocks/${id}/children`,
-			{
-				duration: "30d", // 30 days
-				type: "json",
-				fetchOptions: {
-					method: "GET",
-					withCredentials: true,
-					credentials: "include",
-					headers: {
-						Authorization: `Bearer ${process.env.NOTION_KEY}`,
-						"Notion-Version": "2022-06-28",
-						"Content-Type": "application/json",
-					},
-				},
-			}
-		);
-
-		const mdblocks = await n2m.blocksToMarkdown(notionBlocks.results);
+		const notionBlocks = await fetchNotionBlocks(id);
+		const mdblocks = await n2m.blocksToMarkdown(notionBlocks);
 		const dividerIndex = mdblocks.findIndex((x) => x.type === "divider");
 		const excerptBlocks =
 			dividerIndex >= 0 ? mdblocks.slice(0, dividerIndex) : undefined;
