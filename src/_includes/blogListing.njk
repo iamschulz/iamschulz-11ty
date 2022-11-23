@@ -8,7 +8,7 @@
             <section class="article-card">
                 <header class="article-card__header">
                     {% if post.cover and post.coverAlt %}
-                        <a class="article-card__header-link" href="/{{ post.title | slug | url }}">
+                        <a class="article-card__header-link" href="/{{ post.title | slug | url }}/">
                             {% if loop.index <= 3 %}
                                 {% image post.cover, post.coverAlt.replaceAll('"', "'"), "article-card__cover", false %}
                             {% else %}
@@ -21,14 +21,14 @@
                         <p class="article-card__language">{{ post.language }}</p>
                     </aside>
                     <h2 class="article-card__title fancyfont font-size-large">
-                        <a href="/{{ post.title | slug | url }}" class="article-card__link muted">{{ post.title }}</a>
+                        <a href="/{{ post.title | slug | url }}/" class="article-card__link muted">{{ post.title }}</a>
                     </h2>
                 </header>
                 {% if post.excerpt %}
                     <div class="article-card__content">
                         {{ post.excerpt | renderHtml | safe }}
                     </div>
-                    <a class="article-card__more button button-arrow" href="/{{ post.title | slug | url }}">
+                    <a class="article-card__more button button-arrow" href="/{{ post.title | slug | url }}/">
                         <span class="visually-hidden">read the full article</span>
                         {%- svg "static/chevron-right-solid.svg" -%}
                         {%- svg "static/chevron-right-solid.svg" -%}
