@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@11ty/eleventy": "^2.0.0-canary.16",
-		"@11ty/eleventy-img": "zeroby0/eleventy-img#issue-146",
+		"@11ty/eleventy-img": "git+https://github.com/iamschulz/eleventy-img.git",
 		"@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
 		"@notionhq/client": "^2.2.0",
 		"@sardine/eleventy-plugin-tinyhtml": "^0.2.0",
