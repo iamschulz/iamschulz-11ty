@@ -15,8 +15,8 @@
 
 		&:hover,
 		&[data-highlight]:hover {
-			color: var(--accent-color);
-			text-decoration-color: currentColor;
+			color: var(--grey);
+			text-decoration-color: var(--accent-color);
 		}
 	}
 }
@@ -26,9 +26,34 @@
 		position: sticky;
 		top: 3rem; // account for header height
 		padding-left: var(--spacing-x);
+		max-height: 100vh;
+		overflow-y: auto;
+
+		a {
+			display: inline-block;
+			position: relative;
+			transition: ease-out 0.2s transform;
+
+			&::before {
+				content: "";
+				position: absolute;
+				top: 40%;
+				left: -1rem;
+				width: 0;
+				height: 0;
+				border: 0.4rem solid transparent;
+				transform: rotate(45deg);
+				transition: ease-out 0.2s border-color;
+			}
+		}
 
 		a[data-highlight="true"] {
-			color: var(--accent-color);
+			transform: translateX(1.2rem);
+
+			&::before {
+				border-left-color: var(--accent-color);
+				border-bottom-color: var(--accent-color);
+			}
 		}
 	}
 }
