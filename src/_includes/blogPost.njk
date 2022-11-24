@@ -32,10 +32,11 @@
         </header>
         {% if content | toc %}
             <aside class="article__toc" data-component="toc">
+                <a class="article__toc-skiplink skiplink" href="#article">skip to article</a>
                 {{ content | toc | safe }}
             </aside>
         {% endif %}
-        <div class="article__content">
+        <div id="article" class="article__content">
             {{ content | safe }}
         </div>
     </article>

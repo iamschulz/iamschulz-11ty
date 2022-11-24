@@ -43,7 +43,12 @@
 	}
 
 	&__toc {
+		position: relative;
 		grid-area: toc;
+	}
+
+	&__toc-skiplink {
+		left: 0;
 	}
 
 	&__content {
@@ -62,6 +67,10 @@
 
 		&__toc {
 			grid-area: side;
+		}
+
+		&__toc-skiplink {
+			left: var(--spacing-x);
 		}
 	}
 }
