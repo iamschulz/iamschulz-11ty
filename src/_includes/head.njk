@@ -1,3 +1,5 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>
     {% if title.length %} {{ title }} &bull; {% endif %}
     {{ baseData.pageTitle }}
@@ -6,9 +8,11 @@
 <link rel="preload" href="{{ '/main.js' | url }}" as="script">
 <link rel="preload" href="{{ '/assets/GloomyThings.woff2' | url }}" as="font" crossorigin>
 <link rel="stylesheet" href="{{ '/style.css' | url }}">
-<link rel="icon" href="/assets/favicon.svg">
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="icon" href="/assets/favicon/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/favicon/apple-touch-icon.png' | url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon/favicon-32x32.png' | url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon/favicon-16x16.png' | url }}">
+<link rel="manifest" href="{{ 'manifest.json' | url }}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="{{ baseData.meta.description }}">
 <meta name="author" content="{{ baseData.meta.authorName }}">

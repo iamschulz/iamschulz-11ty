@@ -24,6 +24,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addWatchTarget("./src/sass/");
 	eleventyConfig.addWatchTarget("./src/ts/");
 	eleventyConfig.addPassthroughCopy({ "src/static/public": "assets" });
+	eleventyConfig.addPassthroughCopy({ "src/manifest.json": "/" });
 	eleventyConfig.setTemplateFormats(["md", "njk"]);
 	eleventyConfig.setLibrary(
 		"md",
