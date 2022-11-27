@@ -62,6 +62,7 @@ module.exports = function (eleventyConfig) {
 	);
 
 	eleventyConfig.addFilter("escapeAttribute", escapeAttribute);
+	eleventyConfig.addFilter("encodeURIComponent", encodeURIComponent);
 	eleventyConfig.addFilter("useRss", (content) =>
 		useRssFilter(content, eleventyConfig)
 	);

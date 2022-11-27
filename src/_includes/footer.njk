@@ -7,6 +7,9 @@
                     <a class="footer__link" href="{{ entry.url }}">{{ entry.label }} </a>
                 </li>
             {%- endfor -%}
+            <li class="footer__entry">
+                <a class="footer__link" href="https://pagespeed.web.dev/report?url={{page.url | absoluteUrl(baseData.url) | encodeURIComponent }}&form_factor=mobile" target="_blank" rel="noopener">Gotta go fast!</a>
+            </li>
             <li class="footer__search">
                 {% include 'search.njk' %}
             </li>
