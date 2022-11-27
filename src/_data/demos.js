@@ -5,7 +5,7 @@ module.exports = async () => {
 	const db = await EleventyFetch(
 		`https://api.notion.com/v1/databases/${process.env.NOTION_DEMO_ID}/query`,
 		{
-			duration: "1d", // 1 day
+			duration: "1h",
 			type: "json",
 			fetchOptions: {
 				method: "POST",
