@@ -17,8 +17,11 @@ module.exports = async function imageShortcode(
 		formats: isAnimated ? ["webp", "gif"] : ["avif", "webp", "jpeg"],
 		sharpOptions: {
 			animated: isAnimated,
+			avif: {
+				quality: 100,
+			},
 			webp: {
-				quality: isAnimated ? 100 : 80,
+				quality: 100,
 				lossless: isAnimated ? true : false,
 				mixed: true,
 			},
