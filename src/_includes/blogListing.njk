@@ -34,6 +34,10 @@
                         {%- svg "static/chevron-right-solid.svg" -%}
                         {%- svg "static/chevron-right-solid.svg" -%}
                     </a>
+                {% else %}
+                    <div class="article-card__content">
+                        {{ post.content | safe }}
+                    </div>
                 {% endif %}
             </section>
         </li>
