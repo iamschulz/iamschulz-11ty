@@ -19,10 +19,11 @@ module.exports = async function imageShortcode(
 			animated: isAnimated,
 			avif: {
 				quality: 100,
+				lossless: true,
 			},
 			webp: {
 				quality: 100,
-				lossless: isAnimated ? true : false,
+				lossless: true,
 				mixed: true,
 			},
 		},
