@@ -13,19 +13,18 @@ module.exports = async function imageShortcode(
 	);
 
 	let options = {
-		widths: [420, 786, 1000],
+		widths: [420, 786, 1000, 1800],
 		formats: isAnimated ? ["webp", "gif"] : ["avif", "webp", "jpeg"],
-		sharpOptions: {
+		sharpWebpOptions: {
 			animated: isAnimated,
-			avif: {
-				quality: 100,
-				lossless: true,
-			},
-			webp: {
-				quality: 100,
-				lossless: true,
-				mixed: true,
-			},
+			quality: 80,
+			lossless: false,
+			nearLossless: true,
+		},
+		sharpAvifOptions: {
+			animated: isAnimated,
+			quality: 80,
+			lossless: false,
 		},
 		outputDir: "./dist/img/",
 	};
