@@ -13,7 +13,7 @@
 	--fg-color: hsl(
 		var(--theme-hue),
 		var(--theme-sat),
-		clamp(20%, calc(100% - (var(--theme-lit) - 40%) * 1000), 80%)
+		clamp(20%, calc(100% - (var(--theme-lit) - 45%) * 1000), 80%)
 	);
 
 	--accent-color: hsl(var(--theme-hue-accent), 100%, 45%);
@@ -22,7 +22,7 @@
 	--grey: hsl(
 		var(--theme-hue),
 		10%,
-		clamp(45%, calc(100% - (var(--theme-lit) - 62%) * 1000), 60%)
+		clamp(40%, calc(100% - (var(--theme-lit) - 45%) * 1000), 60%)
 	);
 
 	--grey-fade: hsla(
