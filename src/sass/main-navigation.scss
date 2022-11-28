@@ -12,18 +12,20 @@
 		text-decoration: none;
 
 		&::before {
-			content: "_";
+			content: "~~~";
 			position: absolute;
-			left: 0;
-			bottom: 6.5rem;
-			width: 1ch;
+			left: -0.2ch;
+			bottom: 1.6rem;
+			width: 3ch;
 			height: 0.2rem;
 			font-family: var(--headline-font);
+			letter-spacing: -0.8ch;
 			color: var(--accent-color);
-			font-size: 6rem;
+			font-size: 2.9rem;
 			clip-path: inset(0px 100% -7rem 0);
-			transition: clip-path 0.1s ease-out;
+			transition: clip-path 0.2s ease-out;
 			pointer-events: none;
+			z-index: -1;
 		}
 
 		&--active,

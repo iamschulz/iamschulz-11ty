@@ -35,15 +35,17 @@
 			transition: ease-out 0.2s transform;
 
 			&::before {
-				content: "";
+				content: "<";
 				position: absolute;
-				top: 40%;
-				left: -1rem;
+				top: 0.3rem;
+				left: -2ch;
 				width: 0;
 				height: 0;
-				border: 0.4rem solid transparent;
-				transform: rotate(45deg);
-				transition: ease-out 0.2s border-color;
+				transform: rotate(7deg);
+				transition: ease-out 0.2s opacity;
+				font-family: var(--headline-font);
+				color: var(--accent-color);
+				opacity: 0;
 			}
 		}
 
@@ -51,8 +53,7 @@
 			transform: translateX(1.2rem);
 
 			&::before {
-				border-left-color: var(--accent-color);
-				border-bottom-color: var(--accent-color);
+				opacity: 1;
 			}
 		}
 	}
