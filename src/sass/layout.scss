@@ -2,14 +2,8 @@
 	--spacing-x: 1rem;
 	--spacing-y: 1rem;
 	--content-width: 64rem;
-	--content-margin: 0;
 	--content-narrow-width: 70ch;
 	--border-width: 3px;
-	--z-overlay: 100;
-	--z-header: 90;
-	--z-below: -1;
-	--max-width: #{$max-width};
-	--content-margin: auto;
 	--aside-width: 20rem;
 }
 
@@ -24,8 +18,5 @@
 @media (prefers-reduced-motion: no-preference) {
 	html {
 		scroll-behavior: smooth;
-	}
-
-	body {
 	}
 }

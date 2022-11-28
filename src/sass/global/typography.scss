@@ -31,7 +31,7 @@
 		"Roboto Mono", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 }
 
-:where(.fancyfont) {
+:where(.is--fancyfont) {
 	font-family: var(--headline-font);
 	line-height: 1;
 }

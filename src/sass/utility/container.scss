@@ -1,8 +1,13 @@
-.container {
+:where(.is--container) {
 	width: MIN(var(--content-width), 100%);
 	max-width: 64rem;
-	margin-left: var(--content-margin);
-	margin-right: var(--content-margin);
+	margin: auto;
 	padding-left: var(--spacing-x);
 	padding-right: var(--spacing-x);
+}
+
+@media (min-width: #{$lg-width}) and (max-width: #{$lg-width + $aside-width}) {
+	:where(.is--container) {
+		margin: 0;
+	}
 }

@@ -1,7 +1,6 @@
 .footer {
 	display: block;
-	max-width: var(--content-width);
-	margin: calc(var(--spacing-y) * 10) var(--content-margin) 0;
+	margin-top: calc(var(--spacing-y) * 10);
 	color: var(--grey);
 	font-size: var(--small-font-size);
 	margin-bottom: var(--spacing-y);

@@ -61,7 +61,7 @@
 	}
 }
 
-@media (min-width: $xl-width) {
+@media (min-width: $lg-width) {
 	.article {
 		grid-template-columns: 100% var(--aside-width);
 

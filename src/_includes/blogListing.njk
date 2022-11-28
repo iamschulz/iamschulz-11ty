@@ -2,7 +2,7 @@
 {% from "macros/blogPagination.njk" import blogPagination %}
 
 {% block content %}
-    <ul class="article-list nolist">
+    <ul class="article-list is--nolist">
     {%- for post in posts %}
         <li class="article-list__entry">
             <section class="article-card">
@@ -20,8 +20,8 @@
                         <time datetime="{{ post.date }}">{% date post.date %}</time>
                         <p class="article-card__language">{{ post.language }}</p>
                     </aside>
-                    <h2 class="article-card__title fancyfont font-size-large">
-                        <a href="/{{ post.title | slug | url }}/" class="article-card__link muted">{{ post.title }}</a>
+                    <h2 class="article-card__title is--fancyfont font-size-large">
+                        <a href="/{{ post.title | slug | url }}/" class="article-card__link is--muted">{{ post.title }}</a>
                     </h2>
                 </header>
                 {% if post.excerpt %}
@@ -29,7 +29,7 @@
                         {{ post.excerpt | renderHtml | safe }}
                     </div>
                     <a class="article-card__more button button-arrow" href="/{{ post.title | slug | url }}/">
-                        <span class="visually-hidden">read the full article</span>
+                        <span class="is--visually-hidden">read the full article</span>
                         {%- svg "static/chevron-right-solid.svg" -%}
                         {%- svg "static/chevron-right-solid.svg" -%}
                         {%- svg "static/chevron-right-solid.svg" -%}

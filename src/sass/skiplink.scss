@@ -3,6 +3,6 @@
 	left: 14rem;
 
 	&:not(:focus) {
-		@extend .visually-hidden;
+		@extend .is--visually-hidden;
 	}
 }
