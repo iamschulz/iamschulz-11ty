@@ -5,6 +5,7 @@
 	margin-bottom: calc(var(--spacing-y) * 5);
 	background: var(--base-color);
 	padding-bottom: 0.8rem;
+	z-index: 1;
 
 	&__title {
 		color: var(--fg-color);

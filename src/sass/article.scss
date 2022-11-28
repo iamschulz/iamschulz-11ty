@@ -1,5 +1,6 @@
 .article {
 	display: grid;
+	gap: 0 1rem;
 	grid-template-columns: 100% 0;
 	grid-template-rows: auto auto auto;
 	grid-template-areas: "header side" "toc side" "content side";
