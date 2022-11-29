@@ -34,7 +34,6 @@ module.exports = function codepenShortcode(content, eleventyConfig) {
 	<span class="replace-embed__legal">
 		Activating this Feature allows CodePen to place cookies and communicate
 		with CodePen's servers.<br>
-		<a href="/legal">more info</a><br>
         <a href="${content}" rel="noopener" target="_blank">open in new tab</a>
 	</span>
 	<iframe

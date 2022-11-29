@@ -34,7 +34,6 @@ module.exports = function youtubeShortcode(id, eleventyConfig) {
 	<span class="replace-embed__legal">
 		Activating this Feature allows YouTube to place cookies and communicate
 		with Google's servers.<br>
-		<a href="/legal">more info</a><br>
         <a href="https://www.youtube.com/watch?v=${id}" rel="noopener" target="_blank">open in new tab</a>
 	</span>
 	<iframe
