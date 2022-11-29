@@ -1,4 +1,5 @@
 {% extends "base.njk" %}
+{% from "macros/likes.njk" import likes %}
 
 {% block additionalHead %}
     {% if post.canonical %}<link rel="canonical" href="{{ post.canonical }}">{% endif %}
@@ -49,4 +50,5 @@
             <img class="u-photo" alt="iamschulz avatar" src="{{ '/assets/logo.svg' | url }}">
         </div>
     </article>
+    {{ likes() }}
 {% endblock %}

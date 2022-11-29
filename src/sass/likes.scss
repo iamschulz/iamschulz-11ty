@@ -1,0 +1,95 @@
+@keyframes likes-bling {
+	from {
+		clip-path: circle(0%);
+		opacity: 0;
+		transform: rotate(0deg);
+	}
+
+	5% {
+		opacity: 1;
+		clip-path: circle(45%);
+	}
+
+	90% {
+		clip-path: circle(45%);
+		opacity: 1;
+	}
+
+	to {
+		clip-path: circle(45%);
+		transform: rotate(120deg);
+		opacity: 0;
+	}
+}
+
+.likes {
+	&__loader {
+		margin-top: calc(var(--spacing-y) * 2.5);
+	}
+
+	&__button {
+		font-size: 1.5rem;
+		background: transparent;
+		padding: 0;
+		border: none;
+		color: inherit;
+
+		&::before {
+			display: none;
+		}
+
+		> * {
+			vertical-align: baseline;
+		}
+
+		&:not([disabled]) {
+			cursor: pointer;
+
+			&:hover {
+				.reactions__icon {
+					color: var(--accent-color);
+				}
+			}
+		}
+
+		&[disabled] {
+			.reactions__icon {
+				color: var(--accent-color);
+			}
+		}
+	}
+
+	&__icon {
+		position: relative;
+		color: var(--fg-color);
+		--shadow-width: 0.25rem;
+		z-index: 1;
+		transition: color ease-out 0.4s;
+
+		.is--animated > & {
+			color: var(--pop-color);
+		}
+
+		:is([disabled]) > & {
+			color: var(--accent-color);
+		}
+
+		.is--animated > &::before {
+			content: "";
+			position: absolute;
+			top: -60%;
+			left: -50%;
+			right: -50%;
+			bottom: -50%;
+			z-index: -1;
+			background: repeating-conic-gradient(
+				from 0deg at 50% 50%,
+				var(--accent-color) 0%,
+				var(--accent-color) 3%,
+				rgba(0, 0, 0, 0) 3%,
+				rgba(0, 0, 0, 0) 10%
+			);
+			animation: likes-bling 5s linear 1;
+		}
+	}
+}

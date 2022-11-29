@@ -43,16 +43,15 @@
 		vertical-align: middle;
 	}
 
-	&:not(:disabled):hover {
+	&:not(:is([disabled])):hover {
 		border-color: var(--grey);
 	}
 
-	&:not(:disabled):active {
+	&:not(:is([disabled])):active {
 		border-color: var(--accent-color);
 	}
 
-	&:disabled {
-		border-style: dashed;
+	&:is([disabled]) {
 		color: var(--grey);
 		cursor: not-allowed;
 	}
