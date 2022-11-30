@@ -1,3 +1,5 @@
+import { apiProxy, putLikeApi } from "./constants";
+
 export class Likes {
 	likesCount: number;
 	el: HTMLElement;
@@ -41,6 +43,7 @@ export class Likes {
 	}
 
 	private enableUi() {
+		this.counter.innerText = String(this.likesCount);
 		this.loader.setAttribute("hidden", "hidden");
 		this.button.removeAttribute("hidden");
 	}
@@ -62,7 +65,17 @@ export class Likes {
 	}
 
 	private persistLike() {
-		this.storedLikes[this.url] = true;
-		localStorage.setItem("likes", JSON.stringify(this.storedLikes));
+		const currentUrl = window.location.href.replace(
+			window.location.protocol + "//",
+			""
+		);
+		const addLikeUrl = `${apiProxy}${putLikeApi}${currentUrl}&time=${Date.now()}${Math.floor(
+			Math.random() * 10000
+		)}`;
+
+		fetch(addLikeUrl).then(() => {
+			this.storedLikes[this.url] = true;
+			localStorage.setItem("likes", JSON.stringify(this.storedLikes));
+		});
 	}
 }
