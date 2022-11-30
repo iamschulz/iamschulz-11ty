@@ -3,6 +3,7 @@ import { Likes } from "./likes";
 
 export class Reactions {
 	el: HTMLElement;
+	devId: string | null;
 	reactions: {
 		likes: number;
 	};
@@ -18,6 +19,7 @@ export class Reactions {
 
 		this.el = el as HTMLElement;
 		this.loader = loader as HTMLElement;
+		this.devId = this.el.getAttribute("data-dev-id") || null;
 
 		this.fetchReactions().then((reactions) => {
 			this.reactions = reactions;
@@ -31,22 +33,32 @@ export class Reactions {
 	}
 
 	private async fetchReactions() {
-		const currentUrl = window.location.href.replace(
-			window.location.protocol + "//",
-			""
-		);
-
-		const customLikesUrl = `${apiProxy}${getLikeApi}${currentUrl}&time=${Date.now()}`;
-		const customLikeResult = await (await fetch(customLikesUrl)).text();
-		const customLikes = Number(customLikeResult) || 0;
-
-		const devLikes = 0;
+		// todo: check if those are parallel
+		const customLikes = await this.fetchCustomLikes();
+		const devLikes = await this.fetchDevLikes();
 		const wmLikes = 0;
-
 		const likes = customLikes + devLikes + wmLikes;
 
 		return {
 			likes,
 		};
+	}
+
+	private async fetchCustomLikes() {
+		const currentUrl = window.location.href.replace(
+			window.location.protocol + "//",
+			""
+		);
+		const customLikesUrl = `${apiProxy}${getLikeApi}${currentUrl}&time=${Date.now()}`;
+		const customLikesResult = await (await fetch(customLikesUrl)).text();
+		return Number(customLikesResult) || 0;
+	}
+
+	private async fetchDevLikes() {
+		const devLikesUrl = `https://dev.to/api/articles/${
+			this.devId
+		}&time=${Date.now()}`;
+		const devLikesResult = await (await fetch(devLikesUrl)).json();
+		return Number(devLikesResult.positive_reactions_count) || 0;
 	}
 }

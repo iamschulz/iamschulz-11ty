@@ -1,5 +1,5 @@
 {% extends "base.njk" %}
-{% from "macros/likes.njk" import likes %}
+{% from "macros/reactions.njk" import reactions %}
 
 {% block additionalHead %}
     {% if post.canonical %}<link rel="canonical" href="{{ post.canonical }}">{% endif %}
@@ -50,10 +50,5 @@
             <img class="u-photo" alt="iamschulz avatar" src="{{ '/assets/logo.svg' | url }}">
         </div>
     </article>
-    <aside class="reactions" data-component="reactions">
-        <span class="reactions__loader loader" data-reactions-el="loader">
-            <span class="is--visually-hidden">Loading Reactions</span>
-        </span>
-        {{ likes() }}
-    </aside>
+    {{ reactions(devId=post.devId) }}
 {% endblock %}

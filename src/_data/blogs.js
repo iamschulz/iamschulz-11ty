@@ -85,7 +85,7 @@ module.exports = async () => {
 			result.properties["Cover Alt"]?.rich_text.pop()?.plain_text || "",
 		date: result.properties["Date"]?.date.start,
 		language: result.properties["Language"]?.select?.name || "EN",
-		devID: result.properties["Dev ID"]?.rich_text.pop()?.plain_text,
+		devId: result.properties["Dev ID"]?.rich_text.pop()?.plain_text,
 		canonical: result.properties["Canonical"]?.url,
 	}));
 
