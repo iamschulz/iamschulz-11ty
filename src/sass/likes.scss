@@ -5,7 +5,7 @@
 
 	&__loader {
 		&:not([hidden]) {
-			display: none;
+			display: flex;
 		}
 
 		justify-content: center;
