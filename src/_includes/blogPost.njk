@@ -50,5 +50,10 @@
             <img class="u-photo" alt="iamschulz avatar" src="{{ '/assets/logo.svg' | url }}">
         </div>
     </article>
-    {{ likes() }}
+    <aside class="reactions" data-component="reactions">
+        <span class="reactions__loader loader" data-reactions-el="loader">
+            <span class="is--visually-hidden">Loading Reactions</span>
+        </span>
+        {{ likes() }}
+    </aside>
 {% endblock %}
