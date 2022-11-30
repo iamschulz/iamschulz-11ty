@@ -1,0 +1,12 @@
+:where(.loader) {
+	&::before {
+		content: "";
+		display: block;
+		width: 1em;
+		height: 1em;
+		border: 0.2em solid var(--accent-color);
+		border-bottom-color: var(--pop-color);
+		border-radius: 50%;
+		animation: spin 1s infinite linear;
+	}
+}

@@ -1,14 +1,3 @@
-@keyframes fade-in {
-	0% {
-		opacity: 0;
-		transform: translateY(var(--spacing-y));
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
 .presentation {
 	&__head {
 		display: grid;

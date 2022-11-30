@@ -27,7 +27,7 @@ module.exports = function youtubeShortcode(id, eleventyConfig) {
 			loading="lazy"
 			decoding="async"
 		>
-		<span class="replace-embed__icon">
+		<span class="replace-embed__icon loader">
             ${svg("static/youtube-brands.svg")}
 		</span>
 	</a>

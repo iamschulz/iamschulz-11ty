@@ -27,7 +27,7 @@ module.exports = function codepenShortcode(content, eleventyConfig) {
 			loading="lazy"
 			decoding="async"
 		>
-		<span class="replace-embed__icon">
+		<span class="replace-embed__icon loader">
             ${svg("static/codepen-brands.svg")}
 		</span>
 	</a>

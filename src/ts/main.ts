@@ -9,7 +9,10 @@ import { Likes } from "./likes";
 new ReplaceIframe();
 new ThemeSwitch();
 new Toc();
-new Likes();
 new Search();
 new Preload();
+
+setTimeout(() => {
+	new Likes(5);
+}, 5000);
 //new TextAdventureLoader();

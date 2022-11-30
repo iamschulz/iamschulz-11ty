@@ -1,30 +1,12 @@
-@keyframes likes-bling {
-	from {
-		clip-path: circle(0%);
-		opacity: 0;
-		transform: rotate(0deg);
-	}
-
-	5% {
-		opacity: 1;
-		clip-path: circle(45%);
-	}
-
-	90% {
-		clip-path: circle(45%);
-		opacity: 1;
-	}
-
-	to {
-		clip-path: circle(45%);
-		transform: rotate(120deg);
-		opacity: 0;
-	}
-}
-
 .likes {
+	margin-top: calc(var(--spacing-y) * 2);
+	padding-top: calc(var(--spacing-y) * 2);
+	border-top: var(--grey) dashed var(--border-width);
+
 	&__loader {
-		margin-top: calc(var(--spacing-y) * 2.5);
+		display: flex;
+		justify-content: center;
+		font-size: 2rem;
 	}
 
 	&__button {
@@ -33,6 +15,10 @@
 		padding: 0;
 		border: none;
 		color: inherit;
+
+		&[hidden] {
+			display: none;
+		}
 
 		&::before {
 			display: none;
@@ -61,17 +47,23 @@
 
 	&__icon {
 		position: relative;
-		color: var(--fg-color);
+		color: transparent;
 		--shadow-width: 0.25rem;
+		--shadow-color: var(--fg-color);
+		text-shadow: 0 0 var(--shadow-color),
+			0 var(--shadow-width) var(--base-color),
+			var(--shadow-width) 0 var(--base-color),
+			0 calc(var(--shadow-width) * -1) var(--base-color),
+			calc(var(--shadow-width) * -1) 0 var(--base-color);
 		z-index: 1;
-		transition: color ease-out 0.4s;
+		transition: text-shadow ease-out 0.4s;
 
 		.is--animated > & {
-			color: var(--pop-color);
+			--shadow-color: var(--pop-color);
 		}
 
 		:is([disabled]) > & {
-			color: var(--accent-color);
+			--shadow-color: var(--accent-color);
 		}
 
 		.is--animated > &::before {

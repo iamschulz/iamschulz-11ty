@@ -1,0 +1,43 @@
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+		transform: translateY(var(--spacing-y));
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes likes-bling {
+	from {
+		clip-path: circle(0%);
+		opacity: 0;
+		transform: rotate(0deg);
+	}
+
+	5% {
+		opacity: 1;
+		clip-path: circle(45%);
+	}
+
+	90% {
+		clip-path: circle(45%);
+		opacity: 1;
+	}
+
+	to {
+		clip-path: circle(45%);
+		transform: rotate(120deg);
+		opacity: 0;
+	}
+}
