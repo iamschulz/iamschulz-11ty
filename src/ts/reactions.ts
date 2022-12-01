@@ -1,53 +1,13 @@
+import { Comments } from "./comments";
 import { apiProxy, getLikeApi } from "./constants";
 import { Likes } from "./likes";
-
-type Webmention = {
-	author: {
-		name: string;
-		url: string;
-		photo: string;
-	};
-	content?: {
-		text: string;
-		html: string;
-	};
-	published: string;
-	"like-of": string;
-	"repost-of": string;
-	"wm-private": string;
-	"wm-id": string;
-	url: string;
-};
-
-type devReply = {
-	type_of: string;
-	id_code: string;
-	created_at: string;
-	body_html: string;
-	user: {
-		name: string;
-		username: string;
-		profile_image_90: string;
-	};
-	children: Array<any>;
-};
-
-type Comment = {
-	avatar: URL;
-	authorName: string;
-	authorUrl: URL;
-	source: URL;
-	date: Date;
-	content: string;
-	hasReply: boolean;
-};
 
 export class Reactions {
 	el: HTMLElement;
 	devId: string | null;
 	reactions: {
 		likes: number;
-		comments: Comment[];
+		comments: Reply[];
 	};
 	loader: HTMLElement;
 
@@ -70,8 +30,8 @@ export class Reactions {
 	}
 
 	private enableUi() {
-		console.log(this.reactions); // todo: remove
 		new Likes(this.reactions.likes);
+		new Comments(this.reactions.comments);
 		this.loader.setAttribute("hidden", "hidden");
 	}
 
@@ -113,7 +73,7 @@ export class Reactions {
 		const apiFetchUrl = `https://dev.to/api/comments?a_id=${
 			this.devId
 		}&time=${Date.now()}`;
-		const comments: Comment[] = [];
+		const comments: Reply[] = [];
 
 		await fetch(apiFetchUrl)
 			.then((response) => response.json())
@@ -132,7 +92,7 @@ export class Reactions {
 						date: new Date(reply.created_at),
 						content: reply.body_html,
 						hasReply: reply.children.length > 0,
-					} as Comment;
+					} as Reply;
 					comments.push(comment);
 				});
 			});
@@ -149,7 +109,7 @@ export class Reactions {
 		)}&time=${Date.now()}`;
 
 		let likes = 0;
-		const comments: Comment[] = [];
+		const comments: Reply[] = [];
 
 		await fetch(apiFetchUrl)
 			.then((response) => response.json())
@@ -170,7 +130,7 @@ export class Reactions {
 						date: new Date(reply.published),
 						content: reply.content?.html,
 						hasReply: false,
-					} as Comment;
+					} as Reply;
 
 					comments.push(comment);
 				});

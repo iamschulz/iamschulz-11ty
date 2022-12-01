@@ -1,10 +1,33 @@
 {% macro reactions(devId) %}
 <aside class="reactions" data-component="reactions" {% if devId %}data-dev-id="{{ devId }}"{% endif %}>
-        <span class="reactions__loader loader" data-reactions-el="loader">
-            <span class="is--visually-hidden">Loading Reactions</span>
-        </span>
+    <span class="reactions__loader loader" data-reactions-el="loader">
+        <span class="is--visually-hidden">Loading Reactions</span>
+    </span>
+        
     <button class="likes__button" data-component="likes" hidden>
         <span class="likes__icon">❤</span> <span class="likes__counter" data-likes-el="counter">0</span>
     </button>
+
+    <ul class="comments is--nolist" data-component="comments" hidden>
+        {% raw %}
+        <template data-comments-el="template">
+            <li class="comments__item" role="comment" data-wm-id="{{ id }}">
+                <div class="comments__header">
+                    <a class="comments__user" href="{{ userLink }}">
+                        <img class="comments__avatar" src="{{ avatar }}" alt="" data-src="" loading="lazy">
+                        <span class="comments__name">{{ name }}</span>
+                    </a>
+                    <time datetime="{{ datetime }}" class="comments__date">{{ date }}</time>
+                    <a class="comments__source" href="{{ source }}">via {{ sourceName }}</a>
+                </div>
+                <div class="comments__content">
+                    {{ content }}
+                    <a class="u-mention" href="{{ currentPage }}"></a>
+                </div>
+                <a class="comments__reply-button button" href="{{ moreLink }}" hidden="{{ moreHidden }}">Thread</a>
+            </li>
+        </template>
+        {% endraw %}
+    </ul>
 </aside>
 {% endmacro %}
