@@ -9,25 +9,23 @@
     </button>
 
     <ul class="comments is--nolist" data-component="comments" hidden>
-        {% raw %}
         <template data-comments-el="template">
-            <li class="comments__item" role="comment" data-wm-id="{{ id }}">
+            <li class="comments__item" role="comment" data-wm-id="{% raw %}{{ id }}{% endraw %}">
                 <div class="comments__header">
-                    <a class="comments__user" href="{{ userLink }}">
-                        <img class="comments__avatar" src="{{ avatar }}" alt="" data-src="" loading="lazy">
-                        <span class="comments__name">{{ name }}</span>
+                    <a class="comments__user" href="{% raw %}{{ userLink }}{% endraw %}">
+                        <img class="comments__avatar" src="{% raw %}{{ avatar }}{% endraw %}" alt="" data-src="" loading="lazy">
+                        <span class="comments__name">{% raw %}{{ name }}{% endraw %}</span>
                     </a>
-                    <time datetime="{{ datetime }}" class="comments__date">{{ date }}</time>
-                    <a class="comments__source" href="{{ source }}">via {{ sourceName }}</a>
+                    {% raw %}<time datetime="{{ datetime }}" class="comments__date">{{ date }}</time>{% endraw %}
+                    {% raw %}<a class="comments__source" href="{{ source }}">via {{ sourceName }}</a>{% endraw %}
                 </div>
                 <div class="comments__content">
-                    {{ content }}
-                    <a class="u-mention" href="{{ currentPage }}"></a>
+                    {% raw %}{{ content }}{% endraw %}
+                    <a class="u-mention" href="{% raw %}{{ currentPage }}{% endraw %}" hidden></a>
                 </div>
-                <a class="comments__reply-button button" href="{{ moreLink }}" hidden="{{ moreHidden }}">Thread</a>
+                <a class="comments__reply-button button more-link-is--hidden" href="{% raw %}{{ moreLink }}{% endraw %}">Thread {% svg "static/chevron-right-solid.svg" %}</a>
             </li>
         </template>
-        {% endraw %}
     </ul>
 </aside>
 {% endmacro %}

@@ -58,8 +58,8 @@ export class Comments {
 			comment.source.href
 		);
 		newItemHtml = newItemHtml.replace(
-			"{{ moreHidden }}",
-			String(!comment.hasReply) // todo: doesnt work
+			"more-link-is--hidden",
+			comment.hasReply ? "" : "is--hidden"
 		);
 		return newItemHtml;
 	}
