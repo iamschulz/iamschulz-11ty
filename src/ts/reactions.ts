@@ -5,6 +5,7 @@ import { Likes } from "./likes";
 export class Reactions {
 	el: HTMLElement;
 	devId: string | null;
+	ignoredComments: string[];
 	reactions: {
 		likes: number;
 		comments: Reply[];
@@ -22,6 +23,12 @@ export class Reactions {
 		this.el = el as HTMLElement;
 		this.loader = loader as HTMLElement;
 		this.devId = this.el.getAttribute("data-dev-id") || null;
+		this.ignoredComments =
+			document
+				.querySelector('meta[name="ignore-comments"]')
+				?.getAttribute("content")
+				?.split(",")
+				.map((x) => x.trim()) || [];
 
 		this.fetchReactions().then((reactions) => {
 			this.reactions = reactions;
@@ -80,7 +87,13 @@ export class Reactions {
 			.then((data) => {
 				Array.from(data).forEach((r) => {
 					const reply = r as devReply;
+
+					if (this.ignoredComments.includes(reply.id_code)) {
+						return;
+					}
+
 					const comment = {
+						id: reply.id_code,
 						avatar: new URL(reply.user.profile_image_90),
 						authorName: reply.user.name,
 						authorUrl: new URL(
@@ -93,6 +106,7 @@ export class Reactions {
 						content: reply.body_html,
 						hasReply: reply.children.length > 0,
 					} as Reply;
+
 					comments.push(comment);
 				});
 			});
@@ -101,8 +115,7 @@ export class Reactions {
 
 	private async fetchWebmentions() {
 		const webmentionsUrl = "iamschulz.com";
-		//const targetUrl = window.location.href;
-		const targetUrl = "https://iamschulz.com/writing-a-game-in-typescript/"; // todo: switch out
+		const targetUrl = window.location.href;
 		const webmentionsFetchUrl = `https://webmention.io/api/mentions.jf2?domain=${webmentionsUrl}&target=${targetUrl}`;
 		const apiFetchUrl = `${apiProxy}${encodeURIComponent(
 			webmentionsFetchUrl
@@ -122,7 +135,12 @@ export class Reactions {
 						return;
 					}
 
+					if (this.ignoredComments.includes(reply["wm-id"])) {
+						return;
+					}
+
 					const comment = {
+						id: reply["wm-id"],
 						avatar: new URL(reply.author.photo),
 						authorName: reply.author.name,
 						authorUrl: new URL(reply.author.url),

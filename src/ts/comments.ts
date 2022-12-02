@@ -29,7 +29,7 @@ export class Comments {
 
 	createNewItem(comment: Reply) {
 		let newItemHtml = this.template.innerHTML;
-		newItemHtml = newItemHtml.replace("{{ id }}", "ID"); // todo: implement ID
+		newItemHtml = newItemHtml.replace("{{ id }}", comment.id);
 		newItemHtml = newItemHtml.replace(
 			"{{ userLink }}",
 			comment.authorUrl.href

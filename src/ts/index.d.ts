@@ -30,6 +30,7 @@ type devReply = {
 };
 
 type Reply = {
+	id: string;
 	avatar: URL;
 	authorName: string;
 	authorUrl: URL;

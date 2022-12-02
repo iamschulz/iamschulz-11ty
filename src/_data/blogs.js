@@ -87,6 +87,8 @@ module.exports = async () => {
 		language: result.properties["Language"]?.select?.name || "EN",
 		devId: result.properties["Dev ID"]?.rich_text.pop()?.plain_text,
 		canonical: result.properties["Canonical"]?.url,
+		ignoreComments:
+			result.properties["Ignored Comments"]?.rich_text.pop()?.plain_text,
 	}));
 
 	for (i = 0; i < posts.length; i++) {

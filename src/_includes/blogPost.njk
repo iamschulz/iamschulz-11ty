@@ -18,6 +18,7 @@
     {% if post.excerpt %}<meta name="twitter:description" content="{{ post.excerpt | renderTxt }}">{% endif %}
     <meta name="twitter:site" content="@iamschulz">
     <meta name="twitter:creator" content="@iamschulz">
+    {% if post.ignoreComments %}<meta name="ignore-comments" content="{{ post.ignoreComments }}">{% endif %}
 {% endblock %}
 
 {% block content %}
