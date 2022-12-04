@@ -16,7 +16,6 @@ const pluginTOC = require("eleventy-plugin-toc");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const useRssFilter = require("./src/_filters/useRss");
 const renderHtmlFilter = require("./src/_filters/renderHtml");
-const renderTxtFilter = require("./src/_filters/renderTxt");
 const renderRssFilter = require("./src/_filters/renderRss");
 const escapeAttribute = require("./src/_filters/escapeAttribute.js");
 
@@ -69,10 +68,6 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addAsyncFilter(
 		"renderHtml",
 		async (content) => await renderHtmlFilter(content, eleventyConfig)
-	);
-	eleventyConfig.addAsyncFilter(
-		"renderTxt",
-		async (content) => await renderTxtFilter(content, eleventyConfig)
 	);
 	eleventyConfig.addAsyncFilter(
 		"renderRss",
