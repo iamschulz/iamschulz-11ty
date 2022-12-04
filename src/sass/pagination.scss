@@ -9,7 +9,7 @@
 	&__item {
 		flex: 0 0 3ch;
 		height: 3ch;
-		display: flex;
+		display: grid;
 		place-items: center;
 	}
 }

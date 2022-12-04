@@ -1,6 +1,6 @@
 .likes {
 	&__button {
-		font-size: 1.5rem;
+		font-size: 2rem;
 		background: transparent;
 		padding: 0;
 		border: none;
@@ -37,6 +37,10 @@
 
 	&__icon {
 		position: relative;
+		font-size: 1.3em;
+		width: 1em;
+		height: 1em;
+		display: inline-block;
 		color: transparent;
 		--shadow-width: 0.25rem;
 		--shadow-color: var(--fg-color);
@@ -60,7 +64,7 @@
 		.is--animated > &::before {
 			content: "";
 			position: absolute;
-			top: -60%;
+			top: -30%;
 			left: -50%;
 			right: -50%;
 			bottom: -50%;

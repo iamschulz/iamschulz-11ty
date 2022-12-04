@@ -3,6 +3,10 @@
 	padding-top: calc(var(--spacing-y) * 3);
 	border-top: var(--grey) dashed var(--border-width);
 
+	&__title {
+		margin-top: 0;
+	}
+
 	&__list {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
