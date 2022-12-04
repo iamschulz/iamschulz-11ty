@@ -3,5 +3,15 @@
     to = "/404/"
     status = 404
 
+[[redirects]]
+    from = "/.well-known/host-meta/*"
+    to = "https://fed.brid.gy/:splat"
+    status = 200
+
+[[redirects]]
+    from = "/.well-known/webfinger/*"
+    to = "https://fed.brid.gy/:splat"
+    status = 200
+
 [[plugins]]
     package = "netlify-plugin-11ty"

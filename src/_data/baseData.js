@@ -4,7 +4,7 @@ module.exports = () => ({
 	meta: {
 		authorName: "Daniel Schulz",
 		authorEmail: "hallo@iamschulz.de",
-		description: "and this is my website",
+		description: "Mostly frontend, sometimes art",
 		googleSiteVerification: "YXi9gLgXdTu-0XVP6VAzIPmczJgpXBACJPYcfyjr7bY",
 		monetization: "$ilp.uphold.com/emhMEXmNazrU",
 	},

@@ -42,6 +42,7 @@
         {% endif %}
         <div id="article" class="article__content e-content">
             {{ content | safe }}
+            <a href="https://fed.brid.gy/" hidden></a>
         </div>
         <a href="https://brid.gy/publish/twitter" hidden>brid.gy</a>
         <data class="p-bridgy-omit-link" value="false"></data>
@@ -50,6 +51,7 @@
                 <span class="p-name">{{ baseData.pageTitle }}</span>
             </a>
             <img class="u-photo" alt="iamschulz avatar" src="{{ '/assets/logo.svg' | url }}">
+            <p class="p-note">{{ baseData.meta.description }}</p>
         </div>
     </article>
     {{ share(baseData=baseData, page=page, post=post) }}
