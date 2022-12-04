@@ -8,7 +8,7 @@ export class Share {
 	constructor() {
 		const el = document.querySelector('[data-component="share"]');
 		const shareApiLink = document.querySelector(
-			'[data-share-el="share-api-link"]'
+			'[data-share-el="shareApiLink"]'
 		);
 
 		if (!el || !shareApiLink) {
