@@ -6,6 +6,7 @@ const codepenToShortCode = require("../_helpers/codepenToShortCode");
 const youtubeToShortCode = require("../_helpers/youtubeToShortCode");
 const EleventyFetch = require("@11ty/eleventy-fetch");
 const fetchNotionBlocks = require("../_helpers/fetchNotionBlocks");
+const { markdownToTxt } = require("markdown-to-txt");
 
 module.exports = async () => {
 	const notion = new Client({
@@ -61,6 +62,10 @@ module.exports = async () => {
 			mdblocks.splice(dividerIndex, 1);
 		}
 
+		const excerptPlainString = excerptMdString
+			? markdownToTxt(excerptMdString)
+			: undefined;
+
 		let contentMdString = n2m.toMarkdownString(mdblocks);
 		contentMdString = imageToShortCode(contentMdString);
 		contentMdString = codepenToShortCode(contentMdString);
@@ -68,6 +73,7 @@ module.exports = async () => {
 
 		return {
 			excerpt: excerptMdString,
+			excerptPlain: excerptPlainString,
 			content: contentMdString,
 		};
 	};
@@ -77,6 +83,7 @@ module.exports = async () => {
 		title: result.properties["Title"].title.pop().plain_text,
 		content: undefined,
 		excerpt: undefined,
+		excerptPlain: undefined,
 		cover: result.cover?.file?.url || result.cover?.external?.url,
 		coverAlt:
 			result.properties["Cover Alt"]?.rich_text.pop()?.plain_text || "",
@@ -88,6 +95,7 @@ module.exports = async () => {
 	for (i = 0; i < posts.length; i++) {
 		const post = await getContent(posts[i].id);
 		posts[i].excerpt = post.excerpt;
+		posts[i].excerptPlain = post.excerptPlain;
 		posts[i].content = post.content;
 	}
 

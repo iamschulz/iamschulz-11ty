@@ -1,4 +1,5 @@
 {% extends "base.njk" %}
+{% from "macros/share.njk" import share %}
 {% from "macros/reactions.njk" import reactions %}
 
 {% block additionalHead %}
@@ -7,7 +8,7 @@
     <meta property="og:title" content="{{ post.title }}">
     <meta property="og:site_name" content="i am schulz">
     <meta property="og:type" content="website">
-    {% if post.excerpt %}<meta name="og:description" content="{{ post.excerpt | renderTxt }}">{% endif %} 
+    {% if post.excerpt %}<meta name="og:description" content="{{ post.excerptPlain }}">{% endif %} 
     {% if post.cover %}<meta property="og:image" content="{{baseData.url}}{% socialImage post.cover %}">{% endif %}
     {% if post.cover %}<meta property="og:image:alt" content="{{ post.coverAlt }}">{% endif %}
     <meta name="twitter:card" content="summary_large_image">
@@ -15,7 +16,7 @@
     {% if post.cover %}<meta name="twitter:image:alt" content="{{ post.coverAlt }}">{% endif %}
     <meta name="twitter:url" content="{{page.url | absoluteUrl(baseData.url)}}">
     <meta name="twitter:title" content="{{ post.title }}">
-    {% if post.excerpt %}<meta name="twitter:description" content="{{ post.excerpt | renderTxt }}">{% endif %}
+    {% if post.excerpt %}<meta name="twitter:description" content="{{ post.excerptPlain }}">{% endif %}
     <meta name="twitter:site" content="@iamschulz">
     <meta name="twitter:creator" content="@iamschulz">
     {% if post.ignoreComments %}<meta name="ignore-comments" content="{{ post.ignoreComments }}">{% endif %}
@@ -51,5 +52,6 @@
             <img class="u-photo" alt="iamschulz avatar" src="{{ '/assets/logo.svg' | url }}">
         </div>
     </article>
+    {{ share(baseData=baseData, page=page, post=post) }}
     {{ reactions(devId=post.devId) }}
 {% endblock %}

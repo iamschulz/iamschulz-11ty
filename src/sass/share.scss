@@ -1,0 +1,29 @@
+.share {
+	margin-top: calc(var(--spacing-y) * 3);
+	padding-top: calc(var(--spacing-y) * 3);
+	border-top: var(--grey) dashed var(--border-width);
+
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
+		gap: 1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__entry {
+		height: 1em;
+		display: flex;
+		align-items: center;
+
+		svg {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+	}
+
+	&__link:hover {
+		color: var(--accent-color);
+	}
+}

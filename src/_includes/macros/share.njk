@@ -1,0 +1,53 @@
+{% macro share(baseData, page, post) %}
+    <aside 
+        class="share is--nolist"
+    >
+        <h2 class="share__title">Share this article:</h2>
+        <ul class="share__list">
+            <li class="share__entry">
+                <a 
+                    class="share__link" 
+                    href="http://www.twitter.com/share?url={{ page.url | absoluteUrl(baseData.url) | encodeURIComponent }}"
+                    aria-label="Twitter"
+                >
+                    {% svg "static/twitter-brands.svg" %}
+                </a>
+            </li>
+            <li class="share__entry">
+                <a 
+                    class="share__link" 
+                    href="http://www.reddit.com/submit?url={{ page.url | absoluteUrl(baseData.url) | encodeURIComponent }}&title={{ post.title | encodeURIComponent }}"
+                    aria-label="Reddit"
+                >
+                    {% svg "static/reddit-brands.svg" %}
+                </a>
+            </li>
+            <li class="share__entry">
+                <a 
+                    class="share__link" 
+                    href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absoluteUrl(baseData.url) | encodeURIComponent }}"
+                    aria-label="LinkedIn"
+                >
+                    {% svg "static/linkedin-brands.svg" %}
+                </a>
+            </li>
+            <li 
+                class="share__entry"
+                data-component="share" 
+                data-share-links-title="{{ post.title }}"
+                data-share-links-text="{{ post.excerptPlain }}"
+                data-share-links-url="{{ page.url | absoluteUrl(baseData.url) }}"
+            >
+                <a 
+                    hidden
+                    data-share-el="shareApiLink"
+                    class="share__link" 
+                    href="#"
+                    aria-label="More share options"
+                >
+                    {% svg "static/share-alt-solid.svg" %}
+                </a>
+            </li>
+        </ul>
+    </aside>
+{% endmacro %}
