@@ -32,6 +32,7 @@
                 </a>
             </li>
             <li 
+                hidden
                 class="share__entry"
                 data-component="share" 
                 data-share-links-title="{{ post.title }}"
@@ -39,7 +40,6 @@
                 data-share-links-url="{{ page.url | absoluteUrl(baseData.url) }}"
             >
                 <a 
-                    hidden
                     data-share-el="shareApiLink"
                     class="share__link" 
                     href="#"

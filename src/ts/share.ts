@@ -7,7 +7,7 @@ export class Share {
 
 	constructor() {
 		const el = document.querySelector('[data-component="share"]');
-		const shareApiLink = document.querySelector(
+		const shareApiLink = el?.querySelector(
 			'[data-share-el="shareApiLink"]'
 		);
 
@@ -16,6 +16,7 @@ export class Share {
 		}
 
 		this.el = el as HTMLElement;
+		this.shareApiLink = shareApiLink as HTMLAnchorElement;
 		this.title = this.el.dataset.shareLinksTitle || "";
 		this.text = this.el.dataset.shareLinksText || "";
 		this.url = new URL(this.el.dataset.shareLinksUrl || "");
