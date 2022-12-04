@@ -46,10 +46,10 @@
 			0 calc(var(--shadow-width) * -1) var(--base-color),
 			calc(var(--shadow-width) * -1) 0 var(--base-color);
 		z-index: 1;
-		transition: text-shadow ease-out 0.2s;
 
 		.is--animated > & {
 			--shadow-color: var(--pop-color);
+			transition: text-shadow ease-out 0.2s;
 		}
 
 		:is([disabled]) > &,
