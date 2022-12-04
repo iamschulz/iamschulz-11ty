@@ -23,6 +23,8 @@ export class Share {
 		if (!this.url || !navigator.share) {
 			return;
 		}
+
+		this.enableUI();
 	}
 
 	enableUI() {
