@@ -1,9 +1,11 @@
 .likes {
 	&__button {
-		font-size: 2rem;
+		display: flex;
+		place-items: center;
+		gap: 1ch;
+		font-size: 1.5rem;
 		background: transparent;
 		padding: 0;
-		border: none;
 		color: inherit;
 
 		&[hidden] {
@@ -38,8 +40,6 @@
 	&__icon {
 		position: relative;
 		font-size: 1.3em;
-		width: 1em;
-		height: 1em;
 		display: inline-block;
 		color: transparent;
 		--shadow-width: 0.25rem;
