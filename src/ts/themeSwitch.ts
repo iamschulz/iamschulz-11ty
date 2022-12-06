@@ -73,8 +73,8 @@ export class ThemeSwitch {
 				? "8"
 				: "95";
 		this.toggle.value = defaultLit;
-		this.setColor();
 		this.setBrightness();
+		this.setColor();
 		window.localStorage.removeItem("theme-color");
 		window.localStorage.removeItem("theme-brightness");
 	}
