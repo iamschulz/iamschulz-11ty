@@ -12,23 +12,30 @@ const fetchNotionBlocks = async (
 		url += `&start_cursor=${cursor}`;
 	}
 
-	const response = await EleventyFetch(url, {
-		duration: skipCache ? 0 : getCacheDuration().content,
-		type: "json",
-		fetchOptions: {
-			method: "GET",
-			withCredentials: true,
-			credentials: "include",
-			headers: {
-				Authorization: `Bearer ${process.env.NOTION_KEY}`,
-				"Notion-Version": "2022-06-28",
-				"Content-Type": "application/json",
-			},
+	const fetchOptions = {
+		headers: {
+			Authorization: `Bearer ${process.env.NOTION_KEY}`,
+			"Notion-Version": "2022-06-28",
+			"Content-Type": "application/json",
 		},
-	});
+	};
+
+	const response = skipCache
+		? await (await fetch(url, fetchOptions)).json()
+		: await EleventyFetch(url, {
+				duration: getCacheDuration().content,
+				type: "json",
+				fetchOptions,
+		  });
+
 	blocks.push(...response.results);
 	if (response.has_more) {
-		blocks = await fetchNotionBlocks(id, blocks, response.next_cursor);
+		blocks = await fetchNotionBlocks(
+			id,
+			blocks,
+			response.next_cursor,
+			skipCache
+		);
 	}
 	return blocks;
 };

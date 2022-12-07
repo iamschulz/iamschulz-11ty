@@ -99,7 +99,7 @@ module.exports = async () => {
 	}));
 
 	for (i = 0; i < posts.length; i++) {
-		const blocks = await fetchNotionBlocks(posts[i].id, [], null, i === 0);
+		const blocks = await fetchNotionBlocks(posts[i].id, [], null, i === 0); // don't cache latest blog
 		const post = await getContent(blocks);
 		posts[i].excerpt = post.excerpt;
 		posts[i].excerptPlain = post.excerptPlain;
