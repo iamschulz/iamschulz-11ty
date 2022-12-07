@@ -1,11 +1,12 @@
 require("dotenv").config();
 const EleventyFetch = require("@11ty/eleventy-fetch");
+const getCacheDuration = require("../_helpers/getCacheDuration");
 
 module.exports = async () => {
 	const db = await EleventyFetch(
 		`https://api.notion.com/v1/databases/${process.env.NOTION_DEMO_ID}/query`,
 		{
-			duration: "1h",
+			duration: getCacheDuration().db,
 			type: "json",
 			fetchOptions: {
 				method: "POST",

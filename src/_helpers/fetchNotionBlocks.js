@@ -1,4 +1,5 @@
 const EleventyFetch = require("@11ty/eleventy-fetch");
+const getCacheDuration = require("./getCacheDuration");
 
 const fetchNotionBlocks = async (id, blocks = [], cursor = null) => {
 	let url = `https://api.notion.com/v1/blocks/${id}/children?page_size=100`;
@@ -7,7 +8,7 @@ const fetchNotionBlocks = async (id, blocks = [], cursor = null) => {
 	}
 
 	const response = await EleventyFetch(url, {
-		duration: "30d", // 30 days
+		duration: getCacheDuration().content,
 		type: "json",
 		fetchOptions: {
 			method: "GET",

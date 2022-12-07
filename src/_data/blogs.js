@@ -8,6 +8,7 @@ const youtubeToShortCode = require("../_helpers/youtubeToShortCode");
 const escapeNjk = require("../_helpers/escapeNjk");
 const EleventyFetch = require("@11ty/eleventy-fetch");
 const { markdownToTxt } = require("markdown-to-txt");
+const getCacheDuration = require("../_helpers/getCacheDuration");
 
 module.exports = async () => {
 	const notion = new Client({
@@ -18,7 +19,7 @@ module.exports = async () => {
 	const db = await EleventyFetch(
 		`https://api.notion.com/v1/databases/${process.env.NOTION_BLOG_ID}/query`,
 		{
-			duration: "1h",
+			duration: getCacheDuration().db,
 			type: "json",
 			fetchOptions: {
 				method: "POST",
