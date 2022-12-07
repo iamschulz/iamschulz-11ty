@@ -1,14 +1,19 @@
 const EleventyFetch = require("@11ty/eleventy-fetch");
 const getCacheDuration = require("./getCacheDuration");
 
-const fetchNotionBlocks = async (id, blocks = [], cursor = null) => {
+const fetchNotionBlocks = async (
+	id,
+	blocks = [],
+	cursor = null,
+	skipCache = false
+) => {
 	let url = `https://api.notion.com/v1/blocks/${id}/children?page_size=100`;
 	if (cursor) {
 		url += `&start_cursor=${cursor}`;
 	}
 
 	const response = await EleventyFetch(url, {
-		duration: getCacheDuration().content,
+		duration: skipCache ? 0 : getCacheDuration().content,
 		type: "json",
 		fetchOptions: {
 			method: "GET",

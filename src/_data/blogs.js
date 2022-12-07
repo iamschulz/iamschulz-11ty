@@ -48,9 +48,8 @@ module.exports = async () => {
 		}
 	);
 
-	const getContent = async (id) => {
-		const notionBlocks = await fetchNotionBlocks(id);
-		const mdblocks = await n2m.blocksToMarkdown(notionBlocks);
+	const getContent = async (blocks) => {
+		const mdblocks = await n2m.blocksToMarkdown(blocks);
 		const dividerIndex = mdblocks.findIndex((x) => x.type === "divider");
 		const excerptBlocks =
 			dividerIndex >= 0 ? mdblocks.slice(0, dividerIndex) : undefined;
@@ -100,7 +99,8 @@ module.exports = async () => {
 	}));
 
 	for (i = 0; i < posts.length; i++) {
-		const post = await getContent(posts[i].id);
+		const blocks = await fetchNotionBlocks(posts[i].id, [], null, i === 0);
+		const post = await getContent(blocks);
 		posts[i].excerpt = post.excerpt;
 		posts[i].excerptPlain = post.excerptPlain;
 		posts[i].content = post.content;
