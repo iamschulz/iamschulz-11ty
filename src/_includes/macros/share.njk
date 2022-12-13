@@ -5,12 +5,13 @@
         <h2 class="share__title">Share this article:</h2>
         <ul class="share__list">
             <li class="share__entry">
+                {% set mailBody = post.title + " (" +page.url | absoluteUrl(baseData.url) + ")" %}
                 <a 
                     class="share__link" 
-                    href="http://www.twitter.com/share?url={{ page.url | absoluteUrl(baseData.url) | encodeURIComponent }}"
-                    aria-label="Twitter"
+                    href="mailto:?subject={{ post.title | encodeURIComponent }}&body={{ mailBody | encodeURIComponent }}"
+                    aria-label="E-Mail"
                 >
-                    {% svg "static/twitter-brands.svg" %}
+                    {% svg "static/envelope-open-solid.svg" %}
                 </a>
             </li>
             <li class="share__entry">
@@ -29,6 +30,16 @@
                     aria-label="LinkedIn"
                 >
                     {% svg "static/linkedin-brands.svg" %}
+                </a>
+            </li>
+            <li class="share__entry">
+                {% set devUrl = "---\ntitle:"+post.title+"\n published: false\n tags: \n---\n\n\n\n["+post.title+"]("+page.url | absoluteUrl(baseData.url)+") (via @iamschulz)\n" %}
+                <a 
+                    class="share__link" 
+                    href="https://dev.to/new?prefill={{ devUrl | encodeURIComponent }}"
+                    aria-label="DEV.to"
+                >
+                    {% svg "static/dev-brands.svg" %}
                 </a>
             </li>
             <li 
