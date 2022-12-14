@@ -20,6 +20,11 @@ module.exports = () => ({
 			active: ["blog", "blogPost"],
 		},
 		{
+			label: "demo",
+			url: "/demo/",
+			active: ["demo"],
+		},
+		{
 			label: "art",
 			url: "/art/",
 			active: ["art", "artPiece"],
