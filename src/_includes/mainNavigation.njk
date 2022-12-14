@@ -5,7 +5,7 @@
                 <a class="
                     main-navigation__link
                     {% if entry.active.includes(page.fileSlug) %}main-navigation__link--active{% endif %}
-                    " href="{{ entry.url }}">{{ entry.label }} </a>
+                    " href="{{ entry.url }}">{{ entry.label }}{% svg "static/squiggly-line.svg" %}</a>
             </li>
         {%- endfor -%}
     </ul>
