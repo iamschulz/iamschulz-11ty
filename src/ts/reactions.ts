@@ -77,6 +77,10 @@ export class Reactions {
 	}
 
 	private async fetchDevComments() {
+		if (!this.devId) {
+			return [];
+		}
+
 		const apiFetchUrl = `https://dev.to/api/comments?a_id=${
 			this.devId
 		}&time=${Date.now()}`;
