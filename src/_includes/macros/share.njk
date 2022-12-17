@@ -3,7 +3,7 @@
         class="share is--nolist"
     >
         <h2 class="share__title">Share this article:</h2>
-        <ul class="share__list">
+        <ul class="share__list is--nomargin">
             <li class="share__entry">
                 {% set mailBody = post.title + " (" +page.url | absoluteUrl(baseData.url) + ")" %}
                 <a 

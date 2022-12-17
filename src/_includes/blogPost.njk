@@ -30,7 +30,7 @@
             {% endif %}
             <aside class="article__meta">
                 <time datetime="{{ post.date }}">{% date post.date %}</time>
-                {% if post.language %}<p class="article__language">{{ post.language }}</p>{% endif %}
+                {% if post.language %}<p class="article__language is--nomargin">{{ post.language }}</p>{% endif %}
             </aside>
             <h1 class="article__title is--fancyfont font-size-x-large p-name">{{ post.title }}</h1>
         </header>

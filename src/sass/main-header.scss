@@ -6,6 +6,10 @@
 	background: var(--base-color);
 	z-index: 1;
 
+	&__h1 {
+		font-size: inherit;
+	}
+
 	&__title {
 		color: var(--fg-color);
 		text-decoration: none;

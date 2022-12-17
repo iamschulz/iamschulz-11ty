@@ -3,7 +3,7 @@
 	gap: 0 1rem;
 	grid-template-columns: 100% 0;
 	grid-template-rows: auto auto auto;
-	grid-template-areas: "header side" "toc side" "content side";
+	grid-template-areas: 'header side' 'toc side' 'content side';
 	word-break: break-word;
 
 	&__cover {
@@ -35,7 +35,6 @@
 		align-items: center;
 		justify-content: center;
 		height: 1.4em;
-		margin: 0;
 		padding: 0 0.4ch;
 		font-size: 0.8em;
 		text-transform: uppercase;
