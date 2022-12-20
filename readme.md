@@ -1,5 +1,7 @@
 # iamschulz.com
 
+_eleventy X notion edition_
+
 ## install
 
 -   use node 18 or later
@@ -7,7 +9,8 @@
 -   add `.env` file with
     -   `NOTION_KEY` - notion integration secret
     -   `NOTION_BLOG_ID` - ID of the notion blog page
-    -   `NOTION_SITES_ID` - ID of the notion sites page
+    -   `NOTION_ART_ID` - ID of the notion art page
+    -   `NOTION_DEMO_ID` - ID of the notion demo DB
 
 ## start
 
@@ -35,6 +38,7 @@
 
 -   Deployment link in Notion triggers a dreampipe webhook, which sends a deployment request to netlify
     [![Netlify Status](https://api.netlify.com/api/v1/badges/d5df8844-fba4-41f2-9549-cf1e61035bf0/deploy-status)](https://app.netlify.com/sites/iamschulz-11ty/deploys)
+-   Specify a notion article id as env variable `INCOMING_HOOK_BODY` to request the page uncached
 
 ## develop
 
@@ -59,4 +63,4 @@
 -   `lightningcss`: CSS postprocessor
 -   `esbuild`: compile and bundle typescript
 -   `netlify`: hosting and caching
--   `dreampipe`: deployment link from notion to netlify
+-   `pipedream`: deployment link from notion to netlify
