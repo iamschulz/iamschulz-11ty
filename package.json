@@ -3,8 +3,10 @@
 	"version": "0.0.1",
 	"license": "MIT",
 	"devDependencies": {
-		"@11ty/eleventy": "^2.0.0-canary.16",
+		"@11ty/eleventy": "^2.0.0-canary.21",
+		"@11ty/eleventy-fetch": "^3.0.0",
 		"@11ty/eleventy-img": "git+https://github.com/iamschulz/eleventy-img.git",
+		"@11ty/eleventy-plugin-rss": "^1.2.0",
 		"@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
 		"@notionhq/client": "^2.2.0",
 		"@sardine/eleventy-plugin-tinyhtml": "^0.2.0",
@@ -14,8 +16,11 @@
 		"eleventy-plugin-toc": "^1.1.5",
 		"esbuild": "^0.15.9",
 		"lightningcss-cli": "^1.15.1",
+		"lodash": "^4.17.21",
 		"markdown-it": "^13.0.1",
 		"markdown-it-anchor": "^8.6.5",
+		"markdown-to-txt": "^2.0.1",
+		"netlify-plugin-11ty": "^1.1.0",
 		"notion-to-md": "^2.5.5",
 		"npm-run-all": "^4.1.5",
 		"sass": "^1.54.9"
@@ -36,10 +41,6 @@
 		"build": "npm-run-all build:sass build:ts build:eleventy noIndex"
 	},
 	"dependencies": {
-		"@11ty/eleventy-fetch": "^3.0.0",
-		"@11ty/eleventy-plugin-rss": "^1.2.0",
-		"markdown-to-txt": "^2.0.1",
-		"netlify-plugin-11ty": "^1.1.0",
 		"quicklink": "^2.3.0"
 	}
 }
