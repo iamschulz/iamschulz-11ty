@@ -101,7 +101,6 @@ module.exports = async () => {
 		posts[i].excerpt = post.excerpt;
 		posts[i].excerptPlain = post.excerptPlain;
 		posts[i].content = post.content;
-		console.log(posts[i].date);
 	}
 
 	return posts;
