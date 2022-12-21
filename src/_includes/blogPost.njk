@@ -29,6 +29,7 @@
                 {% image post.cover, post.coverAlt | escapeAttribute, "article__cover", false %}
             {% endif %}
             <aside class="article__meta">
+                <time datetime="{{ post.date }}">x {{ post.date }}</time>
                 <time datetime="{{ post.date }}">{% date post.date %}</time>
                 {% if post.language %}<p class="article__language is--nomargin">{{ post.language }}</p>{% endif %}
             </aside>
