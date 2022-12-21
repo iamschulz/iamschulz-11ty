@@ -41,6 +41,7 @@ module.exports = async function imageShortcode(
 		sizes: "100vw",
 		class: className,
 		loading: lazy ? "lazy" : "eager",
+		fetchpriority: lazy ? "low" : "high",
 		decoding: "async",
 	};
 
