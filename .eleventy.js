@@ -11,7 +11,6 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const getYear = require("./src/_shortcodes/getYear.js");
 const getSvgContent = require("./src/_shortcodes/svg.js");
 const formatDate = require("./src/_shortcodes/formatDate.js");
-const eleventyHTMLValidate = require("eleventy-plugin-html-validate");
 const pluginTOC = require("eleventy-plugin-toc");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const useRssFilter = require("./src/_filters/useRss");
@@ -34,7 +33,6 @@ module.exports = function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(pluginRss);
 	eleventyConfig.addPlugin(EleventyRenderPlugin);
-	eleventyConfig.addPlugin(eleventyHTMLValidate);
 	eleventyConfig.addPlugin(pluginTOC, {
 		tags: ["h2", "h3", "h4"],
 		flat: true,
