@@ -33,14 +33,11 @@
 		"build:ts": "./esbuild.js --minify",
 		"build:eleventy": "eleventy",
 		"postbuild": "lightningcss --minify --targets '> 0.25%, not IE 11' dist/*.css -o dist/*.css",
-		"cache:none": "CACHE_DB=false CACHE_CONTENT=false CACHE_IMAGES=false",
-		"cache:all": "CACHE_DB=true CACHE_CONTENT=true CACHE_IMAGES=true",
-		"cache:increment": "CACHE_DB=false CACHE_CONTENT=true CACHE_IMAGES=true",
 		"noIndex": "echo 'User-agent: *\nDisallow: /' > dist/robots.txt",
 		"start": "npm-run-all cache:all build:sass --parallel watch:*",
-		"build:cache": "npm-run-all cache:all build:sass build:ts build:eleventy noIndex",
-		"build:full": "npm-run-all cache:none build:sass build:ts build:eleventy noIndex",
-		"build": "npm-run-all cache:increment build:sass build:ts build:eleventy noIndex"
+		"build:cache": "CACHE_DB=true CACHE_CONTENT=true CACHE_IMAGES=true npm-run-all build:sass build:ts build:eleventy noIndex",
+		"build:full": "CACHE_DB=false CACHE_CONTENT=false CACHE_IMAGES=false npm-run-all build:sass build:ts build:eleventy noIndex",
+		"build": "CACHE_DB=false CACHE_CONTENT=true CACHE_IMAGES=true npm-run-all build:sass build:ts build:eleventy noIndex"
 	},
 	"dependencies": {
 		"quicklink": "^2.3.0"

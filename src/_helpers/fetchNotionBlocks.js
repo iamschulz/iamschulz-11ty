@@ -20,6 +20,8 @@ const fetchNotionBlocks = async (
 		},
 	};
 
+	const fetchArticleBenchmark0 = performance.now();
+
 	const response = skipCache
 		? await (await fetch(url, fetchOptions)).json()
 		: await EleventyFetch(url, {
@@ -27,6 +29,22 @@ const fetchNotionBlocks = async (
 				type: "json",
 				fetchOptions,
 		  });
+
+	const fetchArticleBenchmark1 = performance.now();
+
+	if (skipCache) {
+		console.log(
+			"getting article from cache",
+			id,
+			fetchArticleBenchmark1 - fetchArticleBenchmark0
+		);
+	} else {
+		console.log(
+			"fetching article",
+			id,
+			fetchArticleBenchmark1 - fetchArticleBenchmark0
+		);
+	}
 
 	blocks.push(...response.results);
 	if (response.has_more) {
