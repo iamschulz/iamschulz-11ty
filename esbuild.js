@@ -1,19 +1,16 @@
 #!/usr/bin/env node
 
-const watchFlag = process.argv.indexOf("--watch") > -1;
-const minifyFlag = process.argv.indexOf("--minify") > -1;
+const watchFlag = process.argv.indexOf('--watch') > -1;
+const minifyFlag = process.argv.indexOf('--minify') > -1;
 
-require("esbuild")
+require('esbuild')
 	.build({
-		entryPoints: [
-			"src/ts/main.ts",
-			"src/ts/textAdventure/textAdventure.ts",
-		],
+		entryPoints: ['src/ts/main.ts', 'src/ts/textAdventure/textAdventure.ts'],
 		bundle: true,
-		outdir: "dist",
+		outdir: 'dist',
 		watch: watchFlag,
 		minify: minifyFlag,
-		sourcemap: !minifyFlag ? "both" : false,
-		target: "es2020",
+		sourcemap: !minifyFlag ? 'both' : false,
+		target: 'es2020',
 	})
 	.catch(() => process.exit(1));

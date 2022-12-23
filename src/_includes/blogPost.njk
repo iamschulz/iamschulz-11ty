@@ -50,7 +50,7 @@
             <a class="u-url" href="/{{ post.title | slug | absoluteUrl(baseData.url) }}/">
                 <span class="p-name">{{ baseData.pageTitle }}</span>
             </a>
-            <img class="u-photo" alt="iamschulz avatar" src="{{ '/assets/logo.svg' | url }}">
+            <img class="u-photo" alt="iamschulz avatar" src="{{ '/assets/logo.svg' | url }}" loading="lazy">
             <p class="p-note">{{ baseData.meta.description }}</p>
         </div>
     </article>
