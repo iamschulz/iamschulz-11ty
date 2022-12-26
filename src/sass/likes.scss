@@ -39,35 +39,32 @@
 
 	&__icon {
 		position: relative;
-		font-size: 1.3em;
 		display: inline-block;
-		color: transparent;
-		--shadow-width: 0.25rem;
-		--shadow-color: var(--fg-color);
-		text-shadow: 0 0 var(--shadow-color),
-			0 var(--shadow-width) var(--base-color),
-			var(--shadow-width) 0 var(--base-color),
-			0 calc(var(--shadow-width) * -1) var(--base-color),
-			calc(var(--shadow-width) * -1) 0 var(--base-color);
+		color: var(--fg-color);
 		z-index: 1;
 
+		svg {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+
 		.is--animated > & {
-			--shadow-color: var(--pop-color);
+			color: var(--pop-color);
 			transition: text-shadow ease-out 0.2s;
 		}
 
 		:is([disabled]) > &,
 		:not(.is--animated):hover > & {
-			--shadow-color: var(--accent-color);
+			color: var(--accent-color);
 		}
 
 		.is--animated > &::before {
-			content: "";
+			content: '';
 			position: absolute;
-			top: -30%;
-			left: -50%;
-			right: -50%;
-			bottom: -50%;
+			top: -1.4rem;
+			left: -1.3rem;
+			width: 5rem;
+			height: 5rem;
 			z-index: -1;
 			background: repeating-conic-gradient(
 				from 0deg at 50% 50%,
