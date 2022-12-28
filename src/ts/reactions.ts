@@ -139,7 +139,11 @@ export class Reactions {
 						return;
 					}
 
-					if (this.ignoredComments.includes(reply["wm-id"])) {
+					if (
+						reply["repost-of"] ||
+						this.ignoredComments.includes(reply["wm-id"]) ||
+						!reply.content
+					) {
 						return;
 					}
 
@@ -150,7 +154,7 @@ export class Reactions {
 						authorUrl: new URL(reply.author.url),
 						source: new URL(reply.url),
 						date: new Date(reply.published),
-						content: reply.content?.html,
+						content: reply.content?.html || reply.content?.text,
 						hasReply: false,
 					} as Reply;
 
