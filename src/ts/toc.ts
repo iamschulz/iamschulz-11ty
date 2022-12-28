@@ -1,43 +1,38 @@
 export class Toc {
 	private el: HTMLElement;
+	private container: HTMLElement;
 	private sections: {
 		navigation: HTMLAnchorElement;
 		elements: HTMLElement[];
 	}[];
 
 	constructor() {
-		const el = document.querySelector(
-			'[data-component="toc"]'
-		) as HTMLElement | null;
+		const el = document.querySelector('[data-component="toc"]') as HTMLElement | null;
+		const container = el?.querySelector('nav') as HTMLElement | null;
 
-		if (!el) {
+		if (!el || !container) {
 			return;
 		}
 
 		this.el = el;
+		this.container = container;
 		this.sections = [];
 		this.getSections();
 		this.registerEvents();
 	}
 
 	getHeadlines(): HTMLElement[] {
-		return Array.from(this.el.querySelectorAll("a")).map((link) =>
-			document.querySelector(
-				`[id="${link.getAttribute("href")?.replace("#", "") || ""}"]`
-			)
+		return Array.from(this.el.querySelectorAll('a')).map((link) =>
+			document.querySelector(`[id="${link.getAttribute('href')?.replace('#', '') || ''}"]`)
 		) as HTMLElement[];
 	}
 
 	getSections() {
-		const elements = Array.from(
-			document.querySelectorAll(".article__content > *")
-		) as HTMLElement[];
+		const elements = Array.from(document.querySelectorAll('.article__content > *')) as HTMLElement[];
 
 		elements.forEach((element) => {
-			if (element.matches(":is(h2, h3, h4") && element.id) {
-				const navigation = this.el.querySelector(
-					`[href="#${element.id}"]`
-				);
+			if (element.matches(':is(h2, h3, h4') && element.id) {
+				const navigation = this.el.querySelector(`[href="#${element.id}"]`);
 
 				this.sections.push({
 					navigation: navigation as HTMLAnchorElement,
@@ -53,16 +48,13 @@ export class Toc {
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
-					entry.target.setAttribute(
-						"data-in-screen",
-						String(entry.isIntersecting)
-					);
+					entry.target.setAttribute('data-in-screen', String(entry.isIntersecting));
 				});
 				this.highlightNavigation();
 			},
 			{
 				threshold: 0,
-				rootMargin: "-40px 0px 0px 0px",
+				rootMargin: '-40px 0px 0px 0px',
 			}
 		);
 
@@ -76,14 +68,27 @@ export class Toc {
 		window.requestAnimationFrame(() => {
 			this.sections.forEach((section) => {
 				section.navigation.setAttribute(
-					"data-highlight",
-					String(
-						section.elements.some((element) =>
-							element.matches('[data-in-screen="true"]')
-						)
-					)
+					'data-highlight',
+					String(section.elements.some((element) => element.matches('[data-in-screen="true"]')))
 				);
 			});
+			this.scrollToTarget();
 		});
+	}
+
+	scrollToTarget() {
+		const threshold = -80;
+		const last = this.sections.reverse().find((x) => x.navigation.matches('[data-highlight="true"]'))?.navigation;
+		const inScreen =
+			this.container.clientHeight + this.container.scrollTop > (last?.offsetTop || NaN) &&
+			this.container.scrollTop + threshold < (last?.offsetTop || NaN);
+
+		if (!last || inScreen) {
+			return;
+		}
+
+		//todo: add scrolling from top/bottom
+		// todo: fix bug: scroll to out-of-viewport toc, use this. soft scrolling breaks.
+		this.container.scrollTo(0, last.offsetTop + last.offsetHeight + threshold);
 	}
 }

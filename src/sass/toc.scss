@@ -35,7 +35,7 @@
 			transition: ease-out 0.2s transform;
 
 			&::before {
-				content: "";
+				content: '';
 				position: absolute;
 				top: 0.8rem;
 				left: -1.5ch;
@@ -51,12 +51,18 @@
 			}
 		}
 
-		a[data-highlight="true"] {
+		a[data-highlight='true'] {
 			transform: translateX(1.2rem);
 
 			&::before {
 				opacity: 1;
 			}
 		}
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.toc {
+		scroll-behavior: smooth;
 	}
 }
