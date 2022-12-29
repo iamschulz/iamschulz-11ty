@@ -4,14 +4,14 @@
     status = 404
 
 [[redirects]]
-    from = "/.well-known/host-meta/*"
+    from = "/.well-known/host-meta*"
     to = "https://fed.brid.gy/:splat"
-    status = 200
+    status = 302
 
 [[redirects]]
-    from = "/.well-known/webfinger/*"
+    from = "/.well-known/webfinger*"
     to = "https://fed.brid.gy/:splat"
-    status = 200
+    status = 302
 
 [[plugins]]
     package = "netlify-plugin-11ty"
