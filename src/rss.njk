@@ -16,7 +16,7 @@
     <name>{{ baseData.meta.authorName }}</name>
     <email>{{ baseData.meta.authorEmail }}</email>
   </author>
-  {%- for post in blogs | reverse %}
+  {%- for post in blogs %}
   {%- set absolutePostUrl = post.title | slug | url | absoluteUrl(baseData.url) %}
   <entry>
     <title>{{ post.title }}</title>
