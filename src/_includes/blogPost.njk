@@ -42,12 +42,14 @@
         {% endif %}
         <div id="article" class="article__content e-content">
             {{ content | safe }}
-            <a href="https://fed.brid.gy/" hidden></a>
+            <a class="is--hidden" href="https://fed.brid.gy/"></a>
         </div>
-        <a href="https://brid.gy/publish/twitter" hidden>brid.gy</a>
-        <data class="p-bridgy-omit-link" value="false"></data>
-        <a class="u-url" hidden href="{{ post.title | slug | absoluteUrl(baseData.url) }}">Indieweb URL</a>
-        <a rel="author" class="p-author h-card" href="…">{{ baseData.meta.authorName }}</a>
+        <div class="is--hidden">
+            <a href="https://brid.gy/publish/twitter">brid.gy</a>
+            <data class="p-bridgy-omit-link" value="false"></data>
+            <a class="u-url" href="{{ post.title | slug | absoluteUrl(baseData.url) }}">Indieweb URL</a>
+            <a rel="author" class="p-author h-card" href="{{ baseData.url }}">{{ baseData.meta.authorName }}</a>
+        </div>
     </article>
     {{ share(baseData=baseData, page=page, post=post) }}
     {{ reactions(devId=post.devId) }}
