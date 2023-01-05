@@ -26,10 +26,10 @@
     <article class="article h-entry">
         <header class="article__header">
             {% if post.cover and post.coverAlt %}
-                {% image post.cover, post.coverAlt | escapeAttribute, "article__cover", false %}
+                {% image post.cover, post.coverAlt | escapeAttribute, "article__cover u-photo", false %}
             {% endif %}
             <aside class="article__meta">
-                <time class="dt-published" datetime="{{ post.date }}">{% date post.date %}</time>
+                <time datetime="{{ post.date }}">{% date post.date %}</time>
                 {% if post.language %}<p class="article__language is--nomargin">{{ post.language }}</p>{% endif %}
             </aside>
             <h1 class="article__title is--fancyfont font-size-x-large p-name">{{ post.title }}</h1>
