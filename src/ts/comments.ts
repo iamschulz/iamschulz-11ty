@@ -32,9 +32,9 @@ export class Comments {
 		newItemHtml = newItemHtml.replace("{{ id }}", comment.id);
 		newItemHtml = newItemHtml.replace(
 			"{{ userLink }}",
-			comment.authorUrl.href
+			comment.authorUrl?.href || '#'
 		);
-		newItemHtml = newItemHtml.replace("{{ avatar }}", comment.avatar.href);
+		newItemHtml = newItemHtml.replace("{{ avatar }}", comment.avatar?.href || '');
 		newItemHtml = newItemHtml.replace("{{ name }}", comment.authorName);
 		newItemHtml = newItemHtml.replace(
 			"{{ datetime }}",
