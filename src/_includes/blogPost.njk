@@ -46,7 +46,7 @@
         </div>
         <a href="https://brid.gy/publish/twitter" hidden>brid.gy</a>
         <data class="p-bridgy-omit-link" value="false"></data>
-        {% include 'microformatsHCard.njk' %}
+        <a class="u-url" hidden href="{{ post.title | slug | absoluteUrl(baseData.url) }}">Indieweb URL</a>
     </article>
     {{ share(baseData=baseData, page=page, post=post) }}
     {{ reactions(devId=post.devId) }}
