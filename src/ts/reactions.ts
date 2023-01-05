@@ -92,7 +92,11 @@ export class Reactions {
 				Array.from(data).forEach((r) => {
 					const reply = r as devReply;
 
-					if (this.ignoredComments.includes(reply.id_code)) {
+					if (
+						this.ignoredComments.some(
+							(x) => String(x) === String(reply.id_code)
+						)
+					) {
 						return;
 					}
 
@@ -141,7 +145,9 @@ export class Reactions {
 
 					if (
 						reply["repost-of"] ||
-						this.ignoredComments.includes(reply["wm-id"]) ||
+						this.ignoredComments.some(
+							(x) => String(x) === String(reply["wm-id"])
+						) ||
 						!reply.content
 					) {
 						return;
@@ -150,17 +156,23 @@ export class Reactions {
 					try {
 						const comment = {
 							id: reply["wm-id"],
-							avatar: reply.author.photo ? new URL(reply.author.photo) : null,
+							avatar: reply.author.photo
+								? new URL(reply.author.photo)
+								: null,
 							authorName: reply.author.name,
-							authorUrl: reply.author.url ? new URL(reply.author.url) : null,
+							authorUrl: reply.author.url
+								? new URL(reply.author.url)
+								: null,
 							source: new URL(reply.url),
-							date: new Date(reply.published || reply["wm-received"]),
+							date: new Date(
+								reply.published || reply["wm-received"]
+							),
 							content: reply.content?.html || reply.content?.text,
 							hasReply: false,
 						} as Reply;
 
 						comments.push(comment);
-					} catch(e) {
+					} catch (e) {
 						console.warn("could not parse comment", e);
 					}
 				});
