@@ -29,7 +29,7 @@
                 {% image post.cover, post.coverAlt | escapeAttribute, "article__cover", false %}
             {% endif %}
             <aside class="article__meta">
-                <time class="dt-publushed" datetime="{{ post.date }}">{% date post.date %}</time>
+                <time class="dt-published" datetime="{{ post.date }}">{% date post.date %}</time>
                 {% if post.language %}<p class="article__language is--nomargin">{{ post.language }}</p>{% endif %}
             </aside>
             <h1 class="article__title is--fancyfont font-size-x-large p-name">{{ post.title }}</h1>
@@ -47,6 +47,7 @@
         <a href="https://brid.gy/publish/twitter" hidden>brid.gy</a>
         <data class="p-bridgy-omit-link" value="false"></data>
         <a class="u-url" hidden href="{{ post.title | slug | absoluteUrl(baseData.url) }}">Indieweb URL</a>
+        <a rel="author" class="p-author h-card" href="…">{{ baseData.meta.authorName }}</a>
     </article>
     {{ share(baseData=baseData, page=page, post=post) }}
     {{ reactions(devId=post.devId) }}
