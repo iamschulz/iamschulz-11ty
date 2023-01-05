@@ -1,0 +1,7 @@
+<div class="h-card p-author" hidden>
+    <a rel="me" href="/">{{ baseData.pageTitle }}</a>
+    <a class="u-url" href="acct:daniel@iamschulz.com"></a>
+    <img class="u-photo" alt="iamschulz avatar" src="{{ '/assets/logo.svg' | url }}" loading="lazy">
+    <p class="p-note">{{ baseData.meta.description }}</p>
+</div>
+<a class="u-url" hidden href="{{ post.title | slug | absoluteUrl(baseData.url) }}">Indieweb URL</a>

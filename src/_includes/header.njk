@@ -1,7 +1,7 @@
 <header class="main-header is--container">
     <a class="skiplink" href="#content">skip to content</a>
     {% set showH1 = (page.fileSlug !== "blogPost") and (page.fileSlug !== "artPiece") %}
-    <a href="/" class="main-header__title is--fancyfont h-card p-author">
+    <a href="/" class="main-header__title is--fancyfont">
         {%- if showH1 -%}<h1 class="main-header__h1 is--nomargin">{%- endif -%}
         {{- baseData.pageTitle -}}
         {%- if showH1 -%}</h1>{%- endif -%}

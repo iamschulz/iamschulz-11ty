@@ -29,7 +29,7 @@
                 {% image post.cover, post.coverAlt | escapeAttribute, "article__cover", false %}
             {% endif %}
             <aside class="article__meta">
-                <time datetime="{{ post.date }}">{% date post.date %}</time>
+                <time class="dt-publushed" datetime="{{ post.date }}">{% date post.date %}</time>
                 {% if post.language %}<p class="article__language is--nomargin">{{ post.language }}</p>{% endif %}
             </aside>
             <h1 class="article__title is--fancyfont font-size-x-large p-name">{{ post.title }}</h1>
@@ -46,13 +46,7 @@
         </div>
         <a href="https://brid.gy/publish/twitter" hidden>brid.gy</a>
         <data class="p-bridgy-omit-link" value="false"></data>
-        <div class="h-card p-author" hidden>
-            <a class="u-url" href="/{{ post.title | slug | absoluteUrl(baseData.url) }}/">
-                <span class="p-name">{{ baseData.pageTitle }}</span>
-            </a>
-            <img class="u-photo" alt="iamschulz avatar" src="{{ '/assets/logo.svg' | url }}" loading="lazy">
-            <p class="p-note">{{ baseData.meta.description }}</p>
-        </div>
+        {% include 'microformatsHCard.njk' %}
     </article>
     {{ share(baseData=baseData, page=page, post=post) }}
     {{ reactions(devId=post.devId) }}

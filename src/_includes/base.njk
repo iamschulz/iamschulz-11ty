@@ -20,6 +20,7 @@
 </head>
 <body>
     {% include 'header.njk' %}
+    {% include 'microformatsHCard.njk' %}
     <main class="is--container" id="content">
         {% block content %}
             {{ content | safe }}
