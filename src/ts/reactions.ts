@@ -147,18 +147,22 @@ export class Reactions {
 						return;
 					}
 
-					const comment = {
-						id: reply["wm-id"],
-						avatar: new URL(reply.author.photo),
-						authorName: reply.author.name,
-						authorUrl: new URL(reply.author.url),
-						source: new URL(reply.url),
-						date: new Date(reply.published),
-						content: reply.content?.html || reply.content?.text,
-						hasReply: false,
-					} as Reply;
+					try {
+						const comment = {
+							id: reply["wm-id"],
+							avatar: reply.author.photo ? new URL(reply.author.photo) : null,
+							authorName: reply.author.name,
+							authorUrl: reply.author.url ? new URL(reply.author.url) : null,
+							source: new URL(reply.url),
+							date: new Date(reply.published),
+							content: reply.content?.html || reply.content?.text,
+							hasReply: false,
+						} as Reply;
 
-					comments.push(comment);
+						comments.push(comment);
+					} catch(e) {
+						console.warn("could not parse comment", e);
+					}
 				});
 			});
 

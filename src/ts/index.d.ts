@@ -31,9 +31,9 @@ type devReply = {
 
 type Reply = {
 	id: string;
-	avatar: URL;
+	avatar?: URL;
 	authorName: string;
-	authorUrl: URL;
+	authorUrl?: URL;
 	source: URL;
 	date: Date;
 	content: string;
