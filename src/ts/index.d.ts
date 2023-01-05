@@ -8,7 +8,8 @@ type Webmention = {
 		text: string;
 		html: string;
 	};
-	published: string;
+	published?: string;
+	"wm-received": string;
 	"like-of": string;
 	"repost-of": string;
 	"wm-private": string;

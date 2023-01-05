@@ -84,7 +84,7 @@ export class Reactions {
 		const apiFetchUrl = `https://dev.to/api/comments?a_id=${
 			this.devId
 		}&time=${Date.now()}`;
-		const comments: Reply[] = [];
+		let comments: Reply[] = [];
 
 		await fetch(apiFetchUrl)
 			.then((response) => response.json())
@@ -126,7 +126,7 @@ export class Reactions {
 		)}&time=${Date.now()}`;
 
 		let likes = 0;
-		const comments: Reply[] = [];
+		let comments: Reply[] = [];
 
 		await fetch(apiFetchUrl)
 			.then((response) => response.json())
@@ -154,7 +154,7 @@ export class Reactions {
 							authorName: reply.author.name,
 							authorUrl: reply.author.url ? new URL(reply.author.url) : null,
 							source: new URL(reply.url),
-							date: new Date(reply.published),
+							date: new Date(reply.published || reply["wm-received"]),
 							content: reply.content?.html || reply.content?.text,
 							hasReply: false,
 						} as Reply;
@@ -165,6 +165,8 @@ export class Reactions {
 					}
 				});
 			});
+
+		comments = comments.sort((a, b) => b.date.getTime() - a.date.getTime());
 
 		return {
 			likes,
