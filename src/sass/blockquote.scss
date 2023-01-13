@@ -1,7 +1,7 @@
 :where(blockquote) {
 	position: relative;
 	max-width: var(--content-narrow-width);
-	margin: var(--spacing-y) 0 var(--spacing-y) 2rem;
+	margin: var(--spacing-y) 0 var(--spacing-y);
 	padding-left: var(--spacing-x);
 
 	&:before {
