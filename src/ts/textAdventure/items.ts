@@ -1,4 +1,7 @@
+import { Logger } from "./log";
 import { textAdventure } from "./textAdventure";
+
+const logger = new Logger();
 
 export type Item = {
 	name: string;
@@ -9,23 +12,19 @@ export type Item = {
 
 export const items = [
 	{
-		name: "Apple",
-		description: "A delicious Apple",
-		grabable: true,
-		interact: (ta: textAdventure) => {
-			const appleIndex = ta.state.inventory.findIndex(
-				(x) => x.name === "Apple"
-			);
-			ta.state.inventory.splice(appleIndex, 1);
-			ta.logger.log("🍎 You eat a tasty apple.");
+		name: "Jester",
+		description: "A Jester",
+		grabable: false,
+		interact: () => {
+			logger.log("i give you directions!");
 		},
 	},
 	{
-		name: "Bench",
-		description: "A bench to sit on",
+		name: "Scholar",
+		description: "A Scholar",
 		grabable: false,
-		interact: (ta: textAdventure) => {
-			ta.logger.log("🪑 You sit down.");
+		interact: () => {
+			logger.log("I can give you blog articles");
 		},
 	},
 ] as Item[];

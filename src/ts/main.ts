@@ -5,7 +5,7 @@ import { Toc } from "./toc";
 import { Preload } from "./preload";
 import { Reactions } from "./reactions";
 import { Share } from "./share";
-//import { TextAdventureLoader } from "./textAdventureLoader";
+import { TextAdventureLoader } from "./textAdventureLoader";
 
 new ReplaceIframe();
 new ThemeSwitch();
@@ -14,4 +14,4 @@ new Search();
 new Preload();
 new Reactions();
 new Share();
-//new TextAdventureLoader();
+new TextAdventureLoader();

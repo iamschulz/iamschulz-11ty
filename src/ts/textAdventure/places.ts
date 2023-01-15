@@ -19,20 +19,19 @@ export type Place = {
 export const places = [
 	{
 		name: "town square",
-		description:
-			"a town square. There's a Apple in one of the market stands.",
+		description: "a town square. A Jester gives you directions.",
 		directions: {
 			north: {
-				name: "church",
-				transition: "you leave the town square for the church.",
+				name: "monastery",
+				transition: "you leave the town square for the monastery.",
 			},
 		},
-		items: ["Apple", "Bench"],
+		items: ["Jester"],
 		url: new URL(`${location.protocol}//${location.host}`),
 	},
 	{
-		name: "church",
-		description: "The church",
+		name: "monastery",
+		description: "The monastery",
 		directions: {
 			south: {
 				name: "town square",
@@ -40,7 +39,7 @@ export const places = [
 					"you walk through the portal and find yourself on the town square again.",
 			},
 		},
-		items: [],
-		url: new URL(`${location.protocol}//${location.host}/legal/`),
+		items: ["Scholar"],
+		url: new URL(`${location.protocol}//${location.host}/blog/`),
 	},
 ] as Place[];
