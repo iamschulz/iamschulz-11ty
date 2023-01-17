@@ -8,8 +8,7 @@ declare global {
 					help: () => void;
 					go: (string) => void;
 					inspect: (string) => void;
-					take: (string) => void;
-					use: (string) => void;
+					interact: (string) => void;
 					reset: () => void;
 			  }
 			| undefined;

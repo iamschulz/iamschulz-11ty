@@ -11,7 +11,6 @@ export class textAdventure {
 	logger: Logger;
 	state: {
 		place: Place;
-		inventory: Item[];
 		lastTransition: string | null;
 	};
 
@@ -21,7 +20,6 @@ export class textAdventure {
 		this.items = items;
 		this.state = {
 			place: this.places[0], // first place is default
-			inventory: [],
 			lastTransition: null,
 		};
 
@@ -29,8 +27,7 @@ export class textAdventure {
 			help: help,
 			go: this.movePC.bind(this),
 			inspect: this.inspect.bind(this),
-			take: this.take.bind(this),
-			use: this.use.bind(this),
+			interact: this.interact.bind(this),
 			reset: this.resetGame.bind(this),
 		};
 
@@ -38,21 +35,21 @@ export class textAdventure {
 			help();
 		} else {
 			this.loadState();
-			this.state.lastTransition &&
-				this.logger.log(this.state.lastTransition);
+			this.state.lastTransition && this.logger.log(this.state.lastTransition);
 			this.logger.log(`You find yourself in ${this.state.place.name}`);
 		}
 	}
 
 	startGame(): void {
 		help();
-		console.log(
-			"Now go and %cexplore this website%c!",
-			ConsoleStyles.HELP,
-			ConsoleStyles.DEFAULT
-		);
+		window.location.href = this.state.place.url?.href || window.location.href;
+		console.log("Now go and %cexplore this website%c!", ConsoleStyles.HELP, ConsoleStyles.DEFAULT);
 		console.log(" ");
 		this.inspect(this.state.place.name);
+
+		window.setTimeout(() => {
+			this.persistState();
+		}, 0);
 	}
 
 	persistState(): void {
@@ -60,7 +57,6 @@ export class textAdventure {
 			"ta",
 			JSON.stringify({
 				place: this.state.place.name,
-				inventory: this.state.inventory.map((x) => x.name),
 				lastTransition: this.state.lastTransition,
 			})
 		);
@@ -68,11 +64,7 @@ export class textAdventure {
 
 	loadState(): void {
 		const save = JSON.parse(sessionStorage.ta);
-		this.state.place =
-			this.places.find((x) => x.name === save.place) || this.places[0];
-		this.state.inventory = save.inventory.map((x) =>
-			this.items.find((y) => y.name === x.name)
-		);
+		this.state.place = this.places.find((x) => x.name === save.place) || this.places[0];
 		this.state.lastTransition = save.lastTransition;
 	}
 
@@ -82,6 +74,10 @@ export class textAdventure {
 	resetGame(): void {
 		delete window.ta;
 		delete sessionStorage.ta;
+		this.state = {
+			place: this.places[0], // first place is default
+			lastTransition: null,
+		};
 		console.clear();
 		this.startGame();
 		window.setTimeout(() => {
@@ -92,27 +88,37 @@ export class textAdventure {
 	movePC(inputDirection: Directions): void {
 		// invalid inputDirection
 		if (!Object.values(Directions).includes(inputDirection)) {
-			this.logger.log(
-				`❌ You may only go ${Object.values(Directions).join(", ")}.`
-			);
+			this.logger.log(`❌ You may only go ${Object.values(Directions).join(", ")}.`);
 			return;
 		}
 
 		// no place in this direction
 		const oldPlace = this.state.place;
 		const newPlace = this.places.find(
-			(x) =>
-				x.name.toLowerCase() ===
-				oldPlace.directions[inputDirection]?.name.toLowerCase()
+			(x) => x.name.toLowerCase() === oldPlace.directions[inputDirection]?.name.toLowerCase()
 		);
 		if (!newPlace) {
 			this.logger.log(`❌ You can't go ${inputDirection} from here.`);
 			return;
 		}
 
+		this.state.lastTransition = oldPlace.directions[inputDirection]!.transition;
+		this.teleportPC(newPlace.name, false);
+	}
+
+	teleportPC(placeName: string, overrideTransition = true): void {
+		const newPlace = this.places.find((x) => x.name.toLowerCase() === placeName.toLowerCase());
+
+		if (!newPlace) {
+			this.logger.log(`❌ You don't know where ${placeName} is.`);
+			return;
+		}
+
+		if (!overrideTransition) {
+			this.state.lastTransition = null;
+		}
+
 		this.state.place = newPlace;
-		this.state.lastTransition =
-			oldPlace.directions[inputDirection]!.transition;
 		this.logger.log("💨 " + this.state.lastTransition);
 		this.inspect();
 		this.persistState();
@@ -124,16 +130,12 @@ export class textAdventure {
 
 	inspect(interest?: string): void {
 		if (!interest) {
-			this.logger.log(
-				`👁️ You take a look around ${this.state.place.name}.`
-			);
+			this.logger.log(`👁️ You take a look around ${this.state.place.name}.`);
 			this.logger.log(`👁️ ${this.state.place.description}`);
 			return;
 		}
 
-		const itemName = this.state.place.items.find(
-			(x) => x.toLowerCase() === interest.toLowerCase()
-		);
+		const itemName = this.state.place.items.find((x) => x.toLowerCase() === interest.toLowerCase());
 		const item = this.items.find((x) => x.name === itemName);
 
 		if (!item) {
@@ -143,43 +145,15 @@ export class textAdventure {
 		this.logger.log(`👁️ ${item.description}`);
 	}
 
-	take(itemName: string): void {
-		const item = this.items.find(
-			(x) => x.name.toLowerCase() === itemName.toLowerCase()
-		);
+	interact(itemName: string): void {
+		const item = this.items.find((x) => {
+			return x.name.toLowerCase() === itemName.toLowerCase();
+		});
 
-		if (!item) {
-			console.log(`❌ I don't know what ${itemName} even is.`); // don't highlight this
-			return;
-		}
+		const inRoom = this.state.place.items.find((x) => x.toLowerCase() === itemName.toLowerCase());
 
-		if (
-			!this.state.place.items.some(
-				(x) => x.toLowerCase() === itemName.toLowerCase()
-			)
-		) {
-			this.logger.log(`❌ There is no ${item.name} around here.`);
-			return;
-		}
-
-		if (!item.grabable) {
-			this.logger.log(`❌ You can't take ${item.name}`);
-			return;
-		}
-
-		this.logger.log(`👜 You take ${item.name}`);
-		this.state.inventory.push(item);
-	}
-
-	use(itemName: string): void {
-		const item = this.state.inventory.find(
-			(x) => x.name.toLowerCase() === itemName.toLowerCase()
-		);
-
-		// todo: you should be able to use items that aren't in the inventory
-
-		if (!item) {
-			this.logger.log(`❌ You don't have ${itemName} in you inventory.`);
+		if (!item || !inRoom) {
+			this.logger.log(`❌ Can't find ${itemName}.`);
 			return;
 		}
 

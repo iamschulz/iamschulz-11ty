@@ -6,9 +6,7 @@ export function help() {
 		"You are in Text Adventure mode. That means you can navigate this site as if it were an early computer game."
 	);
 	console.log("It's probably full of bugs and I don't care.");
-	console.log(
-		"It's written in javascript, so every command is a js command. Here is what you can do:"
-	);
+	console.log("It's written in javascript, so every command is a js command. Here is what you can do:");
 	console.log(
 		'• Move around the game world by using %cta.go("%cDirection%c")%c. You can go to all four cardinal directions. Directions are marked in %csalmon%c.',
 		ConsoleStyles.HELP,
@@ -30,7 +28,7 @@ export function help() {
 		ConsoleStyles.DEFAULT
 	);
 	console.log(
-		'• Use an item by using %cta.use("%cItem%c")%c. Note that not all items are usable.',
+		'• Interact with an item or chatacter by using %cta.interact("%cItem%c")%c. Note that not everything is interactable.',
 		ConsoleStyles.HELP,
 		ConsoleStyles.ITEM,
 		ConsoleStyles.HELP,
@@ -46,9 +44,5 @@ export function help() {
 		ConsoleStyles.HELP,
 		ConsoleStyles.DEFAULT
 	);
-	console.log(
-		"• %cta.help()%c displays this message.",
-		ConsoleStyles.HELP,
-		ConsoleStyles.DEFAULT
-	);
+	console.log("• %cta.help()%c displays this message.", ConsoleStyles.HELP, ConsoleStyles.DEFAULT);
 }
