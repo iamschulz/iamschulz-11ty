@@ -1,3 +1,4 @@
+import { textAdventure } from "./textAdventure";
 type Portal = {
 	name: string;
 	transition: string;
@@ -14,9 +15,10 @@ export type Place = {
 	};
 	items: string[];
 	url?: URL;
+	on?: (textAdventure) => void;
 };
 
-export const places = [
+export const places: Place[] = [
 	{
 		name: "town square",
 		description: "a town square. A Jester gives you directions.",
@@ -39,7 +41,7 @@ export const places = [
 	},
 	{
 		name: "monastery",
-		description: "The monastery",
+		description: "The monastery. You see a scholar.",
 		directions: {
 			south: {
 				name: "town square",
@@ -80,4 +82,4 @@ export const places = [
 		items: [],
 		url: new URL(`${location.protocol}//${location.host}/ta/jail/`),
 	},
-] as Place[];
+];

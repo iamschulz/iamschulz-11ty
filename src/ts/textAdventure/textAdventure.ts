@@ -22,6 +22,7 @@ export class textAdventure {
 			place: this.places[0], // first place is default
 			lastTransition: null,
 		};
+		this.setupDynamicContent();
 
 		window.ta = {
 			help: help,
@@ -37,6 +38,7 @@ export class textAdventure {
 			this.loadState();
 			this.state.lastTransition && this.logger.log(this.state.lastTransition);
 			this.logger.log(`You find yourself in ${this.state.place.name}`);
+			this.state.place.on && this.state.place.on(this);
 		}
 	}
 
@@ -66,6 +68,37 @@ export class textAdventure {
 		const save = JSON.parse(sessionStorage.ta);
 		this.state.place = this.places.find((x) => x.name === save.place) || this.places[0];
 		this.state.lastTransition = save.lastTransition;
+	}
+
+	async setupDynamicContent() {
+		const articles: Element[] = [];
+
+		try {
+			const resp = await fetch("/index.xml");
+			const text = await resp.text();
+			const parser = new DOMParser();
+			const xmlDoc = parser.parseFromString(text, "text/xml");
+			const entries = Array.from(xmlDoc.querySelectorAll("entry"));
+			articles.push(...entries);
+		} catch (e) {
+			console.warn("Could not fetch content from RSS feed. Game experience might be a bit botched.", e);
+			return;
+		}
+
+		articles.forEach((article, i) => {
+			const chapter = i + 1;
+			const url = article.querySelector("link")?.getAttribute("href") || "";
+			const title = article.querySelector("title")?.textContent || "";
+			this.places.push({
+				name: `Chapter ${chapter}`,
+				description: `It's cover says: ${title}`,
+				directions: {},
+				items: [],
+				url: new URL(url),
+			});
+			console.log(article, i);
+		});
+		console.log(this.places);
 	}
 
 	/**
