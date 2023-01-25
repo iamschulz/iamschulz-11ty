@@ -22,7 +22,6 @@ export class textAdventure {
 			place: this.places[0], // first place is default
 			lastTransition: null,
 		};
-		this.setupDynamicContent();
 
 		window.ta = {
 			help: help,
@@ -32,6 +31,12 @@ export class textAdventure {
 			reset: this.resetGame.bind(this),
 		};
 
+		this.setupDynamicContent().then(() => {
+			this.init(newGame);
+		});
+	}
+
+	init(newGame: boolean): void {
 		if (newGame) {
 			help();
 		} else {
@@ -87,18 +92,35 @@ export class textAdventure {
 
 		articles.forEach((article, i) => {
 			const chapter = i + 1;
-			const url = article.querySelector("link")?.getAttribute("href") || "";
+			const url =
+				article
+					.querySelector("link")
+					?.getAttribute("href")
+					?.replace("https://iamschulz.com", "http://localhost:8082") // dev env
+					?.replace(/\/$/, "") || ""; // remove trailing slashes
 			const title = article.querySelector("title")?.textContent || "";
+			const bookTitle = `Book ${chapter}`;
+
+			// open article
+			this.items.push({
+				name: bookTitle,
+				description: `A book with the title: ${title}`,
+				interact: () => {
+					this.teleportPC(window.location.href.replace(/\/$/, "") === url ? "monastery" : bookTitle);
+				},
+			});
+
+			this.places.find((x) => x.name === "monastery")?.items.push(bookTitle);
+
+			// read article
 			this.places.push({
-				name: `Chapter ${chapter}`,
+				name: bookTitle,
 				description: `It's cover says: ${title}`,
 				directions: {},
-				items: [],
+				items: [bookTitle],
 				url: new URL(url),
 			});
-			console.log(article, i);
 		});
-		console.log(this.places);
 	}
 
 	/**
