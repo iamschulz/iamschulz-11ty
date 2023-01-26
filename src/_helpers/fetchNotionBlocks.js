@@ -19,16 +19,12 @@ const fetchNotionBlocks = async (
 			"Content-Type": "application/json",
 		},
 	};
-
 	const fetchArticleBenchmark0 = performance.now();
-
-	const response = skipCache
-		? await (await fetch(url, fetchOptions)).json()
-		: await EleventyFetch(url, {
-				duration: getCacheDuration().content,
-				type: "json",
-				fetchOptions,
-		  });
+	const response = await EleventyFetch(url, {
+		duration: skipCache ? 0 : getCacheDuration().content,
+		type: "json",
+		fetchOptions,
+	});
 
 	const fetchArticleBenchmark1 = performance.now();
 

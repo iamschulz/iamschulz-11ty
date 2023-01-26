@@ -5,7 +5,6 @@ module.exports = () => ({
 		authorName: "Daniel Schulz",
 		authorEmail: "hallo@iamschulz.de",
 		description: "Mostly frontend, sometimes art",
-		googleSiteVerification: "YXi9gLgXdTu-0XVP6VAzIPmczJgpXBACJPYcfyjr7bY",
 		monetization: "$ilp.uphold.com/emhMEXmNazrU",
 	},
 	mainNavigation: [

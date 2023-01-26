@@ -1,0 +1,32 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for page in collections.all %}
+       {% if not page.data.draft %}
+        <url>
+            <loc>{{ page.url | absoluteUrl(baseData.url) }}</loc>
+            <lastmod>{{ page.date.toISOString() }}</lastmod>
+            <changefreq>monthly</changefreq>
+        </url>
+        {% endif %}
+    {% endfor %}
+
+    {% for post in blogs %}
+        <url>
+            <loc>{{ post.title | slug | absoluteUrl(baseData.url) }}</loc>
+            <lastmod>{{ post.date }}</lastmod>
+            <changefreq>never</changefreq>
+        </url>
+    {% endfor %}
+
+    {% for post in arts %}
+        <url>
+            <loc>{{ post.title | slug | absoluteUrl(baseData.url) }}</loc>
+            <lastmod>{{ post.date }}</lastmod>
+            <changefreq>never</changefreq>
+        </url>
+    {% endfor %}
+</urlset>
