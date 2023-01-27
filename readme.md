@@ -4,7 +4,7 @@ _eleventy X notion edition_
 
 ## install
 
--   use node 18 or later
+-   use node 17
 -   `yarn` / `npm install`
 -   add `.env` file with
     -   `NOTION_KEY` - notion integration secret
