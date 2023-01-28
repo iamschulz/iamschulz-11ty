@@ -10,27 +10,14 @@
 
 	--base-color: hsl(var(--theme-hue), var(--theme-sat), var(--theme-lit));
 
-	--fg-color: hsl(
-		var(--theme-hue),
-		var(--theme-sat),
-		clamp(20%, calc(100% - (var(--theme-lit) - 45%) * 1000), 80%)
-	);
+	--fg-color: hsl(var(--theme-hue), var(--theme-sat), clamp(20%, calc(100% - (var(--theme-lit) - 45%) * 1000), 80%));
 
 	--accent-color: hsl(var(--theme-hue-accent), 100%, 45%);
 	--pop-color: hsl(var(--theme-hue), 100%, 45%);
 
-	--grey: hsl(
-		var(--theme-hue),
-		10%,
-		clamp(40%, calc(100% - (var(--theme-lit) - 45%) * 1000), 60%)
-	);
+	--grey: hsl(var(--theme-hue), 10%, clamp(40%, calc(100% - (var(--theme-lit) - 45%) * 1000), 60%));
 
-	--grey-fade: hsla(
-		var(--theme-hue),
-		10%,
-		clamp(55%, calc(100% - (var(--theme-lit) - 62%) * 1000), 65%),
-		0.2
-	);
+	--grey-fade: hsla(var(--theme-hue), 10%, clamp(55%, calc(100% - (var(--theme-lit) - 62%) * 1000), 65%), 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -43,14 +30,4 @@ body {
 	background-color: var(--base-color);
 	color: var(--fg-color);
 	accent-color: var(--grey);
-}
-
-:where(a) {
-	color: var(--fg-color);
-	text-decoration-color: var(--accent-color);
-	text-decoration-thickness: var(--border-width);
-
-	&:hover {
-		text-decoration-color: var(--pop-color);
-	}
 }

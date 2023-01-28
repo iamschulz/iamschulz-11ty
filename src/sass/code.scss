@@ -12,23 +12,9 @@ pre {
 		position: absolute;
 		top: 0.3rem;
 		left: 0.3rem;
-		background: radial-gradient(
-					ellipse at center,
-					var(--highlight-red, var(--grey)) 0.3rem,
-					transparent 0.3rem
-				) -1rem -1rem,
-			radial-gradient(
-					ellipse at center,
-					var(--highlight-yellow, var(--grey)) 0.3rem,
-					transparent 0.3rem
-				)
-				0rem -1rem,
-			radial-gradient(
-					ellipse at center,
-					var(--highlight-green, var(--grey)) 0.3rem,
-					transparent 0.3rem
-				)
-				1rem -1rem;
+		background: radial-gradient(ellipse at center, var(--highlight-red, var(--grey)) 0.3rem, transparent 0.3rem) -1rem -1rem,
+			radial-gradient(ellipse at center, var(--highlight-yellow, var(--grey)) 0.3rem, transparent 0.3rem) 0rem -1rem,
+			radial-gradient(ellipse at center, var(--highlight-green, var(--grey)) 0.3rem, transparent 0.3rem) 1rem -1rem;
 	}
 
 	&:hover {
@@ -53,4 +39,9 @@ kbd {
 	background: var(--grey-fade);
 	border-radius: 5px;
 	box-shadow: 0 0 0 1px var(--grey-fade);
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+	font-family: var(--mono-font);
 }

@@ -31,12 +31,12 @@ module.exports = () => ({
 	],
 	footerNavigation: [
 		{
-			label: "Icons by Font Awesome",
-			url: "https://fontawesome.com/",
-		},
-		{
 			label: "Legal",
 			url: "/legal/",
+		},
+		{
+			label: "Styleguide",
+			url: "/styleguide/",
 		},
 		{
 			label: "RSS",
@@ -45,6 +45,10 @@ module.exports = () => ({
 		{
 			label: "Source Code",
 			url: "https://github.com/iamschulz/iamschulz-11ty",
+		},
+		{
+			label: "Icons by Font Awesome",
+			url: "https://fontawesome.com/",
 		},
 	],
 });

@@ -29,7 +29,7 @@
                 {% image post.cover, post.coverAlt | escapeAttribute, "article__cover u-photo", false %}
             {% endif %}
             <aside class="article__meta">
-                <time datetime="{{ post.date }}">{% date post.date %}</time>
+                {% if post.date %}<time datetime="{{ post.date }}">{% date post.date %}</time>{% endif %}
                 {% if post.language %}<p class="article__language is--nomargin">{{ post.language }}</p>{% endif %}
             </aside>
             <h1 class="article__title is--fancyfont font-size-x-large p-name">{{ post.title }}</h1>
@@ -51,6 +51,8 @@
             <a rel="author" class="p-author h-card" href="{{ baseData.url }}">{{ baseData.meta.authorName }}</a>
         </div>
     </article>
-    {{ share(baseData=baseData, page=page, post=post) }}
-    {{ reactions(devId=post.devId) }}
+    {% if not post.disableReactions %}
+        {{ share(baseData=baseData, page=page, post=post) }}
+        {{ reactions(devId=post.devId) }}
+    {% endif %}
 {% endblock %}

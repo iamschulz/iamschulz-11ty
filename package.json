@@ -35,6 +35,7 @@
 		"build:eleventy": "eleventy",
 		"postbuild": "lightningcss --minify --targets '> 0.25%, not IE 11' dist/*.css -o dist/*.css",
 		"noIndex": "echo 'User-agent: *\nDisallow: /' > dist/robots.txt",
+		"start:offline": "OFFLINE=true npm-run-all build:sass --parallel watch:*",
 		"start": "CACHE_DB=true CACHE_CONTENT=true CACHE_IMAGES=true npm-run-all build:sass --parallel watch:*",
 		"build:cache": "CACHE_DB=true CACHE_CONTENT=true CACHE_IMAGES=true npm-run-all build:sass build:ts build:eleventy",
 		"build:full": "CACHE_DB=false CACHE_CONTENT=false CACHE_IMAGES=false npm-run-all build:sass build:ts build:eleventy",
