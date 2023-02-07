@@ -5,7 +5,9 @@ import { Toc } from "./toc";
 import { Preload } from "./preload";
 import { Reactions } from "./reactions";
 import { Share } from "./share";
-import { onLCP, onFID, onCLS } from "web-vitals";
+import { trackHit } from "./analytics/trackHit";
+import { trackRead } from "./analytics/trackRead";
+import { trackRum } from "./analytics/trackRum";
 //import { TextAdventureLoader } from "./textAdventureLoader";
 
 new ReplaceIframe();
@@ -17,7 +19,8 @@ new Reactions();
 new Share();
 //new TextAdventureLoader();
 
-console.log("testing metrics...");
-onLCP((lcp) => console.log("lcp", lcp));
-onFID((fid) => console.log("fid", fid));
-onCLS((cls) => console.log("cls", cls));
+trackHit();
+trackRum();
+
+const readTrigger = document.querySelector('[data-track="read"]');
+readTrigger && trackRead(readTrigger);
