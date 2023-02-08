@@ -4,7 +4,6 @@ export const trackRum = () => {
 	let lcp: number | null = null;
 	new PerformanceObserver((entryList) => {
 		for (const entry of entryList.getEntries()) {
-			console.log({ lcp });
 			lcp = entry.startTime;
 		}
 	}).observe({ type: "largest-contentful-paint", buffered: true });
@@ -20,7 +19,7 @@ export const trackRum = () => {
 
 	window.addEventListener("beforeunload", () => {
 		sendMetric("rum", {
-			url: window.location.href,
+			url: location.pathname,
 			lcp: lcp,
 			cls: cls,
 			scripts_done: 0,

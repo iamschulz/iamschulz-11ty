@@ -8,7 +8,7 @@ export const trackRead = (triggerEl: Element) => {
 
 				window.addEventListener("beforeunload", () => {
 					sendMetric("read", {
-						url: window.location.href,
+						url: location.pathname,
 					});
 				});
 			}

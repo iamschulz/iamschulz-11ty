@@ -5,8 +5,9 @@ export const trackHit = () => {
 		sendMetric("hit", {
 			url: window.location.href,
 			referrer: document.referrer
-				? new URL(document.referrer).hostname
+				? new URL(document.referrer).pathname
 				: null,
+			visit: "/",
 		});
 	});
 };
