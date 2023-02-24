@@ -79,10 +79,10 @@
   dependencies:
     normalize-path "^3.0.0"
 
-"@11ty/eleventy@^2.0.0-beta.2":
-  version "2.0.0-canary.34"
-  resolved "https://registry.yarnpkg.com/@11ty/eleventy/-/eleventy-2.0.0-canary.34.tgz#f0b67e33de0f3bc6e1053721361b02599596fc85"
-  integrity sha512-30z/BBb6mqSwBoFbzlAk97x4Iffbw72Bk3agVhqhESmBQx5V/eU4aDfY8ZHXeLa8r8F3y8cm3NtlFe1zHv0e7A==
+"@11ty/eleventy@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@11ty/eleventy/-/eleventy-2.0.0.tgz#933ec7789cb343c5a48bf1a2877c6fdd6c60434e"
+  integrity sha512-heNLjt1FD2nx7fvidIgA4zrIvxuslgBK0w5/Ckr5iape1CoLzmDx1uIxPa66Atr1M6YzwG9hcOxoZUYV7PfLXw==
   dependencies:
     "@11ty/dependency-tree" "^2.0.1"
     "@11ty/eleventy-dev-server" "^1.0.3"
