@@ -90,7 +90,7 @@ module.exports = async () => {
 		excerptPlain: undefined,
 		cover: result.cover?.file?.url || result.cover?.external?.url,
 		coverAlt: result.properties["Cover Alt"]?.rich_text.pop()?.plain_text || "",
-		date: result.properties["Date"]?.date.start,
+		date: result.properties["Date"]?.date?.start,
 		language: result.properties["Language"]?.select?.name || "EN",
 		devId: result.properties["Dev ID"]?.rich_text.pop()?.plain_text,
 		canonical: result.properties["Canonical"]?.url,
