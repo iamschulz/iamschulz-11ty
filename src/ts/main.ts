@@ -9,7 +9,9 @@ import { trackHit } from "./analytics/trackHit";
 import { trackRead } from "./analytics/trackRead";
 import { trackRum } from "./analytics/trackRum";
 //import { TextAdventureLoader } from "./textAdventureLoader";
+import { PageTransitions } from "./pageTransitions";
 
+new PageTransitions();
 new ReplaceIframe();
 new ThemeSwitch();
 new Toc();

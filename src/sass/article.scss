@@ -3,8 +3,12 @@
 	gap: 0 1rem;
 	grid-template-columns: 100% 0;
 	grid-template-rows: auto auto auto;
-	grid-template-areas: 'header side' 'toc side' 'content side';
+	grid-template-areas: "header side" "toc side" "content side";
 	word-break: break-word;
+
+	&__header {
+		view-transition-name: var(--article-header-transition, none);
+	}
 
 	&__cover {
 		max-width: 100%;

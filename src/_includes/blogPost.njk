@@ -24,7 +24,7 @@
 
 {% block content %}
     <article class="article h-entry">
-        <header class="article__header">
+        <header class="article__header" style="--article-header-transition: article-{{ post.title | slug }}">
             {% if post.cover and post.coverAlt %}
                 {% image post.cover, post.coverAlt | escapeAttribute, "article__cover u-photo", false %}
             {% endif %}

@@ -1,7 +1,7 @@
 {% extends "base.njk" %}
 
 {% block content %}
-<article class="presentation">
+<article class="presentation" data-component="presentation">
     <header class="presentation__head">
         <div class="presentation__image">
             <h2 class="presentation__greeting is--fancyfont">Moin!</h2>
@@ -78,9 +78,9 @@
         <h2 class="is--fancyfont">Here's my latest article:</h2>
         {% set post = blogs[0] %}
         <article class="article-card">
-            <header class="article-card__header">
+            <header class="article-card__header" data-component="article-header" data-transition="true" data-transition-name="article-{{ post.title | slug }}">
                 {% if post.cover and post.coverAlt %}
-                    <a class="article-card__header-link" href="/{{ post.title | slug | url }}/">
+                    <a class="article-card__header-link" href="/{{ post.title | slug | url }}/" data-transition-trigger="true">
                         {% image post.cover, post.coverAlt.replaceAll('"', "'"), "article-card__cover", true %}
                     </a>
                 {% endif %}
@@ -89,14 +89,14 @@
                     <p class="article-card__language">{{ post.language }}</p>
                 </aside>
                 <h2 class="article-card__title is--fancyfont font-size-large">
-                    <a href="/{{ post.title | slug | url }}/" class="article-card__link is--muted">{{ post.title }}</a>
+                    <a href="/{{ post.title | slug | url }}/" class="article-card__link is--muted" data-transition-trigger="true">{{ post.title }}</a>
                 </h2>
             </header>
             {% if post.excerpt %}
                 <div class="article-card__content">
                     {{ post.excerpt | renderHtml | safe }}
                 </div>
-                <a class="article-card__more button button-arrow" href="/{{ post.title | slug | url }}/">
+                <a class="article-card__more button button-arrow" href="/{{ post.title | slug | url }}/" data-transition-trigger="true">
                     <span class="is--visually-hidden">read the full article</span>
                     {%- svg "static/chevron-right-solid.svg" -%}
                     {%- svg "static/chevron-right-solid.svg" -%}

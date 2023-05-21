@@ -2,13 +2,13 @@
 {% from "macros/blogPagination.njk" import blogPagination %}
 
 {% block content %}
-    <ul class="article-list is--nolist">
+    <ul class="article-list is--nolist" data-component="articleList">
     {%- for post in posts %}
         <li class="article-list__entry">
             <section class="article-card">
-                <header class="article-card__header">
+                <header class="article-card__header" data-transition="true" data-transition-name="article-{{ post.title | slug }}">
                     {% if post.cover and post.coverAlt %}
-                        <a class="article-card__header-link" href="/{{ post.title | slug | url }}/">
+                        <a class="article-card__header-link" href="/{{ post.title | slug | url }}/" data-transition-trigger="true">
                             {% if loop.index <= 3 %}
                                 {% image post.cover, post.coverAlt.replaceAll('"', "'"), "article-card__cover", false %}
                             {% else %}
@@ -21,14 +21,14 @@
                         <p class="article-card__language is--nomargin">{{ post.language }}</p>
                     </aside>
                     <h2 class="article-card__title is--fancyfont font-size-large">
-                        <a href="/{{ post.title | slug | url }}/" class="article-card__link is--muted">{{ post.title }}</a>
+                        <a href="/{{ post.title | slug | url }}/" class="article-card__link is--muted" data-transition-trigger="true">{{ post.title }}</a>
                     </h2>
                 </header>
                 {% if post.excerpt %}
                     <div class="article-card__content">
                         {{ post.excerpt | renderHtml | safe }}
                     </div>
-                    <a class="article-card__more button button-arrow" href="/{{ post.title | slug | url }}/">
+                    <a class="article-card__more button button-arrow" href="/{{ post.title | slug | url }}/" data-transition-trigger="true">
                         <span class="is--visually-hidden">read the full article</span>
                         {%- svg "static/chevron-right-solid.svg" -%}
                         {%- svg "static/chevron-right-solid.svg" -%}

@@ -1,4 +1,8 @@
 .article-card {
+	&__header {
+		view-transition-name: var(--article-header-transition, none);
+	}
+
 	&__cover {
 		max-width: 100%;
 		height: auto;
