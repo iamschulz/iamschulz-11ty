@@ -102,7 +102,9 @@ export class Reactions {
 
 					const comment = {
 						id: reply.id_code,
-						avatar: new URL(reply.user.profile_image_90),
+						avatar: reply.user.profile_image_90
+							? new URL(reply.user.profile_image_90)
+							: undefined,
 						authorName: reply.user.name,
 						authorUrl: new URL(
 							`https://dev.to/${reply.user.username}`
