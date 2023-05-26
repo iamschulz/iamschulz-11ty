@@ -95,7 +95,8 @@ export class Reactions {
 					if (
 						this.ignoredComments.some(
 							(x) => String(x) === String(reply.id_code)
-						)
+						) ||
+						reply.body_html === "<p>[hidden by post author]</p>"
 					) {
 						return;
 					}

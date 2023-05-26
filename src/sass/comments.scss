@@ -4,8 +4,10 @@
 	gap: 4rem;
 	margin-top: 4rem;
 
-	@media (prefers-reduced-motion: no-preference) {
-		animation: "fade-in" 0.4s;
+	&:not([hidden]) {
+		@media (prefers-reduced-motion: no-preference) {
+			animation: "fade-in" 0.4s;
+		}
 	}
 
 	&__header {
