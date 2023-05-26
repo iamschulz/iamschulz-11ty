@@ -6,6 +6,7 @@
 
 	li {
 		padding: 0.4rem 0;
+		max-width: calc(#{$aside-width} - 4ch);
 	}
 
 	a {
@@ -37,7 +38,7 @@
 			&::before {
 				content: "";
 				position: absolute;
-				top: 0.8rem;
+				top: calc(50% - 0.25ch);
 				left: -1.5ch;
 				width: 0;
 				height: 0;
