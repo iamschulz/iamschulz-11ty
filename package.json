@@ -42,6 +42,7 @@
 		"build": "CACHE_DB=false CACHE_CONTENT=true CACHE_IMAGES=true npm-run-all build:sass build:ts build:eleventy"
 	},
 	"dependencies": {
+		"insights-js": "^1.2.11",
 		"quicklink": "^2.3.0"
 	}
 }
