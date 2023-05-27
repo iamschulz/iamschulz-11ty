@@ -59,7 +59,6 @@ export class Analytics {
 			track({
 				id: `performance-${this.pageType}`,
 				parameters: {
-					url: window.location.pathname,
 					lcp: metrics[0] ? this.rankLcp(metrics[0]) : "",
 					cls: metrics[1] ? this.rankCls(metrics[1]) : "",
 				},
@@ -115,11 +114,11 @@ export class Analytics {
 
 		for (const key in ranges) {
 			if (cls <= ranges[key]) {
-				return key;
+				return `${key} (<= ranges[key])`;
 			}
 		}
 
-		return "poor"; // Default to "poor" if the number is greater than Infinity
+		return "poor (<= Infinity)"; // Default to "poor" if the number is greater than Infinity
 	}
 
 	rankLcp(lcp: number): string {
@@ -132,10 +131,10 @@ export class Analytics {
 
 		for (const key in ranges) {
 			if (lcp <= ranges[key]) {
-				return key;
+				return `${key} (<= ranges[key])`;
 			}
 		}
 
-		return "poor"; // Default to "poor" if the number is greater than Infinity
+		return "poor (<= Infinity)"; // Default to "poor" if the number is greater than Infinity
 	}
 }
