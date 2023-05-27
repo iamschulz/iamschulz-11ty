@@ -18,9 +18,6 @@ export class Analytics {
 
 		//performance
 		this.trackPerformance();
-
-		//referrers
-		this.trackReferrers();
 	}
 
 	registerReadTriggers() {
@@ -51,21 +48,14 @@ export class Analytics {
 
 	trackPerformance() {
 		const observers = [this.observeLcp(), this.observeCls()];
-		Promise.all(observers).then((metrics) => {
-			console.log({
-				url: window.location.pathname,
-				lcp: metrics[0],
-				cls: metrics[1],
-			});
-			window.addEventListener("beforeunload", () => {
-				track({
-					id: "performance",
-					parameters: {
-						url: window.location.pathname,
-						lcp: metrics[0]?.toString() || "",
-						cls: metrics[1]?.toString() || "",
-					},
-				});
+		Promise.allSettled(observers).then((metrics) => {
+			track({
+				id: "performance",
+				parameters: {
+					url: window.location.pathname,
+					lcp: metrics[0]?.toString() || "",
+					cls: metrics[1]?.toString() || "",
+				},
 			});
 		});
 	}
@@ -105,17 +95,6 @@ export class Analytics {
 				resolve(cls);
 			});
 			observer.observe({ type: "layout-shift", buffered: true });
-		});
-	}
-
-	trackReferrers() {
-		if (!document.referrer || document.referrer.startsWith(location.origin)) {
-			return;
-		}
-
-		track({
-			id: "referrers",
-			parameters: parameters.referrer(),
 		});
 	}
 }
