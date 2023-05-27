@@ -16,6 +16,7 @@
 		"eleventy-plugin-html-validate": "^0.0.5",
 		"eleventy-plugin-toc": "^1.1.5",
 		"esbuild": "^0.15.9",
+		"esbuild-plugin-define": "^0.3.0",
 		"lightningcss-cli": "^1.15.1",
 		"lodash": "^4.17.21",
 		"markdown-it": "^13.0.1",
