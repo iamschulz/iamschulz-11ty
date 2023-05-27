@@ -48,7 +48,7 @@ export class Analytics {
 
 	trackPerformance() {
 		const observers = [this.observeLcp(), this.observeCls()];
-		Promise.allSettled(observers).then((metrics) => {
+		Promise.all(observers).then((metrics) => {
 			track({
 				id: "performance",
 				parameters: {
