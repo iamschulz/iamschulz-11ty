@@ -114,7 +114,7 @@ export class Analytics {
 
 		for (const key in ranges) {
 			if (cls <= ranges[key]) {
-				return `${key} (<= ranges[key])`;
+				return `${key} (<= ${ranges[key]})`;
 			}
 		}
 
@@ -131,7 +131,7 @@ export class Analytics {
 
 		for (const key in ranges) {
 			if (lcp <= ranges[key]) {
-				return `${key} (<= ranges[key])`;
+				return `${key} (<= ${ranges[key]})`;
 			}
 		}
 
