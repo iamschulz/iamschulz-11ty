@@ -1,6 +1,10 @@
 {% extends "base.njk" %}
 {% from "macros/blogPagination.njk" import blogPagination %}
 
+{% block additionalHead %}
+<meta name="pageType" content="listing">
+{% endblock %}
+
 {% block content %}
     <ul class="article-list is--nolist" data-component="articleList">
     {%- for post in posts %}

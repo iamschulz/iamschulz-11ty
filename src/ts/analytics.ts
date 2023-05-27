@@ -1,13 +1,16 @@
-import { init, track, trackPages, parameters } from "insights-js";
+import { init, track, trackPages } from "insights-js";
 
 export class Analytics {
 	readTrigger: HTMLElement | null;
+	pageType: string | null;
 
 	constructor() {
 		if (!process.env.INSIGHTS_KEY) {
 			return;
 		}
 		init(process.env.INSIGHTS_KEY);
+
+		this.pageType = document.head.querySelector("meta[pageType]")?.getAttribute("content") || null;
 
 		// page views
 		trackPages();
@@ -47,14 +50,18 @@ export class Analytics {
 	}
 
 	trackPerformance() {
+		if (!this.pageType) {
+			return;
+		}
+
 		const observers = [this.observeLcp(), this.observeCls()];
 		Promise.all(observers).then((metrics) => {
 			track({
-				id: "performance",
+				id: `performance-${this.pageType}`,
 				parameters: {
 					url: window.location.pathname,
-					lcp: metrics[0]?.toString() || "",
-					cls: metrics[1]?.toString() || "",
+					lcp: metrics[0] ? this.rankLcp(metrics[0]) : "",
+					cls: metrics[1] ? this.rankCls(metrics[1]) : "",
 				},
 			});
 		});
@@ -96,5 +103,39 @@ export class Analytics {
 			});
 			observer.observe({ type: "layout-shift", buffered: true });
 		});
+	}
+
+	rankCls(cls: number): string {
+		const ranges = {
+			perfect: 0,
+			good: 0.1,
+			mid: 0.25,
+			poor: Infinity,
+		};
+
+		for (const key in ranges) {
+			if (cls <= ranges[key]) {
+				return key;
+			}
+		}
+
+		return "poor"; // Default to "poor" if the number is greater than Infinity
+	}
+
+	rankLcp(lcp: number): string {
+		const ranges = {
+			perfect: 1000,
+			good: 2500,
+			mid: 4000,
+			poor: Infinity,
+		};
+
+		for (const key in ranges) {
+			if (lcp <= ranges[key]) {
+				return key;
+			}
+		}
+
+		return "poor"; // Default to "poor" if the number is greater than Infinity
 	}
 }
