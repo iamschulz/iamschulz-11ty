@@ -10,7 +10,7 @@ export class Analytics {
 		}
 		init(process.env.INSIGHTS_KEY);
 
-		this.pageType = document.head.querySelector("meta[pageType]")?.getAttribute("content") || null;
+		this.pageType = document.head.querySelector("meta[name=pageType]")?.getAttribute("content") || null;
 
 		// page views
 		trackPages();
