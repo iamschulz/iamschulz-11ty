@@ -13,6 +13,12 @@
             <li class="footer__search">
                 {% include 'search.njk' %}
             </li>
+            <li class="footer__webring">
+                <a href="https://cs.sjoy.lol/" class="footer__link">CSS Webring lol</a>:
+                <a href="https://webri.ng/webring/cssjoy/previous?via={{baseData.url}}" class="footer__link">previous</a>
+                <a href="https://webri.ng/webring/cssjoy/random?via={{baseData.url}}" class="footer__link">random</a>
+                <a href="https://webri.ng/webring/cssjoy/next?via={{baseData.url}}" class="footer__link">next</a>
+            </li>
         </ul>
     </nav>
     {% include 'themeSwitch.njk' %}
