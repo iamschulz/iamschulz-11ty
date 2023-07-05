@@ -7,7 +7,7 @@ import { Reactions } from "./reactions";
 import { Share } from "./share";
 //import { TextAdventureLoader } from "./textAdventureLoader";
 import { PageTransitions } from "./pageTransitions";
-import { Analytics } from "./analytics";
+//import { Analytics } from "./analytics";
 
 new PageTransitions();
 new ReplaceIframe();
@@ -17,5 +17,5 @@ new Search();
 new Preload();
 new Reactions();
 new Share();
-new Analytics();
+//new Analytics();
 //new TextAdventureLoader();
