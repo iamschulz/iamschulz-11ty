@@ -21,6 +21,7 @@ const escapeAttribute = require("./src/_filters/escapeAttribute.js");
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addWatchTarget("./src/sass/");
 	eleventyConfig.addWatchTarget("./src/ts/");
+	eleventyConfig.addPassthroughCopy({ "src/robots.txt": "/robots.txt" });
 	eleventyConfig.addPassthroughCopy({ "src/static/public": "assets" });
 	eleventyConfig.addPassthroughCopy({ "src/manifest.json": "/" });
 	eleventyConfig.setTemplateFormats(["md", "njk"]);
@@ -43,34 +44,17 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addShortcode("svg", getSvgContent);
 	eleventyConfig.addShortcode("date", formatDate);
 	eleventyConfig.addShortcode("year", getYear);
-	eleventyConfig.addNunjucksShortcode("codepen", (content) =>
-		codepenShortcode(content, eleventyConfig)
-	);
-	eleventyConfig.addNunjucksShortcode("youtube", (content) =>
-		youtubeShortcode(content, eleventyConfig)
-	);
+	eleventyConfig.addNunjucksShortcode("codepen", (content) => codepenShortcode(content, eleventyConfig));
+	eleventyConfig.addNunjucksShortcode("youtube", (content) => youtubeShortcode(content, eleventyConfig));
 	eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
-	eleventyConfig.addNunjucksAsyncShortcode(
-		"socialImage",
-		socialImageShortcode
-	);
-	eleventyConfig.addNunjucksAsyncShortcode("render", async (content) =>
-		renderShortcode(content, eleventyConfig)
-	);
+	eleventyConfig.addNunjucksAsyncShortcode("socialImage", socialImageShortcode);
+	eleventyConfig.addNunjucksAsyncShortcode("render", async (content) => renderShortcode(content, eleventyConfig));
 
 	eleventyConfig.addFilter("escapeAttribute", escapeAttribute);
 	eleventyConfig.addFilter("encodeURIComponent", encodeURIComponent);
-	eleventyConfig.addFilter("useRss", (content) =>
-		useRssFilter(content, eleventyConfig)
-	);
-	eleventyConfig.addAsyncFilter(
-		"renderHtml",
-		async (content) => await renderHtmlFilter(content, eleventyConfig)
-	);
-	eleventyConfig.addAsyncFilter(
-		"renderRss",
-		async (content) => await renderRssFilter(content, eleventyConfig)
-	);
+	eleventyConfig.addFilter("useRss", (content) => useRssFilter(content, eleventyConfig));
+	eleventyConfig.addAsyncFilter("renderHtml", async (content) => await renderHtmlFilter(content, eleventyConfig));
+	eleventyConfig.addAsyncFilter("renderRss", async (content) => await renderRssFilter(content, eleventyConfig));
 
 	return {
 		templateFormats: ["md", "njk", "html", "liquid"],
