@@ -8,6 +8,7 @@
 
 @media (min-width: #{$lg-width}) and (max-width: #{$lg-width + $aside-width}) {
 	:where(.is--container) {
-		margin: 0;
+		position: relative;
+		transform: translateX(calc(var(--aside-width) * -0.25));
 	}
 }
