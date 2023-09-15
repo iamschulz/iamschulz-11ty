@@ -11,6 +11,3 @@
     from = "/*"
     to = "/404/"
     status = 404
-
-[[plugins]]
-    package = "netlify-plugin-11ty"
