@@ -141,7 +141,7 @@ export class Reactions {
 				Array.from(data.children).forEach((r) => {
 					const reply = r as Webmention;
 
-					if (reply["source"]?.startsWith("https://twitter.com")) {
+					if (reply["url"]?.startsWith("https://twitter.com")) {
 						return; // fuck musk
 					}
 
