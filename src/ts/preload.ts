@@ -26,6 +26,7 @@ export class Preload {
 				(uri) => uri.includes(".xml"),
 				(uri) => uri.includes("#"),
 			],
+			prerender: true,
 		});
 	}
 }
