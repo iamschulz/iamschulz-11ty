@@ -20,9 +20,21 @@
 	--grey-fade: hsla(var(--theme-hue), 10%, clamp(55%, calc(100% - (var(--theme-lit) - 62%) * 1000), 65%), 0.2);
 }
 
+@media (prefers-contrast: more) {
+	:root {
+		--theme-lit: 100%;
+	}
+}
+
 @media (prefers-color-scheme: dark) {
 	:root {
 		--theme-lit: 8%;
+	}
+}
+
+@media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+	:root {
+		--theme-lit: 0%;
 	}
 }
 
