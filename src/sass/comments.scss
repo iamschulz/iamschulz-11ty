@@ -6,7 +6,7 @@
 
 	&:not([hidden]) {
 		@media (prefers-reduced-motion: no-preference) {
-			animation: "fade-in" 0.4s;
+			animation: "slide-in-bottom" 0.4s, "fade-in" 0.4s;
 		}
 	}
 

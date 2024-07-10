@@ -13,3 +13,13 @@
 		animation: none !important;
 	}
 }
+
+::view-transition-old(toc) {
+	animation-name: fade-in;
+	animation-direction: reverse;
+	animation-duration: 0.1s;
+}
+::view-transition-new(toc) {
+	animation-name: slide-in-right, fade-in;
+	animation-delay: 0.06s, 0.06s;
+}
