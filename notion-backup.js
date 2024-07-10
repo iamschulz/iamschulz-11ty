@@ -50,7 +50,7 @@ const getContent = async (blocks) => {
 
 	const mdblocks = await n2m.blocksToMarkdown(blocks);
 
-	let contentMdString = n2m.toMarkdownString(mdblocks);
+	let contentMdString = n2m.toMarkdownString(mdblocks).parent;
 	contentMdString = codepenToShortCode(contentMdString);
 	contentMdString = youtubeToShortCode(contentMdString);
 

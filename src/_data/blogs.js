@@ -59,7 +59,7 @@ module.exports = async () => {
 
 		let excerptMdString = undefined;
 		if (excerptBlocks) {
-			excerptMdString = n2m.toMarkdownString(excerptBlocks);
+			excerptMdString = n2m.toMarkdownString(excerptBlocks).parent;
 			excerptMdString = escapeNjk(excerptMdString); // unescaping is in render shortcode
 			excerptMdString = imageToShortCode(excerptMdString);
 			excerptMdString = codepenToShortCode(excerptMdString);
@@ -69,7 +69,7 @@ module.exports = async () => {
 
 		const excerptPlainString = excerptMdString ? markdownToTxt(excerptMdString) : undefined;
 
-		let contentMdString = n2m.toMarkdownString(mdblocks);
+		let contentMdString = n2m.toMarkdownString(mdblocks).parent;
 		contentMdString = escapeNjk(contentMdString); // unescaping is in render shortcode
 		contentMdString = imageToShortCode(contentMdString);
 		contentMdString = codepenToShortCode(contentMdString);

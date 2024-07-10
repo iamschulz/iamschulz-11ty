@@ -55,7 +55,7 @@ module.exports = async () => {
 
 		let excerptMdString = undefined;
 		if (excerptBlocks) {
-			excerptMdString = n2m.toMarkdownString(excerptBlocks);
+			excerptMdString = n2m.toMarkdownString(excerptBlocks).parent;
 			excerptMdString = imageToShortCode(excerptMdString);
 			excerptMdString = codepenToShortCode(excerptMdString);
 			excerptMdString = youtubeToShortCode(excerptMdString);
@@ -64,7 +64,7 @@ module.exports = async () => {
 
 		const excerptPlainString = excerptMdString ? markdownToTxt(excerptMdString) : undefined;
 
-		let contentMdString = n2m.toMarkdownString(mdblocks);
+		let contentMdString = n2m.toMarkdownString(mdblocks).parent;
 		contentMdString = imageToShortCode(contentMdString);
 		contentMdString = codepenToShortCode(contentMdString);
 		contentMdString = youtubeToShortCode(contentMdString);
