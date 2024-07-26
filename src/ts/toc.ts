@@ -1,20 +1,20 @@
 export class Toc {
 	private el: HTMLElement;
+	private nav: HTMLElement | null;
 	private sections: {
 		navigation: HTMLAnchorElement;
 		elements: HTMLElement[];
 	}[];
 
 	constructor() {
-		const el = document.querySelector(
-			'[data-component="toc"]'
-		) as HTMLElement | null;
+		const el = document.querySelector('[data-component="toc"]') as HTMLElement | null;
 
 		if (!el) {
 			return;
 		}
 
 		this.el = el;
+		this.nav = el.querySelector("nav");
 		this.sections = [];
 		this.getSections();
 		this.registerEvents();
@@ -22,22 +22,16 @@ export class Toc {
 
 	getHeadlines(): HTMLElement[] {
 		return Array.from(this.el.querySelectorAll("a")).map((link) =>
-			document.querySelector(
-				`[id="${link.getAttribute("href")?.replace("#", "") || ""}"]`
-			)
+			document.querySelector(`[id="${link.getAttribute("href")?.replace("#", "") || ""}"]`)
 		) as HTMLElement[];
 	}
 
 	getSections() {
-		const elements = Array.from(
-			document.querySelectorAll(".article__content > *")
-		) as HTMLElement[];
+		const elements = Array.from(document.querySelectorAll(".article__content > *")) as HTMLElement[];
 
 		elements.forEach((element) => {
 			if (element.matches(":is(h2, h3, h4") && element.id) {
-				const navigation = this.el.querySelector(
-					`[href="#${element.id}"]`
-				);
+				const navigation = this.el.querySelector(`[href="#${element.id}"]`);
 
 				this.sections.push({
 					navigation: navigation as HTMLAnchorElement,
@@ -53,10 +47,7 @@ export class Toc {
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
-					entry.target.setAttribute(
-						"data-in-screen",
-						String(entry.isIntersecting)
-					);
+					entry.target.setAttribute("data-in-screen", String(entry.isIntersecting));
 				});
 				this.highlightNavigation();
 			},
@@ -74,15 +65,22 @@ export class Toc {
 
 	highlightNavigation() {
 		window.requestAnimationFrame(() => {
-			this.sections.forEach((section) => {
-				section.navigation.setAttribute(
-					"data-highlight",
-					String(
-						section.elements.some((element) =>
-							element.matches('[data-in-screen="true"]')
-						)
-					)
+			this.sections.forEach((section, i) => {
+				const isAlreadyInViewport = section.navigation.matches('[data-highlight="true"]');
+				const isStillInViewport = section.elements.some((element) =>
+					element.matches('[data-in-screen="true"]')
 				);
+				section.navigation.setAttribute("data-highlight", String(isStillInViewport));
+
+				if (this.nav && !isAlreadyInViewport && isStillInViewport) {
+					this.nav.scrollTo({
+						top: section.navigation.offsetTop,
+						behavior:
+							window.matchMedia && window.matchMedia("prefers-reduced-motion").matches
+								? "instant"
+								: "smooth",
+					});
+				}
 			});
 		});
 	}
