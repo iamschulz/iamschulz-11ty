@@ -1,15 +1,15 @@
-module.exports = (match, content) => {
+export function isMatchInCodeBlock(match, content) {
 	const codeBlockRegex = /```([a-z]*)\n([\s\S]*?\n)```/gm;
-	codeBlockMatch = codeBlockRegex.exec(content);
+	let codeBlockMatch = codeBlockRegex.exec(content);
 
 	const codeSpanRegex = /`([^`^\n]+)`/g;
-	codeSpanMatch = codeSpanRegex.exec(content);
+	let codeSpanMatch = codeSpanRegex.exec(content);
 
 	if (!codeBlockMatch && !codeSpanMatch) {
 		return false;
 	}
 
-	codeBlocks = [];
+	let codeBlocks = [];
 
 	while (codeBlockMatch != null) {
 		codeBlocks.push({
@@ -28,9 +28,8 @@ module.exports = (match, content) => {
 	}
 
 	const isInCodeBlock = codeBlocks.some(
-		(codeBlock) =>
-			match.index >= codeBlock.start && match.index <= codeBlock.end
+		(codeBlock) => match.index >= codeBlock.start && match.index <= codeBlock.end
 	);
 
 	return isInCodeBlock;
-};
+}

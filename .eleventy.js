@@ -1,24 +1,24 @@
-const { EleventyRenderPlugin } = require("@11ty/eleventy");
-const tinyHTML = require("@sardine/eleventy-plugin-tinyhtml");
-const markdownIt = require("markdown-it");
-const markdownItAnchor = require("markdown-it-anchor");
-const renderShortcode = require("./src/_shortcodes/render.js");
-const imageShortcode = require("./src/_shortcodes/image.js");
-const socialImageShortcode = require("./src/_shortcodes/socialImage.js");
-const codepenShortcode = require("./src/_shortcodes/codepen.js");
-const youtubeShortcode = require("./src/_shortcodes/youtube.js");
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const getYear = require("./src/_shortcodes/getYear.js");
-const getSvgContent = require("./src/_shortcodes/svg.js");
-const formatDate = require("./src/_shortcodes/formatDate.js");
-const pluginTOC = require("eleventy-plugin-toc");
-const pluginRss = require("@11ty/eleventy-plugin-rss");
-const useRssFilter = require("./src/_filters/useRss");
-const renderHtmlFilter = require("./src/_filters/renderHtml");
-const renderRssFilter = require("./src/_filters/renderRss");
-const escapeAttribute = require("./src/_filters/escapeAttribute.js");
+import { EleventyRenderPlugin } from "@11ty/eleventy";
+import tinyHTML from "@sardine/eleventy-plugin-tinyhtml";
+import markdownIt from "markdown-it";
+import markdownItAnchor from "markdown-it-anchor";
+import { render as renderShortcode } from "./src/_shortcodes/render.js";
+import { imageShortcode } from "./src/_shortcodes/image.js";
+import { socialImageShortcode } from "./src/_shortcodes/socialImage.js";
+import { codepenShortcode } from "./src/_shortcodes/codepen.js";
+import { youtubeShortcode } from "./src/_shortcodes/youtube.js";
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+import { getYear } from "./src/_shortcodes/getYear.js";
+import { svg } from "./src/_shortcodes/svg.js";
+import { formatDate } from "./src/_shortcodes/formatDate.js";
+import pluginTOC from "eleventy-plugin-toc";
+import pluginRss from "@11ty/eleventy-plugin-rss";
+import { useRssFilter } from "./src/_filters/useRss.js";
+import { renderHtmlFilter } from "./src/_filters/renderHtml.js";
+import { renderRssFilter } from "./src/_filters/renderRss.js";
+import { escapeAttribute } from "./src/_filters/escapeAttribute.js";
 
-module.exports = function (eleventyConfig) {
+export default function (eleventyConfig) {
 	eleventyConfig.addWatchTarget("./src/sass/");
 	eleventyConfig.addWatchTarget("./src/ts/");
 	eleventyConfig.addPassthroughCopy({ "src/robots.txt": "/robots.txt" });
@@ -41,7 +41,14 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPlugin(tinyHTML);
 	eleventyConfig.addPlugin(syntaxHighlight);
 
-	eleventyConfig.addShortcode("svg", getSvgContent);
+	eleventyConfig.addTransform("absoluteUrl", async function (content) {
+		console.log("foo abs", this.page.inputPath, content);
+		console.log(this.page.outputPath);
+
+		return content; // todo: actually add the absUrl transform
+	});
+
+	eleventyConfig.addShortcode("svg", svg);
 	eleventyConfig.addShortcode("date", formatDate);
 	eleventyConfig.addShortcode("year", getYear);
 	eleventyConfig.addNunjucksShortcode("codepen", (content) => codepenShortcode(content, eleventyConfig));
@@ -66,4 +73,4 @@ module.exports = function (eleventyConfig) {
 			output: "dist",
 		},
 	};
-};
+}

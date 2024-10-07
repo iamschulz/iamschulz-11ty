@@ -1,6 +1,6 @@
-const fs = require("fs");
+import * as fs from "fs";
 
-module.exports = function (file) {
+export function svg(file) {
 	let relativeFilePath = `./src/${file}`;
 	let data = fs.readFileSync(relativeFilePath, function (err, contents) {
 		if (err) return err;
@@ -8,4 +8,4 @@ module.exports = function (file) {
 	});
 
 	return data.toString("utf8");
-};
+}

@@ -1,11 +1,10 @@
-const isMatchInCodeBlock = require("./isMatchInCodeBlock");
+import { isMatchInCodeBlock } from "./isMatchInCodeBlock.js";
 
-module.exports = (markdown) => {
+export function youtubeToShortCode(markdown) {
 	let result = markdown;
 
-	const regex =
-		/\[image\]\(https\:\/\/www\.youtube\.com\/watch\?v=(?<id>[-_\w\/]+)\)/gm;
-	match = regex.exec(markdown);
+	const regex = /\[image\]\(https\:\/\/www\.youtube\.com\/watch\?v=(?<id>[-_\w\/]+)\)/gm;
+	let match = regex.exec(markdown);
 
 	while (match != null) {
 		const mdYoutube = match[0];
@@ -25,4 +24,4 @@ module.exports = (markdown) => {
 	}
 
 	return result;
-};
+}

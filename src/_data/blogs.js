@@ -1,16 +1,18 @@
-require("dotenv").config();
-const { Client } = require("@notionhq/client");
-const { NotionToMarkdown } = require("notion-to-md");
-const fetchNotionBlocks = require("../_helpers/fetchNotionBlocks");
-const imageToShortCode = require("../_helpers/imageToShortCode");
-const codepenToShortCode = require("../_helpers/codepenToShortCode");
-const youtubeToShortCode = require("../_helpers/youtubeToShortCode");
-const escapeNjk = require("../_helpers/escapeNjk");
-const EleventyFetch = require("@11ty/eleventy-fetch");
-const { markdownToTxt } = require("markdown-to-txt");
-const getCacheDuration = require("../_helpers/getCacheDuration");
+import * as dotenv from "dotenv";
+import { Client } from "@notionhq/client";
+import { NotionToMarkdown } from "notion-to-md";
+import { fetchNotionBlocks } from "../_helpers/fetchNotionBlocks.js";
+import { imageToShortCode } from "../_helpers/imageToShortCode.js";
+import { codepenToShortCode } from "../_helpers/codepenToShortCode.js";
+import { youtubeToShortCode } from "../_helpers/youtubeToShortCode.js";
+import * as EleventyFetch from "@11ty/eleventy-fetch";
+import { markdownToTxt } from "markdown-to-txt";
+import { getCacheDuration } from "../_helpers/getCacheDuration.js";
+import { escapeNjk } from "../_helpers/escapeNjk.js";
 
-module.exports = async () => {
+dotenv.config({ path: "./config" });
+
+export async function blogs() {
 	if (process.env.OFFLINE) {
 		return [];
 	}
@@ -82,7 +84,7 @@ module.exports = async () => {
 		};
 	};
 
-	const posts = db.results.map((result) => ({
+	let posts = db.results.map((result) => ({
 		id: result.id,
 		title: result.properties["Title"].title.pop().plain_text,
 		content: undefined,
@@ -97,13 +99,15 @@ module.exports = async () => {
 		ignoreComments: result.properties["Ignored Comments"]?.rich_text.pop()?.plain_text,
 	}));
 
+	posts = posts.filter((x, i) => i < 10);
+
 	for (i = 0; i < posts.length; i++) {
 		const id = posts[i].id.replaceAll("-", "");
 		const skipCache = (!process.env.INCOMING_HOOK_BODY && i === 0) || process.env.INCOMING_HOOK_BODY === id; // don't cache latest or specified article
 		if (skipCache) {
 			console.log("skipping cache for:", posts[i].title);
 		}
-		const blocks = await fetchNotionBlocks(posts[i].id, [], null, skipCache);
+		const blocks = await fetchNotionBlocks(posts[i].id, [], null, skipCache, posts[i].title);
 		const post = await getContent(blocks);
 		posts[i].excerpt = post.excerpt;
 		posts[i].excerptPlain = post.excerptPlain;
@@ -111,4 +115,4 @@ module.exports = async () => {
 	}
 
 	return posts;
-};
+}

@@ -1,4 +1,4 @@
-module.exports = () => ({
+export default () => ({
 	pageTitle: "Daniel Schulz",
 	url: "https://iamschulz.com",
 	meta: {

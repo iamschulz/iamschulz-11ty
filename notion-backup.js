@@ -1,17 +1,17 @@
-require("dotenv").config();
-const { Client } = require("@notionhq/client");
-const NCCLient = require("nextcloud-node-client").Client;
-const { UploadFilesCommand } = require("nextcloud-node-client");
-const AdmZip = require("adm-zip");
-const { NotionToMarkdown } = require("notion-to-md");
-const fetchNotionBlocks = require("./src/_helpers/fetchNotionBlocks");
-const codepenToShortCode = require("./src/_helpers/codepenToShortCode");
-const youtubeToShortCode = require("./src/_helpers/youtubeToShortCode");
-const { Readable } = require("stream");
-const { finished } = require("stream/promises");
+import * as dotenv from "dotenv";
+import Client from "@notionhq/client";
+import { Client as NCCLient, UploadFilesCommand } from "nextcloud-node-client";
+import * as AdmZip from "adm-zip";
+import { NotionToMarkdown } from "notion-to-md.js";
+import { fetchNotionBlocks } from "./src/_helpers/fetchNotionBlocks.js";
+import { codepenToShortcode } from "./src/_helpers/codepenToShortCode.js";
+import { youtubeToShortCode } from "./src/_helpers/youtubeToShortCode.js";
+import { Readable } from "stream";
+import { finished } from "stream/promises";
+import * as fs from "fs";
+import * as https from "https";
 
-const fs = require("fs");
-const https = require("https");
+dotenv.config({ path: "./config" });
 
 const backupDir = "./backup";
 const nextcloudDir = "blog_backup";

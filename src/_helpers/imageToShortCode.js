@@ -1,10 +1,10 @@
-const isMatchInCodeBlock = require("./isMatchInCodeBlock");
+import { isMatchInCodeBlock } from "./isMatchInCodeBlock.js";
 
-module.exports = (markdown) => {
+export function imageToShortCode(markdown) {
 	let result = markdown;
 
 	const regex = /!\[(?<alt>[^\]]+)?\]\((?<url>[^\)]+)\)/gm;
-	match = regex.exec(markdown);
+	let match = regex.exec(markdown);
 
 	while (match != null) {
 		const mdImage = match[0];
@@ -31,4 +31,4 @@ module.exports = (markdown) => {
 	}
 
 	return result;
-};
+}

@@ -1,7 +1,7 @@
-const Image = require("@11ty/eleventy-img");
-const getCacheDuration = require("../_helpers/getCacheDuration");
+import { Image } from "@11ty/eleventy-img";
+import { getCacheDuration } from "../_helpers/getCacheDuration.js";
 
-module.exports = async function imageShortcode(src) {
+export async function socialImageShortcode(src) {
 	let options = {
 		widths: [1000],
 		formats: ["jpeg"],
@@ -14,4 +14,4 @@ module.exports = async function imageShortcode(src) {
 
 	const metadata = await Image(src, options);
 	return metadata.jpeg[0].url;
-};
+}

@@ -1,13 +1,13 @@
-const preventMDh1 = require("../_helpers/preventMDh1");
-const unescapeNjk = require("../_helpers/unescapeNjk");
+import { preventMDh1 } from "../_helpers/preventMDh1.js";
+import { unescapeNjk } from "../_helpers/unescapeNjk.js";
 
-module.exports = async function (content, eleventyConfig) {
+export async function render(content, eleventyConfig) {
 	// escape nunjucks code in content inside data handlers
-	content = await eleventyConfig.javascriptFunctions.renderTemplate(
-		content,
-		"njk"
-	);
+	if (!content) {
+		return "";
+	}
+	content = await eleventyConfig.javascript.functions.renderTemplate(content, "njk");
 	content = preventMDh1(content);
 	content = unescapeNjk(content);
 	return content;
-};
+}

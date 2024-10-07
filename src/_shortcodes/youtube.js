@@ -1,6 +1,6 @@
-const svg = require("./svg");
+import { svg } from "./svg.js";
 
-module.exports = function youtubeShortcode(id, eleventyConfig) {
+export function youtubeShortcode(id, eleventyConfig) {
 	const uuid = Math.round(Math.random() * 1000000);
 
 	if (eleventyConfig.globalData.isRss) {
@@ -46,4 +46,4 @@ module.exports = function youtubeShortcode(id, eleventyConfig) {
 	></iframe>
 </div>
 `;
-};
+}

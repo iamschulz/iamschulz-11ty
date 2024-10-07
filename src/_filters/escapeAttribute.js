@@ -1,3 +1,3 @@
-module.exports = function (content) {
+export function escapeAttribute(content) {
 	return content.replaceAll('"', "'");
-};
+}

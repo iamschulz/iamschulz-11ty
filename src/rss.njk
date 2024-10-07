@@ -6,24 +6,5 @@
 ---
 
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="{{ baseData.url }}">
-  <title>{{ baseData.pageTitle }}</title>
-  <subtitle>{{ baseData.meta.description }}</subtitle>
-  <link href="{{ baseData.url }}"/>
-  <link href="{{ permalink | absoluteUrl(baseData.url) }}" rel="self"/>
-  <updated>{{ blogs[0].date }}</updated>
-  <id>{{ baseData.url }}</id>
-  <author>
-    <name>{{ baseData.meta.authorName }}</name>
-    <email>{{ baseData.meta.authorEmail }}</email>
-  </author>
-  {%- for post in blogs %}
-  {%- set absolutePostUrl = post.title | slug | url | absoluteUrl(baseData.url) %}
-  <entry>
-    <title>{{ post.title }}</title>
-    <link href="{{ absolutePostUrl }}"/>
-    <updated>{{ post.date }}</updated>
-    <id>{{ absolutePostUrl }}</id>
-    <content type="html">{{ post.content | useRss | renderHtml | htmlToAbsoluteUrls(baseData.url) | renderRss }}</content>
-  </entry>
-  {%- endfor %}
+ 
 </feed>

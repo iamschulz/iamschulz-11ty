@@ -1,11 +1,14 @@
-const markdownIt = require("markdown-it");
+import markdownIt from "markdown-it";
 
-module.exports = async function (content, eleventyConfig) {
+export async function renderHtmlFilter(content, eleventyConfig) {
 	const md = markdownIt({
 		html: true,
 	});
 
-	const renderedShortcodes =
-		await eleventyConfig.javascriptFunctions.renderTemplate(content, "njk");
+	if (!content) {
+		return md.render("");
+	}
+
+	const renderedShortcodes = await eleventyConfig.javascript.functions.renderTemplate(content, "njk");
 	return md.render(renderedShortcodes);
-};
+}

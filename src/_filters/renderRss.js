@@ -1,7 +1,7 @@
-const unescapeNjk = require("../_helpers/unescapeNjk");
+import { unescapeNjk } from "../_helpers/unescapeNjk.js";
 
-module.exports = async function (content, eleventyConfig) {
+export async function renderRssFilter(content, eleventyConfig) {
 	content = unescapeNjk(content);
 	eleventyConfig.addGlobalData("isRss", false);
 	return content;
-};
+}

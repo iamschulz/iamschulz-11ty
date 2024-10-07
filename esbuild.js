@@ -1,28 +1,29 @@
 #!/usr/bin/env node
 
-require("dotenv").config();
+import * as dotenv from "dotenv";
+import { definePlugin } from "esbuild-plugin-define";
+import { build } from "esbuild";
 
-const { definePlugin } = require("esbuild-plugin-define");
+dotenv.config({ path: "./config" });
+
 const watchFlag = process.argv.indexOf("--watch") > -1;
 const minifyFlag = process.argv.indexOf("--minify") > -1;
 
-require("esbuild")
-	.build({
-		entryPoints: ["src/ts/main.ts", "src/ts/textAdventure/textAdventure.ts"],
-		bundle: true,
-		outdir: "dist",
-		watch: watchFlag,
-		minify: minifyFlag,
-		sourcemap: !minifyFlag ? "both" : false,
-		target: "es2020",
-		plugins: [
-			definePlugin({
-				process: {
-					env: {
-						INSIGHTS_KEY: process.env.INSIGHTS_KEY,
-					},
+build({
+	entryPoints: ["src/ts/main.ts", "src/ts/textAdventure/textAdventure.ts"],
+	bundle: true,
+	outdir: "dist",
+	//watch: watchFlag, // todo: add watch flag
+	minify: minifyFlag,
+	sourcemap: !minifyFlag ? "both" : false,
+	target: "es2020",
+	plugins: [
+		definePlugin({
+			process: {
+				env: {
+					INSIGHTS_KEY: process.env.INSIGHTS_KEY,
 				},
-			}),
-		],
-	})
-	.catch(() => process.exit(1));
+			},
+		}),
+	],
+}).catch(() => process.exit(1));

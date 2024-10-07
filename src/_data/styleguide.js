@@ -1,7 +1,7 @@
-const imageToShortCode = require("../_helpers/imageToShortCode");
-const codepenToShortCode = require("../_helpers/codepenToShortCode");
-const youtubeToShortCode = require("../_helpers/youtubeToShortCode");
-const escapeNjk = require("../_helpers/escapeNjk");
+import { imageToShortCode } from "../_helpers/imageToShortCode.js";
+import { codepenToShortCode } from "../_helpers/codepenToShortCode.js";
+import { youtubeToShortCode } from "../_helpers/youtubeToShortCode.js";
+import { escapeNjk } from "../_helpers/escapeNjk.js";
 
 let contentMdString = `
 # Colors
@@ -137,7 +137,7 @@ contentMdString = imageToShortCode(contentMdString);
 contentMdString = codepenToShortCode(contentMdString);
 contentMdString = youtubeToShortCode(contentMdString);
 
-module.exports = () => {
+export function styleguide() {
 	return [
 		{
 			id: 1,
@@ -155,4 +155,4 @@ module.exports = () => {
 			disableReactions: true, // todo: doesnt work
 		},
 	];
-};
+}

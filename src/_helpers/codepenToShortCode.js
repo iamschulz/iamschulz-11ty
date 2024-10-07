@@ -1,10 +1,10 @@
-const isMatchInCodeBlock = require("./isMatchInCodeBlock");
+import { isMatchInCodeBlock } from "./isMatchInCodeBlock.js";
 
-module.exports = (markdown) => {
+export function codepenToShortCode(markdown) {
 	let result = markdown;
 
 	const regex = /\[embed\]\(https\:\/\/codepen\.io\/(?<url>[-_\w\/]+)\)/gm;
-	match = regex.exec(markdown);
+	let match = regex.exec(markdown);
 
 	while (match != null) {
 		const mdCodepen = match[0];
@@ -17,14 +17,11 @@ module.exports = (markdown) => {
 
 		if (!isMatchInCodeBlock(match, markdown)) {
 			// replace with shortcode
-			result = result.replace(
-				mdCodepen,
-				`{% codepen "https://codepen.io/${url}" %}`
-			);
+			result = result.replace(mdCodepen, `{% codepen "https://codepen.io/${url}" %}`);
 		}
 
 		match = regex.exec(markdown);
 	}
 
 	return result;
-};
+}

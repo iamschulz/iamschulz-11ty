@@ -4,11 +4,11 @@
 	border-top: var(--grey) dashed var(--border-width);
 
 	&__loader {
+		justify-content: center;
+		font-size: 2rem;
+
 		&:not([hidden]) {
 			display: flex;
 		}
-
-		justify-content: center;
-		font-size: 2rem;
 	}
 }

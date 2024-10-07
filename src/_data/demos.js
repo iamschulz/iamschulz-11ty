@@ -1,8 +1,10 @@
-require("dotenv").config();
-const EleventyFetch = require("@11ty/eleventy-fetch");
-const getCacheDuration = require("../_helpers/getCacheDuration");
+import * as dotenv from "dotenv";
+import * as EleventyFetch from "@11ty/eleventy-fetch";
+import { getCacheDuration } from "../_helpers/getCacheDuration.js";
 
-module.exports = async () => {
+dotenv.config({ path: "./config" });
+
+export async function demos() {
 	if (process.env.OFFLINE) {
 		return [];
 	}
@@ -48,4 +50,4 @@ module.exports = async () => {
 	}));
 
 	return posts;
-};
+}

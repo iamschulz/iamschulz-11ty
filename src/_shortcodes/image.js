@@ -1,18 +1,10 @@
-const Image = require("@11ty/eleventy-img");
-const getCacheDuration = require("../_helpers/getCacheDuration");
-const { AssetCache } = require("@11ty/eleventy-fetch");
+import { Image } from "@11ty/eleventy-img";
+import { getCacheDuration } from "../_helpers/getCacheDuration.js";
 
-module.exports = async function imageShortcode(
-	src,
-	alt,
-	className = "",
-	lazy = true
-) {
+export async function imageShortcode(src, alt, className = "", lazy = true) {
 	// todo: add whitelist
 
-	const isAnimated = [".gif", ".webp"].some((x) =>
-		new URL(src).pathname.endsWith(x)
-	);
+	const isAnimated = [".gif", ".webp"].some((x) => new URL(src).pathname.endsWith(x));
 
 	let options = {
 		widths: [420, 786, 1000, 1800],
@@ -48,4 +40,4 @@ module.exports = async function imageShortcode(
 	const metadata = await Image(src, options);
 	let html = Image.generateHTML(metadata, imageAttributes);
 	return html;
-};
+}

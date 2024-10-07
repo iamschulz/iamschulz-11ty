@@ -1,15 +1,17 @@
-require("dotenv").config();
-const { Client } = require("@notionhq/client");
-const { NotionToMarkdown } = require("notion-to-md");
-const imageToShortCode = require("../_helpers/imageToShortCode");
-const codepenToShortCode = require("../_helpers/codepenToShortCode");
-const youtubeToShortCode = require("../_helpers/youtubeToShortCode");
-const EleventyFetch = require("@11ty/eleventy-fetch");
-const fetchNotionBlocks = require("../_helpers/fetchNotionBlocks");
-const { markdownToTxt } = require("markdown-to-txt");
-const getCacheDuration = require("../_helpers/getCacheDuration");
+import * as dotenv from "dotenv";
+import { Client } from "@notionhq/client";
+import { NotionToMarkdown } from "notion-to-md";
+import { fetchNotionBlocks } from "../_helpers/fetchNotionBlocks.js";
+import { imageToShortCode } from "../_helpers/imageToShortCode.js";
+import { codepenToShortCode } from "../_helpers/codepenToShortCode.js";
+import { youtubeToShortCode } from "../_helpers/youtubeToShortCode.js";
+import * as EleventyFetch from "@11ty/eleventy-fetch";
+import { markdownToTxt } from "markdown-to-txt";
+import { getCacheDuration } from "../_helpers/getCacheDuration.js";
 
-module.exports = async () => {
+dotenv.config({ path: "./config" });
+
+export async function arts() {
 	if (process.env.OFFLINE) {
 		return [];
 	}
@@ -103,4 +105,4 @@ module.exports = async () => {
 	}
 
 	return posts;
-};
+}

@@ -1,6 +1,6 @@
-const svg = require("./svg");
+import { svg } from "./svg.js";
 
-module.exports = function codepenShortcode(content, eleventyConfig) {
+export function codepenShortcode(content, eleventyConfig) {
 	const uuid = Math.round(Math.random() * 1000000);
 
 	if (eleventyConfig.globalData.isRss) {
@@ -42,12 +42,9 @@ module.exports = function codepenShortcode(content, eleventyConfig) {
 		style="width: 100%"
 		hidden
 		src="#"
-		data-src="${content.replace(
-			"/pen/",
-			"/embed/"
-		)}?height=265&theme-id=dark&default-tab=result"
+		data-src="${content.replace("/pen/", "/embed/")}?height=265&theme-id=dark&default-tab=result"
 	></iframe>
 </div>
 `;
 	return result;
-};
+}

@@ -7,7 +7,7 @@ eleventyExcludeFromCollections: true
     {% for page in collections.all %}
        {% if not page.data.draft %}
         <url>
-            <loc>{{ page.url | absoluteUrl(baseData.url) }}</loc>
+            <loc>{{ page.url }}</loc>
             <lastmod>{{ page.date.toISOString() }}</lastmod>
             <changefreq>monthly</changefreq>
         </url>
@@ -16,7 +16,7 @@ eleventyExcludeFromCollections: true
 
     {% for post in blogs %}
         <url>
-            <loc>{{ post.title | slug | absoluteUrl(baseData.url) }}</loc>
+            <loc>{{ post.title | slug | renderTransforms}}</loc>
             <lastmod>{{ post.date }}</lastmod>
             <changefreq>never</changefreq>
         </url>
@@ -24,7 +24,7 @@ eleventyExcludeFromCollections: true
 
     {% for post in arts %}
         <url>
-            <loc>{{ post.title | slug | absoluteUrl(baseData.url) }}</loc>
+            <loc>{{ post.title | slug | renderTransforms}}</loc>
             <lastmod>{{ post.date }}</lastmod>
             <changefreq>never</changefreq>
         </url>
