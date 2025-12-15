@@ -127,10 +127,7 @@ export class Reactions {
 	private async fetchWebmentions() {
 		const webmentionsUrl = "iamschulz.com";
 		const targetUrl = window.location.href;
-		const webmentionsFetchUrl = `https://webmention.io/api/mentions.jf2?domain=${webmentionsUrl}&target=${targetUrl}`;
-		const apiFetchUrl = `${apiProxy}${encodeURIComponent(
-			webmentionsFetchUrl
-		)}&time=${Date.now()}`;
+		const apiFetchUrl = `https://webmention.io/api/mentions.jf2?domain=${webmentionsUrl}&target=${targetUrl}`;
 
 		let likes = 0;
 		let comments: Reply[] = [];
