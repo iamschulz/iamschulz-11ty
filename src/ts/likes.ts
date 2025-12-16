@@ -56,12 +56,8 @@ export class Likes {
 	}
 
 	private async persistLike() {
-		const currentUrl = encodeURIComponent(window.location.href.replace(
-			window.location.protocol + "//",
-			""
-		));
-
-		await fetch(`/.netlify/functions/likes?page=${currentUrl}`, {
+		const currentPath = encodeURIComponent(window.location.pathname);
+		await fetch(`/.netlify/functions/likes?page=${currentPath}`, {
 			method: "POST",
 		});
 	}

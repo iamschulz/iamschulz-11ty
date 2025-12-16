@@ -55,12 +55,8 @@ export class Reactions {
 	}
 
 	private async fetchCustomLikes() {
-		const currentUrl = encodeURIComponent(window.location.href.replace(
-			window.location.protocol + "//",
-			""
-		));
-
-		const likesResponse = await fetch(`/.netlify/functions/likes?page=${currentUrl}`)
+		const currentPath = encodeURIComponent(window.location.pathname);
+		const likesResponse = await fetch(`/.netlify/functions/likes?page=${currentPath}`)
         if (likesResponse.status === 200) {
             const likesObj = await likesResponse.json();
             return likesObj.count;
