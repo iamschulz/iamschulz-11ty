@@ -61,9 +61,12 @@ export class Reactions {
 		);
 
 		const likesResponse = await fetch(`/.netlify/functions/likes?page=${currentUrl}}]`)
-        const likesObj = await likesResponse.json();
-
-		return likesObj.count || 0;
+        if (likesResponse.status === 200) {
+            const likesObj = await likesResponse.json();
+            return likesObj.count;
+        } else {
+            return 0;
+        }
 	}
 
 	private async fetchDevLikes() {
