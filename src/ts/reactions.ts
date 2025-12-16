@@ -60,10 +60,10 @@ export class Reactions {
 			""
 		);
 
-		const likes = await fetch(
-			`/.netlify/functions/likes?page=${currentUrl}}]`
-		).then((res) => res.json());
-		return likes.count || 0;
+		const likesResponse = await fetch(`/.netlify/functions/likes?page=${currentUrl}}]`)
+        const likesObj = await likesResponse.json();
+
+		return likesObj.count || 0;
 	}
 
 	private async fetchDevLikes() {
