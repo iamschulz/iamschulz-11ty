@@ -1,6 +1,5 @@
 import { Comments } from "./comments";
 import { Likes } from "./likes";
-import { getStore } from "@netlify/blobs";
 
 export class Reactions {
 	el: HTMLElement;
@@ -56,13 +55,15 @@ export class Reactions {
 	}
 
 	private async fetchCustomLikes() {
-		const store = getStore("likes-store");
 		const currentUrl = window.location.href.replace(
 			window.location.protocol + "//",
 			""
 		);
-		const likes = await store.get(currentUrl, { type: "json" });
-		return likes || 0;
+
+		const likes = await fetch(
+			`/.netlify/functions/likes?page=${currentUrl}}]`
+		).then((res) => res.json());
+		return likes.count || 0;
 	}
 
 	private async fetchDevLikes() {

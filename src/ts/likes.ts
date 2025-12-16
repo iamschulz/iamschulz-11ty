@@ -1,5 +1,3 @@
-import { getStore } from "@netlify/blobs";
-
 export class Likes {
 	likesCount: number;
 	el: HTMLButtonElement;
@@ -58,13 +56,13 @@ export class Likes {
 	}
 
 	private async persistLike() {
-		const store = getStore("likes-store");
-
 		const currentUrl = window.location.href.replace(
 			window.location.protocol + "//",
 			""
 		);
 
-		await store.setJSON(currentUrl, { count: this.likesCount });
+		await fetch(`/.netlify/functions/likes?page=${currentUrl}}]`, {
+			method: "POST",
+		});
 	}
 }
