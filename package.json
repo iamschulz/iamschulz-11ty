@@ -44,6 +44,7 @@
 		"backup": "node ./notion-backup.js"
 	},
 	"dependencies": {
+		"@netlify/blobs": "^10.4.3",
 		"insights-js": "^1.2.11",
 		"quicklink": "^2.3.0",
 		"sharp": "^0.33.4"

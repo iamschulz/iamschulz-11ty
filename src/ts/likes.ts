@@ -1,4 +1,4 @@
-import { apiProxy, putLikeApi } from './constants';
+import { getStore } from "@netlify/blobs";
 
 export class Likes {
 	likesCount: number;
@@ -18,14 +18,17 @@ export class Likes {
 		}
 
 		this.likesCount = likesCount;
-		this.storedLikes = JSON.parse(localStorage.getItem('likes') || '{}');
+		this.storedLikes = JSON.parse(localStorage.getItem("likes") || "{}");
 		this.el = el as HTMLButtonElement;
 		this.counter = counter as HTMLSpanElement;
-		this.url = window.location.href.replace(window.location.protocol + '//', '');
+		this.url = window.location.href.replace(
+			window.location.protocol + "//",
+			""
+		);
 
 		// user has liked the article before
 		if (this.storedLikes[this.url]) {
-			this.el.setAttribute('disabled', 'disabled');
+			this.el.setAttribute("disabled", "disabled");
 		}
 
 		this.registerEventListeners();
@@ -35,34 +38,33 @@ export class Likes {
 
 	private enableUi() {
 		this.counter.innerText = String(this.likesCount);
-		this.el.removeAttribute('hidden');
+		this.el.removeAttribute("hidden");
 	}
 
 	private registerEventListeners() {
-		this.el.addEventListener('click', () => {
+		this.el.addEventListener("click", () => {
 			this.addLike();
 		});
 	}
 
 	private addLike() {
-		this.el.classList.add('is--animated');
+		this.el.classList.add("is--animated");
 		this.counter.innerText = String(parseInt(this.counter.innerText) + 1);
-		this.el.addEventListener('animationend', () => {
+		this.el.addEventListener("animationend", () => {
 			this.persistLike();
-			this.el.classList.remove('is--animated');
-			this.el.setAttribute('disabled', 'disabled');
+			this.el.classList.remove("is--animated");
+			this.el.setAttribute("disabled", "disabled");
 		});
 	}
 
-	private persistLike() {
-		const currentUrl = window.location.href.replace(window.location.protocol + '//', '');
-		const addLikeUrl = `${apiProxy}${putLikeApi}${currentUrl}&time=${Date.now()}${Math.floor(
-			Math.random() * 10000
-		)}`;
+	private async persistLike() {
+		const store = getStore("likes-store");
 
-		fetch(addLikeUrl).then(() => {
-			this.storedLikes[this.url] = true;
-			localStorage.setItem('likes', JSON.stringify(this.storedLikes));
-		});
+		const currentUrl = window.location.href.replace(
+			window.location.protocol + "//",
+			""
+		);
+
+		await store.setJSON(currentUrl, { count: this.likesCount });
 	}
 }
