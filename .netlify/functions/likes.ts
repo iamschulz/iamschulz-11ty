@@ -7,7 +7,7 @@ type LikesData = {
 
 const STORE_NAME = "likes-store";
 
-export const handler: Handler = async (event) => {
+export default async function handler(event) {
 	try {
 		// Page identifier (e.g. /blog/post-1)
 		const page =
@@ -54,4 +54,4 @@ export const handler: Handler = async (event) => {
 			body: JSON.stringify({ error: "Internal server error" }),
 		};
 	}
-};
+}
