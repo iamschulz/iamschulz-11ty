@@ -61,7 +61,7 @@ export class Likes {
 			""
 		);
 
-		await fetch(`/.netlify/functions/likes?page=${currentUrl}}]`, {
+		await fetch(`/.netlify/functions/likes?page=${currentUrl}`, {
 			method: "POST",
 		});
 	}
