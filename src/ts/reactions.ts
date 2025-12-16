@@ -55,10 +55,10 @@ export class Reactions {
 	}
 
 	private async fetchCustomLikes() {
-		const currentUrl = window.location.href.replace(
+		const currentUrl = encodeURIComponent(window.location.href.replace(
 			window.location.protocol + "//",
 			""
-		);
+		));
 
 		const likesResponse = await fetch(`/.netlify/functions/likes?page=${currentUrl}`)
         if (likesResponse.status === 200) {
