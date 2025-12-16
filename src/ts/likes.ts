@@ -56,7 +56,24 @@ export class Likes {
 	}
 
 	private async persistLike() {
-		const currentPath = encodeURIComponent(window.location.pathname.replace(/^\//, ''));
+		const currentPath = encodeURIComponent(
+			window.location.pathname.replace(/^\//, "")
+		);
+
+		// cache value
+		const persistedLikesStr = localStorage.getItem("likes");
+		let persistedLikes = JSON.parse(persistedLikesStr || "null");
+		if (!persistedLikes) {
+			persistedLikes = {};
+		}
+		if (persistedLikes[currentPath]) {
+			persistedLikes[currentPath]++;
+		} else {
+			persistedLikes[currentPath] = 1;
+		}
+		localStorage.setItem("likes", JSON.stringify(persistedLikes));
+
+		// persist value in blob
 		await fetch(`/.netlify/functions/likes?page=${currentPath}`, {
 			method: "POST",
 		});

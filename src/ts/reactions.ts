@@ -1,3 +1,4 @@
+import likes from "../../.netlify/functions/likes";
 import { Comments } from "./comments";
 import { Likes } from "./likes";
 
@@ -55,14 +56,36 @@ export class Reactions {
 	}
 
 	private async fetchCustomLikes() {
-		const currentPath = encodeURIComponent(window.location.pathname.replace(/^\//, ''));
-		const likesResponse = await fetch(`/.netlify/functions/likes?page=${currentPath}`)
-        if (likesResponse.status === 200) {
-            const likesObj = await likesResponse.json();
-            return likesObj.count;
-        } else {
-            return 0;
-        }
+		const currentPath = encodeURIComponent(
+			window.location.pathname.replace(/^\//, "")
+		);
+
+		// try getting cached value
+		const persistedLikesStr = localStorage.getItem("likes");
+		let persistedLikes = JSON.parse(persistedLikesStr || "null");
+		const persistedLikesPage = persistedLikes?.[currentPath];
+		if (persistedLikesPage !== undefined) {
+			return persistedLikesPage;
+		}
+
+		// gtet value from blob
+		const likesResponse = await fetch(
+			`/.netlify/functions/likes?page=${currentPath}`
+		);
+		if (likesResponse.status === 200) {
+			const likesObj = await likesResponse.json();
+
+			// cache value
+			if (!persistedLikes) {
+				persistedLikes = {};
+			}
+			persistedLikes[currentPath] = likesObj.count;
+			localStorage.setItem("likes", JSON.stringify(persistedLikes));
+
+			return likesObj.count;
+		} else {
+			return 0;
+		}
 	}
 
 	private async fetchDevLikes() {
