@@ -4,6 +4,7 @@ const { NotionToMarkdown } = require("notion-to-md");
 const imageToShortCode = require("../_helpers/imageToShortCode");
 const codepenToShortCode = require("../_helpers/codepenToShortCode");
 const youtubeToShortCode = require("../_helpers/youtubeToShortCode");
+const audioToShortCode = require("../_helpers/audioToShortCode");
 const EleventyFetch = require("@11ty/eleventy-fetch");
 const fetchNotionBlocks = require("../_helpers/fetchNotionBlocks");
 const { markdownToTxt } = require("markdown-to-txt");
@@ -18,6 +19,14 @@ module.exports = async () => {
 		auth: process.env.NOTION_KEY,
 	});
 	const n2m = new NotionToMarkdown({ notionClient: notion });
+
+	// notion-to-md emits nothing for audio blocks, so surface them as an
+	// `[audio](url)` token that audioToShortCode turns into the {% audio %} shortcode.
+	n2m.setCustomTransformer("audio", (block) => {
+		const audio = block.audio;
+		const url = audio?.type === "external" ? audio.external?.url : audio.file?.url;
+		return url ? `[audio](${url})` : "";
+	});
 
 	const db = await EleventyFetch(`https://api.notion.com/v1/databases/${process.env.NOTION_ART_ID}/query`, {
 		duration: getCacheDuration().db,
@@ -59,6 +68,7 @@ module.exports = async () => {
 			excerptMdString = imageToShortCode(excerptMdString);
 			excerptMdString = codepenToShortCode(excerptMdString);
 			excerptMdString = youtubeToShortCode(excerptMdString);
+			excerptMdString = audioToShortCode(excerptMdString);
 			mdblocks.splice(dividerIndex, 1);
 		}
 
@@ -68,6 +78,7 @@ module.exports = async () => {
 		contentMdString = imageToShortCode(contentMdString);
 		contentMdString = codepenToShortCode(contentMdString);
 		contentMdString = youtubeToShortCode(contentMdString);
+		contentMdString = audioToShortCode(contentMdString);
 
 		return {
 			excerpt: excerptMdString,
@@ -89,7 +100,7 @@ module.exports = async () => {
 		canonical: result.properties["Canonical"]?.url,
 	}));
 
-	for (i = 0; i < posts.length; i++) {
+	for (let i = 0; i < posts.length; i++) {
 		const id = posts[i].id.replaceAll("-", "");
 		const skipCache = (!process.env.INCOMING_HOOK_BODY && i === 0) || process.env.INCOMING_HOOK_BODY === id; // don't cache latest or specified article
 		if (skipCache) {

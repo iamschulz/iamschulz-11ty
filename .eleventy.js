@@ -7,6 +7,7 @@ const imageShortcode = require("./src/_shortcodes/image.js");
 const socialImageShortcode = require("./src/_shortcodes/socialImage.js");
 const codepenShortcode = require("./src/_shortcodes/codepen.js");
 const youtubeShortcode = require("./src/_shortcodes/youtube.js");
+const audioShortcode = require("./src/_shortcodes/audio.js");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const getYear = require("./src/_shortcodes/getYear.js");
 const getSvgContent = require("./src/_shortcodes/svg.js");
@@ -47,6 +48,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addNunjucksShortcode("codepen", (content) => codepenShortcode(content, eleventyConfig));
 	eleventyConfig.addNunjucksShortcode("youtube", (content) => youtubeShortcode(content, eleventyConfig));
 	eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+	eleventyConfig.addNunjucksAsyncShortcode("audio", (content) => audioShortcode(content, eleventyConfig));
 	eleventyConfig.addNunjucksAsyncShortcode("socialImage", socialImageShortcode);
 	eleventyConfig.addNunjucksAsyncShortcode("render", async (content) => renderShortcode(content, eleventyConfig));
 
